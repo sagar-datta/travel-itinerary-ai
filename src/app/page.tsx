@@ -3,6 +3,8 @@ import { useState } from 'react';
 import { Header } from './components/layout/Header';
 import { Welcome } from './components/features/welcome/Welcome';
 
+export const dynamic = 'force-dynamic';
+
 export default function Home() {
   const [isStarted, setIsStarted] = useState(false);
 
