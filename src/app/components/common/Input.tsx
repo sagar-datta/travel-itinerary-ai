@@ -28,14 +28,11 @@ export function Input({
         onChange={(e) => onChange(e.target.value)}
         placeholder={placeholder}
         className={`
-          rounded-xl p-4 w-full
+          rounded-xl p-4 w-full outline-none
           dark:bg-dark-base bg-light-base
           dark:text-dark-text-primary text-light-text-primary
-          shadow-[8px_8px_16px_#D0D0D0,-8px_-8px_16px_#FFFFFF] 
-          dark:shadow-[8px_8px_16px_#222222,-8px_-8px_16px_#444444]
-          focus:shadow-[4px_4px_8px_#D0D0D0,-4px_-4px_8px_#FFFFFF] 
-          dark:focus:shadow-[4px_4px_8px_#222222,-4px_-4px_8px_#444444]
-          outline-none
+          dark:shadow-[inset_8px_8px_16px_#1A1A1A,inset_-8px_-8px_16px_#333333] 
+          shadow-[inset_8px_8px_16px_#D0D0D0,inset_-8px_-8px_16px_#FFFFFF]
           ${className}
         `}
       />

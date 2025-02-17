@@ -27,9 +27,12 @@ export function TravelForm({ isStarted }: TravelFormProps) {
       ${isStarted ? 'opacity-100 translate-y-0 z-10 delay-75' : 'opacity-0 translate-y-4 z-0 pointer-events-none'}`}
     >
       <form onSubmit={handleSubmit} className="p-8 space-y-8 rounded-3xl
-        dark:bg-dark-base/50 bg-light-base/50 backdrop-blur-sm
-        dark:shadow-[inset_8px_8px_16px_#1A1A1A,inset_-8px_-8px_16px_#333333] 
-        shadow-[inset_8px_8px_16px_#D0D0D0,inset_-8px_-8px_16px_#FFFFFF]"
+        dark:bg-dark-base bg-light-base
+        dark:shadow-[12px_12px_24px_#1A1A1A,-12px_-12px_24px_#333333] 
+        shadow-[12px_12px_24px_#D0D0D0,-12px_-12px_24px_#FFFFFF]
+        hover:dark:shadow-[16px_16px_32px_#1A1A1A,-16px_-16px_32px_#333333] 
+        hover:shadow-[16px_16px_32px_#D0D0D0,-16px_-16px_32px_#FFFFFF]
+        transition-shadow duration-300"
       >
         <div className={`transition-all duration-200 ease-out delay-125
           ${isStarted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
