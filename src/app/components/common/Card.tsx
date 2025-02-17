@@ -8,12 +8,15 @@ interface CardProps {
 export function Card({ children, className = '' }: CardProps) {
   return (
     <div className={`
-      p-6 rounded-3xl
+      relative p-6 rounded-3xl
       dark:bg-dark-base bg-light-base
-      dark:shadow-[8px_8px_16px_#1A1A1A,-8px_-8px_16px_#333333] 
-      shadow-[8px_8px_16px_#D0D0D0,-8px_-8px_16px_#FFFFFF]
-      hover:dark:shadow-[12px_12px_24px_#1A1A1A,-12px_-12px_24px_#333333] 
-      hover:shadow-[12px_12px_24px_#D0D0D0,-12px_-12px_24px_#FFFFFF]
+      before:absolute before:inset-0 before:rounded-3xl before:p-[1px]
+      before:bg-gradient-to-br
+      dark:before:from-neutral-400 dark:before:to-transparent
+      before:from-white before:to-transparent
+      before:-z-10
+      dark:shadow-neu-dark shadow-neu-light
+      hover:dark:shadow-neu-dark-hover hover:shadow-neu-light-hover
       transition-shadow duration-300
       ${className}
     `}>

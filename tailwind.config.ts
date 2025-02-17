@@ -46,11 +46,13 @@ const config: Config = {
         }
       },
       boxShadow: {
-        'neu-light': '12px 12px 24px #D0D0D0, -12px -12px 24px #FFFFFF',
-        'neu-light-pressed': 'inset 12px 12px 24px #D0D0D0, inset -12px -12px 24px #FFFFFF',
+        'neu-light': '8px 8px 16px #D0D0D0, -8px -8px 16px #FFFFFF',
+        'neu-light-hover': '12px 12px 24px #D0D0D0, -12px -12px 24px #FFFFFF',
+        'neu-light-pressed': 'inset 8px 8px 16px #D0D0D0, inset -8px -8px 16px #FFFFFF',
         'neu-light-flat': '3px 3px 6px #D0D0D0, -3px -3px 6px #FFFFFF',
-        'neu-dark': '12px 12px 24px #222222, -12px -12px 24px #444444',
-        'neu-dark-pressed': 'inset 12px 12px 24px #222222, inset -12px -12px 24px #444444',
+        'neu-dark': '8px 8px 16px #222222, -8px -8px 16px #444444',
+        'neu-dark-hover': '12px 12px 24px #222222, -12px -12px 24px #444444',
+        'neu-dark-pressed': 'inset 8px 8px 16px #222222, inset -8px -8px 16px #444444',
         'neu-dark-flat': '3px 3px 6px #222222, -3px -3px 6px #444444',
       },
     },

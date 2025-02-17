@@ -25,10 +25,13 @@ export function Button({
         transition-all duration-300 ease-in-out
         dark:bg-dark-base dark:text-dark-text-primary 
         bg-light-base text-light-text-primary
-        shadow-[8px_8px_16px_#D0D0D0,-8px_-8px_16px_#FFFFFF] 
-        dark:shadow-[8px_8px_16px_#222222,-8px_-8px_16px_#444444]
-        hover:shadow-[4px_4px_8px_#D0D0D0,-4px_-4px_8px_#FFFFFF] 
-        dark:hover:shadow-[4px_4px_8px_#222222,-4px_-4px_8px_#444444]
+        before:absolute before:inset-0 before:rounded-xl before:p-[1px]
+        before:bg-gradient-to-br
+        dark:before:from-neutral-400 dark:before:to-transparent
+        before:from-white before:to-transparent
+        before:-z-10
+        dark:shadow-neu-dark shadow-neu-light
+        hover:dark:shadow-neu-dark-hover hover:shadow-neu-light-hover
         hover:text-light-accent-primary dark:hover:text-dark-accent-primary
         disabled:opacity-50 disabled:cursor-not-allowed
         ${className}
