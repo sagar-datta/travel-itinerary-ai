@@ -1,7 +1,13 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  reactStrictMode: true,
+  experimental: {
+    // Enable optimizations including React compiler
+    optimizePackageImports: ['@/components'],
+    typedRoutes: true,
+    webpackBuildWorker: true
+  }
 };
 
 export default nextConfig;
