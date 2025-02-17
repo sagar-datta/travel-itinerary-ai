@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import { Header } from './components/layout/Header';
 import { Welcome } from './components/features/welcome/Welcome';
+import { TravelForm } from './components/features/travel-form/TravelForm';
 
 export const dynamic = 'force-dynamic';
 
@@ -16,10 +17,14 @@ export default function Home() {
       />
 
       <main className="relative flex items-center justify-center px-4">
-        <Welcome 
-          isStarted={isStarted}
-          onBegin={() => setIsStarted(true)}
-        />
+        {!isStarted ? (
+          <Welcome 
+            isStarted={isStarted}
+            onBegin={() => setIsStarted(true)}
+          />
+        ) : (
+          <TravelForm />
+        )}
       </main>
     </div>
   );
@@ -30,14 +35,18 @@ export default function Home() {
  * 
  * src/app/components/
  * ├── common/             # Reusable components used across the app
- * │   └── ThemeToggle    # UI components, buttons, inputs, etc.
+ * │   ├── ThemeToggle    # UI components, buttons, inputs, etc.
+ * │   ├── NeumorphicInput
+ * │   └── NeumorphicButton
  * │
  * ├── layout/            # Structural components that define the app's layout
  * │   └── Header         # Header, footer, sidebar, etc.
  * │
  * ├── features/          # Feature-specific components grouped by feature
- * │   └── welcome/       # Components related to the welcome feature
- * │       └── Welcome    # Can include sub-components, hooks, utils specific to feature
+ * │   ├── welcome/       # Components related to the welcome feature
+ * │   │   └── Welcome    # Can include sub-components, hooks, utils specific to feature
+ * │   └── travel-form/   # Components related to the travel form feature
+ * │       └── TravelForm # Main form component for travel itinerary planning
  * │
  * └── [future folders]   # As app grows, can add:
  *     ├── hooks/         # Custom React hooks
