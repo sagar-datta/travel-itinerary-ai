@@ -24,7 +24,7 @@ export function TravelForm({ isStarted }: TravelFormProps) {
     >
       <form onSubmit={handleSubmit} className="space-y-12">
         {/* Grid for form inputs */}
-        <div className="grid grid-cols-3 gap-6">
+        <div className="grid grid-cols-3 gap-12">
           {/* First column - Destination */}
           <div className={`transition-all duration-200 ease-out delay-125
             ${isStarted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
