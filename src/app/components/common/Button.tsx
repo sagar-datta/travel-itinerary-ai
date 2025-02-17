@@ -1,4 +1,5 @@
 'use client';
+import { shape } from '../../styles/common';
 
 interface ButtonProps {
   children: React.ReactNode;
@@ -21,11 +22,11 @@ export function Button({
       onClick={onClick}
       disabled={disabled}
       className={`
-        relative rounded-xl p-4
+        relative ${shape.borderRadius} p-4
         transition-all duration-300 ease-in-out
         dark:bg-dark-base dark:text-dark-text-primary 
         bg-light-base text-light-text-primary
-        before:absolute before:inset-0 before:rounded-xl before:p-[1px]
+        before:absolute before:inset-0 ${shape.borderRadius} before:p-[1px]
         before:bg-gradient-to-br
         dark:before:from-neutral-400 dark:before:to-transparent
         before:from-white before:to-transparent
@@ -37,7 +38,7 @@ export function Button({
         ${className}
       `}
     >
-      <span className="absolute inset-0 rounded-xl bg-black opacity-0 transition-opacity duration-300 ease-in-out [&:active]:opacity-10"></span>
+      <span className={`absolute inset-0 ${shape.borderRadius} bg-black opacity-0 transition-opacity duration-300 ease-in-out [&:active]:opacity-10`}></span>
       {children}
     </button>
   );

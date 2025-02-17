@@ -43,6 +43,10 @@ export const layout = {
   },
 } as const;
 
+export const shape = {
+  borderRadius: 'rounded-xl',
+} as const;
+
 // Common conditional class patterns
 export const getTransitionClasses = (isActive: boolean, type: 'fade' | 'slide' = 'fade') => {
   if (type === 'fade') {

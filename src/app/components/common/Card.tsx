@@ -1,4 +1,5 @@
 'use client';
+import { shape } from '../../styles/common';
 
 interface CardProps {
   children: React.ReactNode;
@@ -8,9 +9,9 @@ interface CardProps {
 export function Card({ children, className = '' }: CardProps) {
   return (
     <div className={`
-      relative p-6 rounded-3xl
+      relative p-6 ${shape.borderRadius}
       dark:bg-dark-base bg-light-base
-      before:absolute before:inset-0 before:rounded-3xl before:p-[1px]
+      before:absolute before:inset-0 ${shape.borderRadius} before:p-[1px]
       before:bg-gradient-to-br
       dark:before:from-neutral-400 dark:before:to-transparent
       before:from-white before:to-transparent
