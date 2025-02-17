@@ -19,9 +19,12 @@ export function Input({
   className = '',
 }: InputProps) {
   return (
-    <div className="flex flex-col gap-2">
-      <label className="text-xl font-bold tracking-tight
-        dark:text-dark-text-primary text-light-text-primary">
+    <div className="flex flex-col gap-4">
+      <label className="text-2xl font-black tracking-tight
+        bg-gradient-to-r
+        dark:from-dark-accent-primary dark:via-dark-text-primary dark:to-dark-accent-secondary
+        from-light-accent-primary via-light-text-primary to-light-accent-secondary
+        bg-clip-text text-transparent">
         {label}
       </label>
       <input
