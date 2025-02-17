@@ -23,9 +23,9 @@ export function TravelForm({ isStarted }: TravelFormProps) {
   return (
     <TransitionContainer 
       show={isStarted}
-      className={`w-full ${layout.maxWidth.lg} ${layout.container.centered} ${layout.padding.page}`}
+      className={`w-full ${layout.maxWidth.lg} ${layout.container.centered} px-4 md:px-6 lg:px-8 py-4 md:py-6 lg:py-8`}
     >
-      <form onSubmit={handleSubmit} className="space-y-12 w-full">
+      <form onSubmit={handleSubmit} className="space-y-6 md:space-y-8 lg:space-y-12 w-full">
         {/* Grid for form inputs */}
         <div className={layout.grid.threeColumns}>
           {/* First column - Destination */}
@@ -68,7 +68,7 @@ export function TravelForm({ isStarted }: TravelFormProps) {
         >
           <Button
             type="submit"
-            className="px-12 py-4 text-lg font-medium"
+            className="px-6 md:px-8 lg:px-12 py-3 md:py-3 lg:py-4 text-base md:text-base lg:text-lg font-medium w-full md:w-auto"
           >
             Create Itinerary
           </Button>
