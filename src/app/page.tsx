@@ -6,18 +6,13 @@ const THEME_KEY = 'ai-travel-theme-preference';
 export default function Home() {
   const [isDarkMode, setIsDarkMode] = useState(false);
 
-  // Initialize theme from localStorage or system preference
   useEffect(() => {
-    // Try to get saved preference from localStorage
     const savedTheme = localStorage.getItem(THEME_KEY);
-    
     if (savedTheme !== null) {
-      // Use saved preference if it exists
       const isDark = savedTheme === 'dark';
       setIsDarkMode(isDark);
       document.documentElement.classList.toggle('dark', isDark);
     } else {
-      // Fall back to system preference if no saved preference
       const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
       setIsDarkMode(prefersDark);
       document.documentElement.classList.toggle('dark', prefersDark);
@@ -28,18 +23,26 @@ export default function Home() {
     const newDarkMode = !isDarkMode;
     setIsDarkMode(newDarkMode);
     document.documentElement.classList.toggle('dark', newDarkMode);
-    // Save preference to localStorage
     localStorage.setItem(THEME_KEY, newDarkMode ? 'dark' : 'light');
   };
 
   return (
-    <main className="min-h-screen px-4 py-8">
+    <main className="min-h-screen px-4 py-12">
       <div className="mx-auto max-w-4xl">
         {/* Theme Toggle */}
-        <div className="mb-8 flex justify-end">
+        <div className="mb-16 flex justify-end">
           <button
             onClick={toggleDarkMode}
-            className="rounded-xl p-3 transition-shadow dark:bg-dark-base dark:text-dark-text-primary dark:shadow-neu-dark dark:hover:shadow-neu-dark-flat dark:active:shadow-neu-dark-pressed bg-light-base text-light-text-primary shadow-neu-light hover:shadow-neu-light-flat active:shadow-neu-light-pressed"
+            className="group relative rounded-xl p-4 transition-all duration-300 ease-in-out transform 
+              dark:bg-dark-base dark:text-dark-text-primary bg-light-base text-light-text-primary
+              shadow-[8px_8px_16px_#c0cbbc,-8px_-8px_16px_#ffffff] 
+              dark:shadow-[8px_8px_16px_#272C35,-8px_-8px_16px_#353B46]
+              hover:shadow-[4px_4px_8px_#c0cbbc,-4px_-4px_8px_#ffffff] 
+              dark:hover:shadow-[4px_4px_8px_#272C35,-4px_-4px_8px_#353B46]
+              hover:translate-y-[2px]
+              active:shadow-[inset_8px_8px_16px_#c0cbbc,inset_-8px_-8px_16px_#ffffff] 
+              dark:active:shadow-[inset_8px_8px_16px_#272C35,inset_-8px_-8px_16px_#353B46]
+              active:translate-y-[4px]"
             aria-label={`Switch to ${isDarkMode ? 'light' : 'dark'} mode`}
           >
             {isDarkMode ? (
@@ -55,22 +58,25 @@ export default function Home() {
         </div>
 
         {/* Header Section */}
-        <div className="mb-12 text-center">
-          <div className="inline-block rounded-2xl p-8 transition-shadow dark:bg-dark-base dark:shadow-neu-dark bg-light-base shadow-neu-light">
-            <h1 className="text-6xl font-extrabold dark:text-dark-text-primary text-light-text-primary">
-              AI Travel Planner
-            </h1>
-            <p className="mt-4 text-lg dark:text-dark-text-secondary text-light-text-secondary">
-              Your intelligent companion for creating perfect travel experiences
-            </p>
-          </div>
+        <div className="mb-16 text-center">
+          <h1 className="bg-gradient-to-r dark:from-dark-accent-primary dark:via-dark-text-primary dark:to-dark-accent-secondary from-light-accent-primary via-light-text-primary to-light-accent-secondary bg-clip-text text-7xl font-black tracking-tight text-transparent">
+            AI Travel Planner
+          </h1>
+          <p className="mt-6 text-xl font-medium dark:text-dark-text-secondary text-light-text-secondary">
+            Your intelligent companion for creating perfect travel experiences
+          </p>
         </div>
 
         {/* AI Assistant Indicator */}
         <div className="mb-8 flex items-center justify-center">
-          <div className="flex items-center rounded-xl px-6 py-3 transition-shadow dark:bg-dark-base dark:shadow-neu-dark-flat bg-light-base shadow-neu-light-flat">
-            <div className="mr-3 h-3 w-3 animate-pulse rounded-full dark:bg-dark-accent-primary bg-light-accent-primary"></div>
-            <span className="dark:text-dark-text-secondary text-light-text-secondary">AI Assistant Ready</span>
+          <div className="group flex items-center gap-3 rounded-xl px-8 py-4 transition-all duration-300 dark:bg-dark-base dark:shadow-neu-dark-flat bg-light-base shadow-neu-light-flat hover:dark:shadow-neu-dark hover:shadow-neu-light">
+            <div className="relative">
+              <div className="absolute -inset-0.5 rounded-full dark:bg-dark-accent-primary/20 bg-light-accent-primary/20 blur"></div>
+              <div className="relative h-3 w-3 animate-pulse rounded-full dark:bg-dark-accent-primary bg-light-accent-primary"></div>
+            </div>
+            <span className="text-lg font-medium dark:text-dark-text-secondary text-light-text-secondary">
+              AI Assistant Ready
+            </span>
           </div>
         </div>
       </div>
