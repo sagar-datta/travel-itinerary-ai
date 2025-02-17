@@ -23,19 +23,19 @@ export function TravelForm({ isStarted }: TravelFormProps) {
   };
 
   return (
-    <div className={`w-full max-w-2xl mx-auto py-8 px-4 transition-all duration-300 ease-out transform
-      ${isStarted ? 'opacity-100 translate-y-0 z-10 delay-150' : 'opacity-0 translate-y-4 z-0 pointer-events-none'}`}
+    <div className={`w-full max-w-2xl mx-auto py-8 px-4 transition-all duration-200 ease-out transform
+      ${isStarted ? 'opacity-100 translate-y-0 z-10 delay-75' : 'opacity-0 translate-y-4 z-0 pointer-events-none'}`}
     >
       <h2 className={`text-2xl font-semibold mb-12 text-center
         dark:text-dark-text-primary text-light-text-primary
-        transition-all duration-300 ease-out delay-200
+        transition-all duration-200 ease-out delay-100
         ${isStarted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
       >
         Plan Your Journey
       </h2>
 
       <form onSubmit={handleSubmit} className="space-y-8">
-        <div className={`transition-all duration-300 ease-out delay-250
+        <div className={`transition-all duration-200 ease-out delay-125
           ${isStarted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
           <Input
             label="Destination"
@@ -45,7 +45,7 @@ export function TravelForm({ isStarted }: TravelFormProps) {
           />
         </div>
 
-        <div className={`transition-all duration-300 ease-out delay-300
+        <div className={`transition-all duration-200 ease-out delay-150
           ${isStarted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
           <Input
             label="Start Date"
@@ -55,7 +55,7 @@ export function TravelForm({ isStarted }: TravelFormProps) {
           />
         </div>
 
-        <div className={`transition-all duration-300 ease-out delay-350
+        <div className={`transition-all duration-200 ease-out delay-175
           ${isStarted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
           <Input
             label="Duration (days)"
@@ -66,7 +66,7 @@ export function TravelForm({ isStarted }: TravelFormProps) {
           />
         </div>
 
-        <div className={`transition-all duration-300 ease-out delay-400
+        <div className={`transition-all duration-200 ease-out delay-200
           ${isStarted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
           <Input
             label="Number of Travelers"
@@ -77,7 +77,7 @@ export function TravelForm({ isStarted }: TravelFormProps) {
           />
         </div>
 
-        <div className={`pt-8 flex justify-center transition-all duration-300 ease-out delay-450
+        <div className={`pt-8 flex justify-center transition-all duration-200 ease-out delay-225
           ${isStarted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
           <Button
             type="submit"
