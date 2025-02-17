@@ -19,7 +19,8 @@ export function Input({
 }: InputProps) {
   return (
     <div className="flex flex-col gap-2">
-      <label className="text-sm font-medium dark:text-dark-text-secondary text-light-text-secondary">
+      <label className="text-xl font-bold tracking-tight
+        dark:text-dark-text-primary text-light-text-primary">
         {label}
       </label>
       <input

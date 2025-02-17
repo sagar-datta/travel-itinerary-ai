@@ -4,6 +4,8 @@ import { useState } from 'react';
 import { Input } from '../../common/Input';
 import { Button } from '../../common/Button';
 import { Card } from '../../common/Card';
+import { TransitionContainer } from '../../common/TransitionContainer';
+import { layout } from '../../../styles/common';
 
 interface TravelFormProps {
   isStarted: boolean;
@@ -19,15 +21,17 @@ export function TravelForm({ isStarted }: TravelFormProps) {
   };
 
   return (
-    <div className={`w-full max-w-6xl mx-auto px-4 transition-all duration-200 ease-out transform
-      ${isStarted ? 'opacity-100 translate-y-0 z-10 delay-75' : 'opacity-0 translate-y-4 z-0 pointer-events-none'}`}
+    <TransitionContainer 
+      show={isStarted}
+      className={`w-full ${layout.maxWidth.lg} ${layout.container.centered} ${layout.padding.page}`}
     >
-      <form onSubmit={handleSubmit} className="space-y-12">
+      <form onSubmit={handleSubmit} className="space-y-12 w-full">
         {/* Grid for form inputs */}
-        <div className="grid grid-cols-3 gap-12">
+        <div className={layout.grid.threeColumns}>
           {/* First column - Destination */}
-          <div className={`transition-all duration-200 ease-out delay-125
-            ${isStarted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
+          <TransitionContainer 
+            show={isStarted}
+            delay="delay-125"
           >
             <Card>
               <Input
@@ -37,26 +41,30 @@ export function TravelForm({ isStarted }: TravelFormProps) {
                 onChange={setDestination}
               />
             </Card>
-          </div>
+          </TransitionContainer>
 
           {/* Second column - Empty card for now */}
-          <div className={`transition-all duration-200 ease-out delay-150
-            ${isStarted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
+          <TransitionContainer 
+            show={isStarted}
+            delay="delay-150"
           >
             <Card className="min-h-[120px]">&nbsp;</Card>
-          </div>
+          </TransitionContainer>
 
           {/* Third column - Empty card for now */}
-          <div className={`transition-all duration-200 ease-out delay-175
-            ${isStarted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
+          <TransitionContainer 
+            show={isStarted}
+            delay="delay-175"
           >
             <Card className="min-h-[120px]">&nbsp;</Card>
-          </div>
+          </TransitionContainer>
         </div>
 
         {/* Full-width section for submit button */}
-        <div className={`flex justify-center transition-all duration-200 ease-out delay-200
-          ${isStarted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
+        <TransitionContainer 
+          show={isStarted}
+          delay="delay-200"
+          className="flex justify-center"
         >
           <Button
             type="submit"
@@ -64,8 +72,8 @@ export function TravelForm({ isStarted }: TravelFormProps) {
           >
             Create Itinerary
           </Button>
-        </div>
+        </TransitionContainer>
       </form>
-    </div>
+    </TransitionContainer>
   );
 }
