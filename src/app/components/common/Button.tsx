@@ -26,10 +26,6 @@ export function Button({
         transition-all duration-300 ease-in-out
         dark:bg-dark-base dark:text-dark-text-primary
         bg-light-base text-light-text-primary
-        after:absolute after:inset-0
-        after:[border-radius:inherit]
-        after:border after:border-white/15
-        dark:after:border-black/10
         after:pointer-events-none
         dark:shadow-neu-dark shadow-neu-light
         hover:dark:shadow-neu-dark-hover hover:shadow-neu-light-hover
