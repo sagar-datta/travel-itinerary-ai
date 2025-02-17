@@ -17,7 +17,7 @@ export function Header({ isStarted, onTitleClick }: HeaderProps) {
             isStarted ? 'transform-none opacity-100 cursor-pointer hover:opacity-80' : '-translate-x-full opacity-0 pointer-events-none'
           }`}
         >
-          <h1 className="bg-gradient-to-r dark:from-dark-accent-primary dark:via-dark-text-primary dark:to-dark-accent-secondary from-light-accent-primary via-light-text-primary to-light-accent-secondary bg-clip-text text-3xl font-black tracking-tight text-transparent">
+          <h1 className="bg-gradient-to-r dark:from-dark-accent-primary dark:via-dark-text-primary dark:to-dark-accent-secondary from-light-accent-primary via-light-text-primary to-light-accent-secondary bg-clip-text text-3xl font-black tracking-tight text-transparent hover:text-light-accent-primary dark:hover:text-dark-accent-primary">
             AI Travel Planner
           </h1>
         </button>

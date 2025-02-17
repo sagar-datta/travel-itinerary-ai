@@ -11,47 +11,47 @@ const config: Config = {
     extend: {
       colors: {
         light: {
-          base: '#E8EDF2',       // Main surface color (light gray with slight blue tint)
+          base: '#F0F0F0',       // Very light gray base
           shadow: {
-            darker: '#C3C8CC',   // Dark shadow
-            lighter: '#FFFFFF',   // Light shadow
+            darker: '#D0D0D0',    // Shadow for depth
+            lighter: '#FFFFFF',   // Highlight for elevation
           },
           accent: {
-            primary: '#4A90E2',  // Bright blue
-            secondary: '#81A1C1', // Muted blue
-            success: '#A3BE8C',   // Soft green
+            primary: '#555555',   // Dark gray
+            secondary: '#777777',  // Medium gray
+            success: '#999999',    // Light gray
           },
           text: {
-            primary: '#2E3440',  // Near black
-            secondary: '#4C566A', // Dark gray
-            muted: '#7B88A1',    // Medium gray
+            primary: '#333333',   // Dark gray
+            secondary: '#555555',  // Medium gray
+            muted: '#777777',     // Light gray
           }
         },
         dark: {
-          base: '#2E3440',       // Main surface color (dark blue-gray)
+          base: '#333333',       // Dark gray base
           shadow: {
-            darker: '#272C35',   // Darker shadow
-            lighter: '#353B46',   // Lighter shadow
+            darker: '#222222',    // Shadow for depth
+            lighter: '#444444',    // Highlight for elevation
           },
           accent: {
-            primary: '#88C0D0',  // Arctic blue
-            secondary: '#81A1C1', // Frost blue
-            success: '#A3BE8C',   // Aurora green
+            primary: '#AAAAAA',   // Light gray
+            secondary: '#999999',  // Medium gray
+            success: '#888888',    // Dark gray
           },
           text: {
-            primary: '#ECEFF4',  // Near white
-            secondary: '#D8DEE9', // Light gray
-            muted: '#8C96A8',    // Medium gray
+            primary: '#EEEEEE',   // Very light gray
+            secondary: '#DDDDDD',  // Light gray
+            muted: '#BBBBBB',     // Medium gray
           }
         }
       },
       boxShadow: {
-        'neu-light': '20px 20px 30px #C3C8CC, -20px -20px 30px #FFFFFF',
-        'neu-light-pressed': 'inset 20px 20px 30px #C3C8CC, inset -20px -20px 30px #FFFFFF',
-        'neu-light-flat': '5px 5px 10px #C3C8CC, -5px -5px 10px #FFFFFF',
-        'neu-dark': '20px 20px 30px #272C35, -20px -20px 30px #353B46',
-        'neu-dark-pressed': 'inset 20px 20px 30px #272C35, inset -20px -20px 30px #353B46',
-        'neu-dark-flat': '5px 5px 10px #272C35, -5px -5px 10px #353B46',
+        'neu-light': '12px 12px 24px #D0D0D0, -12px -12px 24px #FFFFFF',
+        'neu-light-pressed': 'inset 12px 12px 24px #D0D0D0, inset -12px -12px 24px #FFFFFF',
+        'neu-light-flat': '3px 3px 6px #D0D0D0, -3px -3px 6px #FFFFFF',
+        'neu-dark': '12px 12px 24px #222222, -12px -12px 24px #444444',
+        'neu-dark-pressed': 'inset 12px 12px 24px #222222, inset -12px -12px 24px #444444',
+        'neu-dark-flat': '3px 3px 6px #222222, -3px -3px 6px #444444',
       },
     },
   },
