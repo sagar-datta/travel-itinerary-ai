@@ -13,7 +13,7 @@ export function Header({ isStarted, onTitleClick }: HeaderProps) {
         {/* Title in header - starts hidden and slides in when isStarted */}
         <button
           onClick={onTitleClick}
-          className={`transition-all duration-700 ease-out flex items-center h-full ${
+          className={`transition-all duration-500 ease-out flex items-center h-full ${
             isStarted ? 'transform-none opacity-100 cursor-pointer hover:opacity-80' : '-translate-x-full opacity-0 pointer-events-none'
           }`}
         >
