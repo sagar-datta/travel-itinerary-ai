@@ -11,11 +11,11 @@ export function Card({ children, className = '' }: CardProps) {
     <div className={`
       relative p-6 ${shape.borderRadius}
       dark:bg-dark-base bg-light-base
-      before:absolute before:inset-0 ${shape.borderRadius} before:p-[1px]
-      before:bg-gradient-to-br
-      dark:before:from-neutral-400 dark:before:to-transparent
-      before:from-white before:to-transparent
-      before:-z-10
+      after:absolute after:inset-0
+      after:[border-radius:inherit]
+      after:border after:border-white/15
+      dark:after:border-black/10
+      after:pointer-events-none
       dark:shadow-neu-dark shadow-neu-light
       hover:dark:shadow-neu-dark-hover hover:shadow-neu-light-hover
       transition-shadow duration-300

@@ -24,13 +24,13 @@ export function Button({
       className={`
         relative ${shape.borderRadius} p-4
         transition-all duration-300 ease-in-out
-        dark:bg-dark-base dark:text-dark-text-primary 
+        dark:bg-dark-base dark:text-dark-text-primary
         bg-light-base text-light-text-primary
-        before:absolute before:inset-0 ${shape.borderRadius} before:p-[1px]
-        before:bg-gradient-to-br
-        dark:before:from-neutral-400 dark:before:to-transparent
-        before:from-white before:to-transparent
-        before:-z-10
+        after:absolute after:inset-0
+        after:[border-radius:inherit]
+        after:border after:border-white/15
+        dark:after:border-black/10
+        after:pointer-events-none
         dark:shadow-neu-dark shadow-neu-light
         hover:dark:shadow-neu-dark-hover hover:shadow-neu-light-hover
         hover:text-light-accent-primary dark:hover:text-dark-accent-primary
