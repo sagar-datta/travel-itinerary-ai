@@ -48,11 +48,11 @@ const config: Config = {
       boxShadow: {
         'neu-light': '8px 8px 16px #D0D0D0, -8px -8px 16px #FFFFFF',
         'neu-light-hover': '4px 4px 8px #D0D0D0, -4px -4px 8px #FFFFFF',
-        'neu-light-pressed': 'inset 8px 8px 16px #D0D0D0, inset -8px -8px 16px #FFFFFF',
+        'neu-light-pressed': 'inset 4px 4px 6px #D0D0D0, inset -4px -4px 6px #FFFFFF',
         'neu-light-flat': '3px 3px 6px #D0D0D0, -3px -3px 6px #FFFFFF',
         'neu-dark': '8px 8px 16px #222222, -8px -8px 16px #444444',
         'neu-dark-hover': '4px 4px 8px #222222, -4px -4px 8px #444444',
-        'neu-dark-pressed': 'inset 8px 8px 16px #222222, inset -8px -8px 16px #444444',
+        'neu-dark-pressed': 'inset 4px 4px 6px #222222, inset -4px -4px 6px #444444',
         'neu-dark-flat': '3px 3px 6px #222222, -3px -3px 6px #444444',
       },
     },

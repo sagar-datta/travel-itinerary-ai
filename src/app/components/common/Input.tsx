@@ -31,6 +31,7 @@ export function Input({
           rounded-xl p-4 w-full outline-none
           dark:bg-dark-base/50 bg-light-base/50
           dark:text-dark-text-primary text-light-text-primary
+          dark:shadow-neu-dark-pressed shadow-neu-light-pressed
           ${className}
         `}
       />
