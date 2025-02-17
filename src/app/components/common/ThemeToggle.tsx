@@ -29,7 +29,7 @@ export function ThemeToggle() {
   return (
     <button
       onClick={toggleDarkMode}
-      className="relative rounded-lg p-4 transition-all duration-300 ease-in-out
+      className="relative rounded-lg p-2.5 transition-all duration-300 ease-in-out
         dark:bg-dark-base dark:text-dark-text-primary bg-light-base text-light-text-primary
         shadow-[6px_6px_12px_#c0cbbc,-6px_-6px_12px_#ffffff] 
         dark:shadow-[6px_6px_12px_#272C35,-6px_-6px_12px_#353B46]

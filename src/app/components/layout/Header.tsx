@@ -1,5 +1,5 @@
 'use client';
-import { ThemeToggle } from './ThemeToggle';
+import { ThemeToggle } from '../common/ThemeToggle';
 
 interface HeaderProps {
   isStarted: boolean;
