@@ -1,19 +1,35 @@
 'use client';
 import { useState, useEffect } from 'react';
 
+const THEME_KEY = 'ai-travel-theme-preference';
+
 export default function Home() {
   const [isDarkMode, setIsDarkMode] = useState(false);
 
-  // Check system preference for dark mode and set initial theme
+  // Initialize theme from localStorage or system preference
   useEffect(() => {
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    setIsDarkMode(prefersDark);
-    document.documentElement.classList.toggle('dark', prefersDark);
+    // Try to get saved preference from localStorage
+    const savedTheme = localStorage.getItem(THEME_KEY);
+    
+    if (savedTheme !== null) {
+      // Use saved preference if it exists
+      const isDark = savedTheme === 'dark';
+      setIsDarkMode(isDark);
+      document.documentElement.classList.toggle('dark', isDark);
+    } else {
+      // Fall back to system preference if no saved preference
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      setIsDarkMode(prefersDark);
+      document.documentElement.classList.toggle('dark', prefersDark);
+    }
   }, []);
 
   const toggleDarkMode = () => {
-    setIsDarkMode(!isDarkMode);
-    document.documentElement.classList.toggle('dark');
+    const newDarkMode = !isDarkMode;
+    setIsDarkMode(newDarkMode);
+    document.documentElement.classList.toggle('dark', newDarkMode);
+    // Save preference to localStorage
+    localStorage.setItem(THEME_KEY, newDarkMode ? 'dark' : 'light');
   };
 
   return (
@@ -24,6 +40,7 @@ export default function Home() {
           <button
             onClick={toggleDarkMode}
             className="rounded-xl p-3 transition-shadow dark:bg-dark-base dark:text-dark-text-primary dark:shadow-neu-dark dark:hover:shadow-neu-dark-flat dark:active:shadow-neu-dark-pressed bg-light-base text-light-text-primary shadow-neu-light hover:shadow-neu-light-flat active:shadow-neu-light-pressed"
+            aria-label={`Switch to ${isDarkMode ? 'light' : 'dark'} mode`}
           >
             {isDarkMode ? (
               <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
