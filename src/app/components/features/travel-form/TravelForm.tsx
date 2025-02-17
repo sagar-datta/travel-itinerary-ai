@@ -13,11 +13,13 @@ interface TravelFormProps {
 
 export function TravelForm({ isStarted }: TravelFormProps) {
   const [destination, setDestination] = useState('');
+  const [days, setDays] = useState('');
+  const [people, setPeople] = useState('');
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // TODO: Handle form submission
-    console.log('Form submitted:', { destination });
+    console.log('Form submitted:', { destination, days, people });
   };
 
   return (
@@ -43,20 +45,38 @@ export function TravelForm({ isStarted }: TravelFormProps) {
             </Card>
           </TransitionContainer>
 
-          {/* Second column - Empty card for now */}
-          <TransitionContainer 
+          {/* Second column - Days */}
+          <TransitionContainer
             show={isStarted}
             delay="delay-150"
           >
-            <Card className="min-h-[120px]">&nbsp;</Card>
+            <Card>
+              <Input
+                label="Days"
+                type="number"
+                min="1"
+                placeholder="How many days?"
+                value={days}
+                onChange={setDays}
+              />
+            </Card>
           </TransitionContainer>
 
-          {/* Third column - Empty card for now */}
-          <TransitionContainer 
+          {/* Third column - People */}
+          <TransitionContainer
             show={isStarted}
             delay="delay-175"
           >
-            <Card className="min-h-[120px]">&nbsp;</Card>
+            <Card>
+              <Input
+                label="People"
+                type="number"
+                min="1"
+                placeholder="How many people?"
+                value={people}
+                onChange={setPeople}
+              />
+            </Card>
           </TransitionContainer>
         </div>
 

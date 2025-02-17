@@ -1,10 +1,11 @@
 'use client';
 import { shape } from '../../styles/common';
 
-interface InputProps {
+type BaseInputProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onChange' | 'type' | 'value'>;
+
+interface InputProps extends BaseInputProps {
   label: string;
   type?: 'text' | 'date' | 'number';
-  placeholder?: string;
   value: string;
   onChange: (value: string) => void;
   className?: string;
@@ -17,6 +18,7 @@ export function Input({
   value,
   onChange,
   className = '',
+  ...inputProps
 }: InputProps) {
   return (
     <div className="flex flex-col gap-4">
@@ -28,6 +30,7 @@ export function Input({
         {label}
       </label>
       <input
+        {...inputProps}
         type={type}
         value={value}
         onChange={(e) => onChange(e.target.value)}
