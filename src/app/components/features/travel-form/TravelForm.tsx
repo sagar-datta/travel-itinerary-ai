@@ -23,18 +23,14 @@ export function TravelForm({ isStarted }: TravelFormProps) {
   };
 
   return (
-    <div className={`w-full max-w-2xl mx-auto py-8 px-4 transition-all duration-200 ease-out transform
+    <div className={`w-full max-w-2xl mx-auto transition-all duration-200 ease-out transform
       ${isStarted ? 'opacity-100 translate-y-0 z-10 delay-75' : 'opacity-0 translate-y-4 z-0 pointer-events-none'}`}
     >
-      <h2 className={`text-2xl font-semibold mb-12 text-center
-        dark:text-dark-text-primary text-light-text-primary
-        transition-all duration-200 ease-out delay-100
-        ${isStarted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
+      <form onSubmit={handleSubmit} className="p-8 space-y-8 rounded-3xl
+        dark:bg-dark-base/50 bg-light-base/50 backdrop-blur-sm
+        dark:shadow-[inset_8px_8px_16px_#1A1A1A,inset_-8px_-8px_16px_#333333] 
+        shadow-[inset_8px_8px_16px_#D0D0D0,inset_-8px_-8px_16px_#FFFFFF]"
       >
-        Plan Your Journey
-      </h2>
-
-      <form onSubmit={handleSubmit} className="space-y-8">
         <div className={`transition-all duration-200 ease-out delay-125
           ${isStarted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
           <Input
