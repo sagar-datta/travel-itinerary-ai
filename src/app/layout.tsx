@@ -13,7 +13,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="transition-colors duration-300" suppressHydrationWarning>
+       
       <body className="min-h-screen bg-light-base transition-colors duration-300 dark:bg-dark-base">
+       <script src="https://unpkg.com/react-scan/dist/auto.global.js" />
         {children}
       </body>
     </html>
