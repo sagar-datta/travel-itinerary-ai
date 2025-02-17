@@ -17,14 +17,18 @@ export default function Home() {
       />
 
       <main className="relative flex items-center justify-center px-4">
-        {!isStarted ? (
+        <div className="absolute inset-0 flex items-center justify-center">
           <Welcome 
             isStarted={isStarted}
             onBegin={() => setIsStarted(true)}
           />
-        ) : (
-          <TravelForm />
-        )}
+        </div>
+
+        <div className="absolute inset-0 flex items-center justify-center">
+          <TravelForm 
+            isStarted={isStarted}
+          />
+        </div>
       </main>
     </div>
   );
@@ -36,8 +40,8 @@ export default function Home() {
  * src/app/components/
  * ├── common/             # Reusable components used across the app
  * │   ├── ThemeToggle    # UI components, buttons, inputs, etc.
- * │   ├── NeumorphicInput
- * │   └── NeumorphicButton
+ * │   ├── Input          # Common input component with neumorphic style
+ * │   └── Button         # Common button component with neumorphic style
  * │
  * ├── layout/            # Structural components that define the app's layout
  * │   └── Header         # Header, footer, sidebar, etc.
