@@ -29,10 +29,8 @@ export function Input({
         placeholder={placeholder}
         className={`
           rounded-xl p-4 w-full outline-none
-          dark:bg-dark-base bg-light-base
+          dark:bg-dark-base/50 bg-light-base/50
           dark:text-dark-text-primary text-light-text-primary
-          dark:shadow-[inset_8px_8px_16px_#1A1A1A,inset_-8px_-8px_16px_#333333] 
-          shadow-[inset_8px_8px_16px_#D0D0D0,inset_-8px_-8px_16px_#FFFFFF]
           ${className}
         `}
       />
