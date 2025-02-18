@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import dynamic from "next/dynamic";
 import type { ActionMeta } from "react-select";
 import { useTheme } from "../../../context/ThemeContext";
@@ -26,20 +26,28 @@ const AsyncSelect = dynamic(
 export function CityInput({
   label,
   value,
+  initialLabel,
   onChange,
   className = "",
 }: CityInputProps) {
   const [selectedOption, setSelectedOption] = useState<CityOption | null>(
-    value ? { value, label: value } : null
+    value ? { value, label: initialLabel || value } : null
   );
   const { theme } = useTheme();
   const isDarkMode = theme === "dark";
   const selectRef = useRef<any>(null);
 
+  // Sync internal state with incoming props
+  useEffect(() => {
+    if (value && initialLabel) {
+      setSelectedOption({ value, label: initialLabel });
+    }
+  }, [value, initialLabel]);
+
   const handleContainerClick = () => {
     if (selectedOption) {
       setSelectedOption(null);
-      onChange("");
+      onChange("", "");
     }
     selectRef.current?.focus();
   };
@@ -49,7 +57,7 @@ export function CityInput({
     actionMeta: ActionMeta<CityOption>
   ) => {
     setSelectedOption(newValue);
-    onChange(newValue?.value || "");
+    onChange(newValue?.value || "", newValue?.label);
   };
 
   const customStyles = getCustomStyles(isDarkMode);

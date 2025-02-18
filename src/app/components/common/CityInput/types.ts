@@ -8,7 +8,8 @@ export interface CityOption {
 export interface CityInputProps {
   label: string;
   value: string;
-  onChange: (value: string) => void;
+  initialLabel?: string;
+  onChange: (value: string, label?: string) => void;
   className?: string;
 }
 

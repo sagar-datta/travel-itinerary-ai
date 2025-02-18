@@ -1,6 +1,7 @@
 "use client";
 
 import { useForm } from "react-hook-form";
+import { useEffect } from "react";
 import { TransitionContainer } from "../../common/TransitionContainer";
 import { Card } from "../../common/Card";
 import { CityInput } from "../../common/CityInput";
@@ -14,22 +15,54 @@ interface TravelFormProps {
 
 interface FormData {
   destination: string;
+  destinationLabel?: string;
   days: string;
   people: string;
 }
+
+const STORAGE_KEY = "travel-form-data";
 
 export function TravelForm({ isStarted }: TravelFormProps) {
   const { register, handleSubmit, setValue, watch } = useForm<FormData>({
     defaultValues: {
       destination: "",
+      destinationLabel: "",
       days: "1",
       people: "1",
     },
   });
 
+  // Load initial values from localStorage
+  useEffect(() => {
+    const savedData = localStorage.getItem(STORAGE_KEY);
+    if (savedData) {
+      try {
+        const parsedData = JSON.parse(savedData) as Partial<FormData>;
+        Object.entries(parsedData).forEach(([key, value]) => {
+          if (typeof value === "string") {
+            setValue(key as keyof FormData, value);
+          }
+        });
+      } catch (e) {
+        localStorage.removeItem(STORAGE_KEY);
+      }
+    }
+  }, [setValue]);
+
+  // Save form values to localStorage whenever they change
+  useEffect(() => {
+    const subscription = watch((data) => {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+    });
+    return () => subscription.unsubscribe();
+  }, [watch]);
+
   const onSubmit = (data: FormData) => {
     console.log("Form submitted:", data);
   };
+
+  const destination = watch("destination");
+  const destinationLabel = watch("destinationLabel");
 
   return (
     <TransitionContainer
@@ -45,8 +78,12 @@ export function TravelForm({ isStarted }: TravelFormProps) {
             <Card>
               <CityInput
                 label="Destination"
-                value={watch("destination")}
-                onChange={(value) => setValue("destination", value)}
+                value={destination}
+                initialLabel={destinationLabel}
+                onChange={(value, label) => {
+                  setValue("destination", value);
+                  setValue("destinationLabel", label || "");
+                }}
               />
             </Card>
           </TransitionContainer>
