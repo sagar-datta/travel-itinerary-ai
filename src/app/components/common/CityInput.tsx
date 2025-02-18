@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import dynamic from "next/dynamic";
 import { shape } from "../../styles/common";
 import axios from "axios";
@@ -37,11 +37,29 @@ interface GeonamesResult {
 }
 
 const USERNAME = "sagardatta";
+const THEME_KEY = "ai-travel-theme-preference";
 
 const inputClassName = `${shape.borderRadius} p-4 w-full outline-none font-semibold min-h-[3.5rem] cursor-text
   dark:bg-dark-base/50 bg-light-base/50
   dark:text-dark-text-primary text-light-text-primary
   dark:shadow-neu-dark-pressed shadow-neu-light-pressed`;
+
+const dropdownClassName = `
+  dark:text-dark-text-primary text-light-text-primary
+  dark:shadow-neu-dark-subtle shadow-neu-light-subtle
+  rounded-2xl
+`;
+
+const dropdownOptionClassName = `
+  dark:hover:shadow-neu-dark-subtle-pressed hover:shadow-neu-light-subtle-pressed
+  dark:text-dark-text-primary text-light-text-primary
+  rounded-xl
+`;
+
+const style = {
+  "--background-light": "rgb(240, 240, 240, 0.5)",
+  "--background-dark": "rgb(51, 51, 51, 0.5)",
+} as React.CSSProperties;
 
 export function CityInput({
   label,
@@ -52,6 +70,35 @@ export function CityInput({
   const [selectedOption, setSelectedOption] = useState<CityOption | null>(
     value ? { value, label: value } : null
   );
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  useEffect(() => {
+    // Initial theme setup
+    const savedTheme = localStorage.getItem(THEME_KEY);
+    if (savedTheme !== null) {
+      setIsDarkMode(savedTheme === "dark");
+    } else {
+      setIsDarkMode(false);
+    }
+
+    // Watch for theme changes
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (mutation.attributeName === "class") {
+          const isDark = document.documentElement.classList.contains("dark");
+          setIsDarkMode(isDark);
+        }
+      });
+    });
+
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["class"],
+    });
+
+    // Cleanup observer on component unmount
+    return () => observer.disconnect();
+  }, []);
 
   // Add ref for the AsyncSelect component
   const selectRef = useRef<any>(null);
@@ -161,21 +208,41 @@ export function CityInput({
     }),
     menu: (base) => ({
       ...base,
-      backgroundColor: "var(--background)",
       border: "none",
-      boxShadow: "var(--shadow-pressed)",
+      borderRadius: "1rem",
+      padding: "0.5rem",
+      margin: "0.5rem 0",
+      overflow: "hidden",
+      boxShadow: "none",
+      backgroundColor: isDarkMode ? "#333333" : "#F0F0F0",
+    }),
+    menuList: (base) => ({
+      ...base,
+      padding: "0.5rem",
+      backgroundColor: isDarkMode ? "#333333" : "#F0F0F0",
     }),
     option: (base, state) => ({
       ...base,
       backgroundColor: state.isFocused
-        ? "var(--accent-primary)"
+        ? "var(--background-color-pressed)"
         : "transparent",
-      color: state.isFocused ? "white" : "inherit",
+      color: "rgb(var(--text-color-primary))",
+      padding: "0.75rem 1rem",
+      borderRadius: "0.75rem",
+      cursor: "pointer",
+      transition: "all 0.2s ease",
+      ":hover": {
+        backgroundColor: "var(--background-color-pressed)",
+      },
     }),
     noOptionsMessage: (base) => ({
       ...base,
-      margin: 0,
-      color: "inherit",
+      color: "rgb(var(--text-color-primary))",
+      padding: "0.75rem 1rem",
+    }),
+    menuPortal: (base) => ({
+      ...base,
+      zIndex: 9999,
     }),
   };
 
@@ -196,6 +263,7 @@ export function CityInput({
           onClick={handleContainerClick}
         >
           <AsyncSelect
+            key={isDarkMode ? "dark" : "light"}
             ref={selectRef}
             cacheOptions
             defaultOptions
@@ -217,6 +285,10 @@ export function CityInput({
             menuPortalTarget={
               typeof document !== "undefined" ? document.body : null
             }
+            classNames={{
+              menu: () => dropdownClassName,
+              option: () => dropdownOptionClassName,
+            }}
           />
         </div>
       </div>
