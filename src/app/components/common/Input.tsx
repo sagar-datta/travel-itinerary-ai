@@ -1,5 +1,6 @@
 'use client';
 import { shape } from '../../styles/common';
+import { MinusIcon, PlusIcon } from './icons/NumberControls';
 
 type BaseInputProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onChange' | 'type' | 'value'>;
 
@@ -51,7 +52,7 @@ export function Input({
       >
         {label}
       </label>
-      <div className="relative">
+      <div className="flex gap-2 items-stretch">
         <input
           {...inputProps}
           type={type}
@@ -59,7 +60,7 @@ export function Input({
           onChange={(e) => onChange(e.target.value)}
           placeholder={placeholder}
           className={`
-            ${shape.borderRadius} p-4 pr-14 w-full outline-none
+            ${shape.borderRadius} p-4 w-full outline-none
             dark:bg-dark-base/50 bg-light-base/50
             dark:text-dark-text-primary text-light-text-primary
             dark:shadow-neu-dark-pressed shadow-neu-light-pressed
@@ -78,66 +79,32 @@ export function Input({
           `}
         />
         {type === "number" && (
-          <div className="absolute right-2.5 top-1/2 -translate-y-1/2">
-            <div
-              className="flex flex-row gap-1 p-1 rounded-md
-                          dark:text-dark-text-primary text-light-text-primary
-                          dark:bg-dark-base/50 bg-light-base/50
-                          dark:shadow-neu-dark-subtle shadow-neu-light-subtle
-                         
-                        "
+          <div
+            className={`flex gap-1 min-h-[3.5rem] ${shape.borderRadius}
+                      dark:text-dark-text-primary text-light-text-primary
+                      dark:bg-dark-base/50 bg-light-base/50
+                      dark:shadow-neu-dark-subtle shadow-neu-light-subtle`}
+          >
+            <button
+              type="button"
+              onClick={handleDecrement}
+              className={`w-10 h-full px-2 flex items-center justify-center
+                      text-sm font-medium
+                      hover:dark:shadow-neu-dark-subtle-pressed hover:shadow-neu-light-subtle-pressed
+                      ${shape.borderRadius} transition-all duration-200`}
             >
-              <button
-                type="button"
-                onClick={handleDecrement}
-                className="w-7 h-8 flex items-center justify-center
-                          text-sm font-medium
-                            active:dark:shadow-neu-dark-subtle-pressed active:shadow-neu-light-subtle-pressed
-                          rounded transition-all duration-200"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  width={16}
-                  height={16}
-                  color={"#000000"}
-                  fill={"none"}
-                >
-                  <path
-                    d="M20 12L4 12"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </button>
-              <button
-                type="button"
-                onClick={handleIncrement}
-                className="w-7 h-8 flex items-center justify-center
-                          text-sm font-medium
-           active:dark:shadow-neu-dark-subtle-pressed active:shadow-neu-light-subtle-pressed
-                          rounded transition-all duration-200"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  width={16}
-                  height={16}
-                  color={"#000000"}
-                  fill={"none"}
-                >
-                  <path
-                    d="M12 4V20M20 12H4"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </button>
-            </div>
+              <MinusIcon />
+            </button>
+            <button
+              type="button"
+              onClick={handleIncrement}
+              className={`w-10 h-full px-2 flex items-center justify-center
+                      text-sm font-medium
+                      hover:dark:shadow-neu-dark-subtle-pressed hover:shadow-neu-light-subtle-pressed
+                      ${shape.borderRadius} transition-all duration-200`}
+            >
+              <PlusIcon />
+            </button>
           </div>
         )}
       </div>
