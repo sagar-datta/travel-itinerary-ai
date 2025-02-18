@@ -6,9 +6,10 @@ import { TransitionContainer } from "../../common/TransitionContainer";
 import { Card } from "../../common/Card";
 import { CityInput } from "../../common/CityInput";
 import { Input } from "../../common/Input";
-import { Button } from "../../common/Button";
+import { BlackButton } from "../../common/BlackButton";
 import { BudgetSelector, type BudgetTier } from "../../common/BudgetSelector";
 import { layout, delays } from "../../../styles/common";
+import { generateItinerary } from "../../../services/gemini";
 
 interface TravelFormProps {
   isStarted: boolean;
@@ -62,8 +63,19 @@ export function TravelForm({ isStarted }: TravelFormProps) {
     return () => subscription.unsubscribe();
   }, [watch]);
 
-  const onSubmit = (data: FormData) => {
-    console.log("Form submitted:", data);
+  const onSubmit = async (data: FormData) => {
+    try {
+      const response = await generateItinerary({
+        destination: data.destinationLabel || data.destination,
+        days: data.days,
+        people: data.people,
+        interests: data.interests,
+        budget: data.budget,
+      });
+      console.log("Gemini Response:", response);
+    } catch (error) {
+      console.error("Error:", error);
+    }
   };
 
   const destination = watch("destination");
@@ -164,9 +176,9 @@ export function TravelForm({ isStarted }: TravelFormProps) {
 
         <TransitionContainer show={isStarted} delay={delays.delay600}>
           <div className="flex justify-center">
-            <Button type="submit" className="w-full max-w-md">
+            <BlackButton type="submit" className="w-full lg:w-auto max-w-md">
               Generate Itinerary
-            </Button>
+            </BlackButton>
           </div>
         </TransitionContainer>
       </form>
