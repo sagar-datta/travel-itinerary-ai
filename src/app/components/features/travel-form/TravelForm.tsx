@@ -8,7 +8,7 @@ import { CityInput } from "../../common/CityInput";
 import { Input } from "../../common/Input";
 import { Button } from "../../common/Button";
 import { BudgetSelector, type BudgetTier } from "../../common/BudgetSelector";
-import { layout } from "../../../styles/common";
+import { layout, delays } from "../../../styles/common";
 
 interface TravelFormProps {
   isStarted: boolean;
@@ -83,7 +83,7 @@ export function TravelForm({ isStarted }: TravelFormProps) {
         >
           <TransitionContainer
             show={isStarted}
-            delay="delay-125"
+            delay={delays.delay100}
             className="h-full"
           >
             <Card className="h-full">
@@ -101,7 +101,7 @@ export function TravelForm({ isStarted }: TravelFormProps) {
 
           <TransitionContainer
             show={isStarted}
-            delay="delay-150"
+            delay={delays.delay200}
             className="h-full"
           >
             <Card className="h-full">
@@ -117,7 +117,7 @@ export function TravelForm({ isStarted }: TravelFormProps) {
 
           <TransitionContainer
             show={isStarted}
-            delay="delay-175"
+            delay={delays.delay300}
             className="h-full"
           >
             <Card className="h-full">
@@ -133,7 +133,7 @@ export function TravelForm({ isStarted }: TravelFormProps) {
 
           <TransitionContainer
             show={isStarted}
-            delay="delay-175"
+            delay={delays.delay400}
             className="h-full"
           >
             <Card className="h-full">
@@ -149,7 +149,7 @@ export function TravelForm({ isStarted }: TravelFormProps) {
 
           <TransitionContainer
             show={isStarted}
-            delay="delay-175"
+            delay={delays.delay500}
             className="h-full"
           >
             <Card className="h-full">
@@ -162,7 +162,7 @@ export function TravelForm({ isStarted }: TravelFormProps) {
           </TransitionContainer>
         </div>
 
-        <TransitionContainer show={isStarted} delay="delay-200">
+        <TransitionContainer show={isStarted} delay={delays.delay600}>
           <div className="flex justify-center">
             <Button type="submit" className="w-full max-w-md">
               Generate Itinerary
