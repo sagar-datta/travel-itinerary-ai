@@ -18,6 +18,7 @@ interface FormData {
   destinationLabel?: string;
   days: string;
   people: string;
+  interests: string;
 }
 
 const STORAGE_KEY = "travel-form-data";
@@ -29,6 +30,7 @@ export function TravelForm({ isStarted }: TravelFormProps) {
       destinationLabel: "",
       days: "1",
       people: "1",
+      interests: "",
     },
   });
 
@@ -112,6 +114,18 @@ export function TravelForm({ isStarted }: TravelFormProps) {
             </Card>
           </TransitionContainer>
         </div>
+
+        <TransitionContainer show={isStarted} delay="delay-175">
+          <Card>
+            <Input
+              label="Interests"
+              type="text"
+              placeholder="museums, hiking, local food, art galleries"
+              value={watch("interests")}
+              onChange={(value) => setValue("interests", value)}
+            />
+          </Card>
+        </TransitionContainer>
 
         <TransitionContainer show={isStarted} delay="delay-200">
           <div className="flex justify-center">
