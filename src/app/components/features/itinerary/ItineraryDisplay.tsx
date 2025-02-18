@@ -1,6 +1,7 @@
 import { TransitionContainer } from "../../common/TransitionContainer";
 import { BlackButton } from "../../common/BlackButton";
 import { transitions, typography, layout } from "../../../styles/common";
+import { useEffect, useState } from "react";
 
 interface ItineraryDisplayProps {
   isVisible: boolean;
@@ -15,23 +16,45 @@ export function ItineraryDisplay({
   itinerary,
   onBack,
 }: ItineraryDisplayProps) {
+  const [cityName, setCityName] = useState<string>("");
+
+  useEffect(() => {
+    const savedData = localStorage.getItem("travel-form-data");
+    if (savedData) {
+      try {
+        const data = JSON.parse(savedData);
+        // Get everything before the first comma, or use the whole string if no comma
+        const city = (data.destinationLabel || data.destination || "")
+          .split(",")[0]
+          .trim();
+        setCityName(city);
+      } catch (e) {
+        console.error("Error parsing localStorage data:", e);
+      }
+    }
+  }, []);
+
   return (
     <TransitionContainer
       show={isVisible}
       type="slide"
       className={`absolute inset-0 w-full flex flex-col`}
     >
-      {/* Back button section */}
+      {/* Header section */}
       <div className="sticky top-0 z-10 w-full bg-light-base dark:bg-dark-base border-b dark:border-dark-base/50 border-light-base/50">
         <div
-          className={`${layout.maxWidth.lg} mx-auto px-4 md:px-6 lg:px-8 py-4`}
+          className={`${layout.maxWidth.lg} mx-auto px-4 md:px-6 lg:px-8 py-3 flex items-center`}
         >
-          <BlackButton
-            onClick={onBack}
-            className="!w-auto text-lg hover:translate-x-[-4px] transition-transform"
-          >
-            ← Back to Form
+          <BlackButton onClick={onBack} className="!px-3 !py-1.5 !text-sm mr-4">
+            ← Back
           </BlackButton>
+          <h1
+            className={`${typography.gradientText} ${typography.h2} flex-1 text-center`}
+          >
+            {cityName ? `Your ${cityName} Itinerary` : "Your Itinerary"}
+          </h1>
+          {/* Empty div to balance the back button */}
+          <div className="w-[68px]" />
         </div>
       </div>
 
