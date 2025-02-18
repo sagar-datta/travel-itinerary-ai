@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import plugin from "tailwindcss/plugin";
 
 const config: Config = {
   content: [
@@ -118,9 +119,26 @@ const config: Config = {
         md: "0.3rem",
         sm: "0.1rem",
       },
+      transitionProperty: {
+        neu: "box-shadow",
+      },
+      transitionTimingFunction: {
+        neu: "ease",
+      },
+      transitionDuration: {
+        neu: "300ms",
+      },
     },
   },
-  plugins: [],
+  plugins: [
+    plugin(function ({ addBase }) {
+      addBase({
+        body: {
+          "@apply bg-background text-foreground": {},
+        },
+      });
+    }),
+  ],
 };
 
 export default config;

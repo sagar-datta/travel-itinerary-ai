@@ -13,7 +13,7 @@ export function Card({ children, className = "" }: CardProps) {
       relative p-6 ${shape.borderRadius}
       dark:bg-dark-base bg-light-base
       dark:shadow-neu-dark shadow-neu-light
-      transition-shadow duration-300
+      transition-property-neu duration-neu ease-neu
       ${className}
     `}
     >
