@@ -43,7 +43,7 @@ export const getCustomStyles = (
   placeholder: (base) => ({
     ...base,
     margin: 0,
-    color: "rgb(var(--placeholder-color))",
+    color: "#6B7280",
     opacity: 0.6,
   }),
   singleValue: (base) => ({

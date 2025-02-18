@@ -10,62 +10,83 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "hsl(var(--background))",
-        foreground: "hsl(var(--foreground))",
+        // Base colors
+        background: "#F0F0F0", // Light mode default
+        foreground: "#333333",
+
+        // Card colors
         card: {
-          DEFAULT: "hsl(var(--card))",
-          foreground: "hsl(var(--card-foreground))",
+          DEFAULT: "#F0F0F0",
+          foreground: "#333333",
         },
+
+        // Popover colors
         popover: {
-          DEFAULT: "hsl(var(--popover))",
-          foreground: "hsl(var(--popover-foreground))",
+          DEFAULT: "#F0F0F0",
+          foreground: "#333333",
         },
+
+        // Primary colors
         primary: {
-          DEFAULT: "hsl(var(--primary))",
-          foreground: "hsl(var(--primary-foreground))",
+          DEFAULT: "#3B82F6",
+          foreground: "#FFFFFF",
         },
+
+        // Secondary colors
         secondary: {
-          DEFAULT: "hsl(var(--secondary))",
-          foreground: "hsl(var(--secondary-foreground))",
+          DEFAULT: "#F0F0F0",
+          foreground: "#333333",
         },
+
+        // Muted colors
         muted: {
-          DEFAULT: "hsl(var(--muted))",
-          foreground: "hsl(var(--muted-foreground))",
+          DEFAULT: "#F5F5F5",
+          foreground: "#737373",
         },
+
+        // Accent colors
         accent: {
-          DEFAULT: "hsl(var(--accent))",
-          foreground: "hsl(var(--accent-foreground))",
+          DEFAULT: "#F5F5F5",
+          foreground: "#333333",
         },
+
+        // Destructive colors
         destructive: {
-          DEFAULT: "hsl(var(--destructive))",
-          foreground: "hsl(var(--destructive-foreground))",
+          DEFAULT: "#EF4444",
+          foreground: "#FFFFFF",
         },
-        border: "hsl(var(--border))",
-        input: "hsl(var(--input))",
-        ring: "hsl(var(--ring))",
+
+        // Utility colors
+        border: "#E5E7EB",
+        input: "#E5E7EB",
+        ring: "#3B82F6",
         placeholder: "#6B7280",
+
+        // Light theme
         light: {
-          base: "#F0F0F0", // Very light gray base
+          base: "#F0F0F0",
           shadow: {
-            darker: "#D0D0D0", // Shadow for depth
-            lighter: "#FFFFFF", // Highlight for elevation
+            darker: "#D0D0D0",
+            lighter: "#FFFFFF",
           },
           accent: {
-            primary: "#555555", // Dark gray
-            secondary: "#777777", // Medium gray
-            success: "#999999", // Light gray
+            primary: "#555555",
+            secondary: "#777777",
+            success: "#999999",
           },
           text: {
-            primary: "#333333", // Dark gray
-            secondary: "#555555", // Medium gray
-            muted: "#777777", // Light gray
+            primary: "#333333",
+            secondary: "#555555",
+            muted: "#777777",
           },
         },
+
+        // Dark theme
         dark: {
-          base: "#363636", // Lighter dark mode base for better neumorphism
+          base: "#363636",
           shadow: {
-            darker: "#2A2A2A", // Deeper shadow for crisp depth
-            lighter: "#424242", // Brighter highlight for elevation
+            darker: "#2A2A2A",
+            lighter: "#424242",
           },
           accent: {
             primary: "#AAAAAA",
@@ -93,9 +114,9 @@ const config: Config = {
           "inset 8px 8px 16px #2A2A2A, inset -8px -8px 16px #424242",
       },
       borderRadius: {
-        lg: "var(--radius)",
-        md: "calc(var(--radius) - 2px)",
-        sm: "calc(var(--radius) - 4px)",
+        lg: "0.5rem",
+        md: "0.3rem",
+        sm: "0.1rem",
       },
     },
   },
