@@ -38,6 +38,11 @@ interface GeonamesResult {
 
 const USERNAME = 'sagardatta'; // Geonames username
 
+const inputClassName = `${shape.borderRadius} p-4 w-full outline-none font-semibold
+  dark:bg-dark-base/50 bg-light-base/50
+  dark:text-dark-text-primary text-light-text-primary
+  dark:shadow-neu-dark-pressed shadow-neu-light-pressed`;
+
 export function CityInput({ label, value, onChange, className = '' }: CityInputProps) {
   const [selectedOption, setSelectedOption] = useState<CityOption | null>(
     value ? { value, label: value } : null
@@ -115,53 +120,35 @@ export function CityInput({ label, value, onChange, className = '' }: CityInputP
   const customStyles: StylesConfig<CityOption, false> = {
     control: (base) => ({
       ...base,
-      minHeight: '56px',
-      borderRadius: shape.borderRadius.replace('rounded-', ''),
       border: 'none',
-      backgroundColor: 'var(--background-base-50)',
-      boxShadow: 'var(--shadow-pressed)',
-      '&:hover': {
-        border: 'none',
-      },
-    }),
-    menu: (base) => ({
-      ...base,
-      backgroundColor: 'var(--background-base)',
-      borderRadius: shape.borderRadius.replace('rounded-', ''),
-      overflow: 'hidden',
-      zIndex: 10,
-    }),
-    option: (base, state) => ({
-      ...base,
-      backgroundColor: state.isFocused 
-        ? 'var(--accent-primary)' 
-        : 'var(--background-base)',
-      color: state.isFocused 
-        ? 'white' 
-        : 'var(--text-primary)',
-      cursor: 'pointer',
-      padding: '8px 12px',
-      fontSize: '0.95rem',
-      '&:active': {
-        backgroundColor: 'var(--accent-secondary)',
-      },
-    }),
-    singleValue: (base) => ({
-      ...base,
-      color: 'var(--text-primary)',
+      boxShadow: 'none',
+      background: 'none',
     }),
     input: (base) => ({
       ...base,
-      color: 'var(--text-primary)',
+      color: 'inherit',
+      margin: 0,
+      padding: 0,
     }),
     placeholder: (base) => ({
       ...base,
-      color: 'var(--text-primary)',
+      color: 'inherit',
       opacity: 0.5,
     }),
-    menuPortal: (base) => ({
+    singleValue: (base) => ({
       ...base,
-      zIndex: 9999,
+      color: 'inherit',
+    }),
+    menu: (base) => ({
+      ...base,
+      backgroundColor: 'var(--background)',
+      border: 'none',
+      boxShadow: 'var(--shadow-pressed)',
+    }),
+    option: (base, state) => ({
+      ...base,
+      backgroundColor: state.isFocused ? 'var(--accent-primary)' : 'transparent',
+      color: state.isFocused ? 'white' : 'inherit',
     }),
   };
 
@@ -176,27 +163,29 @@ export function CityInput({ label, value, onChange, className = '' }: CityInputP
       >
         {label}
       </label>
-      <div className="min-h-[56px]">
-        <AsyncSelect
-          cacheOptions
-          defaultOptions
-          value={selectedOption}
-          onChange={handleChange}
-          loadOptions={loadOptions}
-          className={className}
-          styles={customStyles}
-          placeholder="Start typing a city name..."
-          noOptionsMessage={({ inputValue }: NoOptionsMessageProps) => 
-            inputValue.length < 2 
-              ? "Type at least 2 characters to search..." 
-              : "No cities found"
-          }
-          components={{
-            DropdownIndicator: () => null,
-            IndicatorSeparator: () => null
-          }}
-          menuPortalTarget={typeof document !== 'undefined' ? document.body : null}
-        />
+      <div className="flex gap-2 items-stretch">
+        <div className={inputClassName}>
+          <AsyncSelect
+            cacheOptions
+            defaultOptions
+            value={selectedOption}
+            onChange={handleChange}
+            loadOptions={loadOptions}
+            className={`w-full ${className}`}
+            styles={customStyles}
+            placeholder="Start typing a city name..."
+            noOptionsMessage={({ inputValue }: NoOptionsMessageProps) => 
+              inputValue.length < 2 
+                ? "Type at least 2 characters to search..." 
+                : "No cities found"
+            }
+            components={{
+              DropdownIndicator: () => null,
+              IndicatorSeparator: () => null
+            }}
+            menuPortalTarget={typeof document !== 'undefined' ? document.body : null}
+          />
+        </div>
       </div>
     </div>
   );
