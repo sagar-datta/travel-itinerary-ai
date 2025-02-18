@@ -88,7 +88,9 @@ export function TravelForm({ isStarted }: TravelFormProps) {
         >
           <Button
             type="submit"
-            className="px-6 md:px-8 lg:px-12 py-3 md:py-3 lg:py-4 text-base md:text-base lg:text-lg font-medium w-full max-w-sm md:w-auto"
+            size="lg"
+            fullWidth
+            className="max-w-sm md:w-auto"
           >
             Create Itinerary
           </Button>

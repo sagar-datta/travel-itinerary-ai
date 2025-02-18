@@ -27,9 +27,9 @@ export function Welcome({ isStarted, onBegin }: WelcomeProps) {
       
       <Button
         onClick={onBegin}
-        className="px-8 py-4 text-lg font-semibold"
+        size="lg"
       >
-        <span className="relative z-10">Begin Your Journey</span>
+        Begin Your Journey
       </Button>
     </div>
   );
