@@ -102,7 +102,7 @@ export function NumberInput({
             onClick={handleDecrement}
             disabled={isAtMin}
             size="sm"
-            className="w-20"
+            className="w-20 h-14 flex items-center justify-center p-0"
           >
             <MinusIcon />
           </Button>
@@ -161,7 +161,7 @@ export function NumberInput({
             onClick={handleIncrement}
             disabled={isAtMax}
             size="sm"
-            className="w-20"
+            className="w-20 h-14 flex items-center justify-center p-0"
           >
             <PlusIcon />
           </Button>
