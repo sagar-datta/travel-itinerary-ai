@@ -9,10 +9,13 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@types/react-select": "^5.0.0",
+    "axios": "^1.7.9",
     "next": "15.1.7",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-scan": "^0.0.36"
+    "react-scan": "^0.0.36",
+    "react-select": "^5.10.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

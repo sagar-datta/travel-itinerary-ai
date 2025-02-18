@@ -6,6 +6,7 @@ import { Button } from '../../common/Button';
 import { Card } from '../../common/Card';
 import { TransitionContainer } from '../../common/TransitionContainer';
 import { layout } from '../../../styles/common';
+import { CityInput } from '../../common/CityInput';
 
 interface TravelFormProps {
   isStarted: boolean;
@@ -36,9 +37,8 @@ export function TravelForm({ isStarted }: TravelFormProps) {
             delay="delay-125"
           >
             <Card>
-              <Input
+              <CityInput
                 label="Destination"
-                placeholder="Where do you want to go?"
                 value={destination}
                 onChange={setDestination}
               />
