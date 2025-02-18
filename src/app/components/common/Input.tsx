@@ -42,11 +42,13 @@ export function Input({
 
   return (
     <div className="flex flex-col gap-4">
-      <label className="text-2xl font-black tracking-tight
+      <label
+        className="text-2xl font-black tracking-tight
         bg-gradient-to-r
         dark:from-dark-accent-primary dark:via-dark-text-primary dark:to-dark-accent-secondary
         from-light-accent-primary via-light-text-primary to-light-accent-secondary
-        bg-clip-text text-transparent">
+        bg-clip-text text-transparent"
+      >
         {label}
       </label>
       <div className="relative">
@@ -75,33 +77,65 @@ export function Input({
             ${className}
           `}
         />
-        {type === 'number' && (
+        {type === "number" && (
           <div className="absolute right-2.5 top-1/2 -translate-y-1/2">
-            <div className="flex flex-row gap-1 p-1 rounded-md
+            <div
+              className="flex flex-row gap-1 p-1 rounded-md
                           dark:text-dark-text-primary text-light-text-primary
                           dark:bg-dark-base/50 bg-light-base/50
                           dark:shadow-neu-dark-subtle shadow-neu-light-subtle
-                          active:dark:shadow-neu-dark-subtle-pressed active:shadow-neu-light-subtle-pressed
-                        ">
+                         
+                        "
+            >
               <button
                 type="button"
                 onClick={handleDecrement}
                 className="w-7 h-8 flex items-center justify-center
                           text-sm font-medium
-                            hover:dark:shadow-neu-dark-subtle-pressed hover:shadow-neu-light-subtle-pressed
+                            active:dark:shadow-neu-dark-subtle-pressed active:shadow-neu-light-subtle-pressed
                           rounded transition-all duration-200"
               >
-                -
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  width={16}
+                  height={16}
+                  color={"#000000"}
+                  fill={"none"}
+                >
+                  <path
+                    d="M20 12L4 12"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
               </button>
               <button
                 type="button"
                 onClick={handleIncrement}
                 className="w-7 h-8 flex items-center justify-center
                           text-sm font-medium
-           hover:dark:shadow-neu-dark-subtle-pressed hover:shadow-neu-light-subtle-pressed
+           active:dark:shadow-neu-dark-subtle-pressed active:shadow-neu-light-subtle-pressed
                           rounded transition-all duration-200"
               >
-                +
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  width={16}
+                  height={16}
+                  color={"#000000"}
+                  fill={"none"}
+                >
+                  <path
+                    d="M12 4V20M20 12H4"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
               </button>
             </div>
           </div>
