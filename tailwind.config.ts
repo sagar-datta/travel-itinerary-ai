@@ -80,30 +80,17 @@ const config: Config = {
         },
       },
       boxShadow: {
-        "neu-light":
-          "6px 6px 12px rgba(208,208,208,0.8), -6px -6px 12px rgba(255,255,255,0.8)",
-        "neu-light-hover":
-          "4px 4px 8px rgba(208,208,208,0.8), -4px -4px 8px rgba(255,255,255,0.8)",
+        // Light theme shadows
+        "neu-light": "8px 8px 16px #d1d9e6, -8px -8px 16px #ffffff",
+        "neu-light-hover": "2px 2px 4px #d1d9e6, -2px -2px 4px #ffffff",
         "neu-light-pressed":
-          "inset 4px 4px 6px rgba(208,208,208,0.8), inset -4px -4px 6px rgba(255,255,255,0.8)",
-        "neu-light-flat":
-          "3px 3px 6px rgba(208,208,208,0.8), -3px -3px 6px rgba(255,255,255,0.8)",
-        "neu-dark":
-          "6px 6px 12px rgba(34,34,34,0.8), -6px -6px 12px rgba(68,68,68,0.8)",
-        "neu-dark-hover":
-          "4px 4px 8px rgba(34,34,34,0.8), -4px -4px 8px rgba(68,68,68,0.8)",
+          "inset 8px 8px 16px #d1d9e6, inset -8px -8px 16px #ffffff",
+
+        // Dark theme shadows
+        "neu-dark": "8px 8px 16px #222222, -8px -8px 16px #444444",
+        "neu-dark-hover": "2px 2px 4px #222222, -2px -2px 4px #444444",
         "neu-dark-pressed":
-          "inset 4px 4px 6px rgba(34,34,34,0.8), inset -4px -4px 6px rgba(68,68,68,0.8)",
-        "neu-dark-flat":
-          "3px 3px 6px rgba(34,34,34,0.8), -3px -3px 6px rgba(68,68,68,0.8)",
-        "neu-light-subtle":
-          "2px 2px 4px rgba(208,208,208,0.7), -2px -2px 4px rgba(255,255,255,0.7)",
-        "neu-light-subtle-pressed":
-          "inset 1.5px 1.5px 3px rgba(208,208,208,0.7), inset -1.5px -1.5px 3px rgba(255,255,255,0.7)",
-        "neu-dark-subtle":
-          "2px 2px 4px rgba(34,34,34,0.7), -2px -2px 4px rgba(68,68,68,0.7)",
-        "neu-dark-subtle-pressed":
-          "inset 1.5px 1.5px 3px rgba(34,34,34,0.7), inset -1.5px -1.5px 3px rgba(68,68,68,0.7)",
+          "inset 8px 8px 16px #222222, inset -8px -8px 16px #444444",
       },
       borderRadius: {
         lg: "var(--radius)",

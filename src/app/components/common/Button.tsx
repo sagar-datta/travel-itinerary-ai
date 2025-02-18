@@ -1,12 +1,12 @@
-'use client';
-import { shape } from '../../styles/common';
+"use client";
+import { shape } from "../../styles/common";
 
-type ButtonSize = 'sm' | 'md' | 'lg';
+type ButtonSize = "sm" | "md" | "lg";
 
 interface ButtonProps {
   children: React.ReactNode;
   onClick?: () => void;
-  type?: 'button' | 'submit';
+  type?: "button" | "submit";
   className?: string;
   disabled?: boolean;
   size?: ButtonSize;
@@ -14,18 +14,18 @@ interface ButtonProps {
 }
 
 const sizeClasses: Record<ButtonSize, string> = {
-  sm: 'px-4 py-2 text-sm',
-  md: 'px-6 py-3 text-base',
-  lg: 'px-8 py-4 text-lg'
+  sm: "px-4 py-2 text-sm",
+  md: "px-6 py-3 text-base",
+  lg: "px-8 py-4 text-lg",
 };
 
 export function Button({
   children,
   onClick,
-  type = 'button',
-  className = '',
+  type = "button",
+  className = "",
   disabled = false,
-  size = 'lg',
+  size = "lg",
   fullWidth = false,
 }: ButtonProps) {
   return (
@@ -35,21 +35,22 @@ export function Button({
       disabled={disabled}
       className={`
         relative ${shape.borderRadius}
-        transition-all duration-300 ease-in-out
+        transition-all duration-200 ease-out
         dark:bg-dark-base dark:text-dark-text-primary
         bg-light-base text-light-text-primary
-        after:pointer-events-none
         dark:shadow-neu-dark shadow-neu-light
-        hover:dark:shadow-neu-dark-hover hover:shadow-neu-light-hover
-        hover:text-light-accent-primary dark:hover:text-dark-accent-primary
+        enabled:hover:dark:shadow-neu-dark-hover enabled:hover:shadow-neu-light-hover
+        enabled:hover:text-light-accent-primary enabled:dark:hover:text-dark-accent-primary
+        enabled:[&:active]:dark:shadow-neu-dark-pressed enabled:[&:active]:shadow-neu-light-pressed
+        enabled:[&:not(:active):not(:hover)]:dark:shadow-neu-dark enabled:[&:not(:active):not(:hover)]:shadow-neu-light
+        outline-none focus:outline-none
         disabled:opacity-50 disabled:cursor-not-allowed
         font-semibold
         ${sizeClasses[size]}
-        ${fullWidth ? 'w-full' : ''}
+        ${fullWidth ? "w-full" : ""}
         ${className}
       `}
     >
-      <span className={`absolute inset-0 ${shape.borderRadius} bg-black opacity-0 transition-opacity duration-300 ease-in-out [&:active]:opacity-10`}></span>
       <span className="relative z-10">{children}</span>
     </button>
   );

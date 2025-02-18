@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { MinusIcon, PlusIcon } from "../icons/NumberControls";
+import { Button } from "../Button";
 
 interface NumberInputProps {
   value: string;
@@ -97,22 +98,14 @@ export function NumberInput({
       </label>
       <div className="flex gap-2 items-stretch w-full">
         <div className="flex items-center gap-2 w-full">
-          <button
-            type="button"
+          <Button
             onClick={handleDecrement}
             disabled={isAtMin}
-            className={`w-20 h-14 flex items-center justify-center
-                    text-lg font-medium rounded-full
-                    dark:bg-dark-base/50 bg-light-base/50
-                    dark:text-dark-text-primary text-light-text-primary
-                    dark:shadow-neu-dark-subtle shadow-neu-light-subtle
-                    hover:not(:disabled):dark:shadow-neu-dark-subtle-pressed 
-                    hover:not(:disabled):shadow-neu-light-subtle-pressed
-                    transition-all duration-200 flex-shrink-0
-                    disabled:opacity-50 disabled:cursor-not-allowed`}
+            size="sm"
+            className="w-20"
           >
             <MinusIcon />
-          </button>
+          </Button>
           <div
             ref={containerRef}
             onClick={handleSelectClick}
@@ -164,22 +157,14 @@ export function NumberInput({
               </div>
             )}
           </div>
-          <button
-            type="button"
+          <Button
             onClick={handleIncrement}
             disabled={isAtMax}
-            className={`w-20 h-14 flex items-center justify-center
-                    text-lg font-medium rounded-full
-                    dark:bg-dark-base/50 bg-light-base/50
-                    dark:text-dark-text-primary text-light-text-primary
-                    dark:shadow-neu-dark-subtle shadow-neu-light-subtle
-                    hover:not(:disabled):dark:shadow-neu-dark-subtle-pressed 
-                    hover:not(:disabled):shadow-neu-light-subtle-pressed
-                    transition-all duration-200 flex-shrink-0
-                    disabled:opacity-50 disabled:cursor-not-allowed`}
+            size="sm"
+            className="w-20"
           >
             <PlusIcon />
-          </button>
+          </Button>
         </div>
       </div>
     </div>

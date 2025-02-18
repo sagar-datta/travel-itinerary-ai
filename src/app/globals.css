@@ -53,43 +53,6 @@
   }
 }
 
-/* Neumorphic Shadows */
-.shadow-neu-light {
-  box-shadow: 8px 8px 16px #d1d9e6, -8px -8px 16px #ffffff;
-}
-
-.shadow-neu-dark {
-  box-shadow: 8px 8px 16px #222222, -8px -8px 16px #444444;
-}
-
-.shadow-neu-light-pressed {
-  box-shadow: inset 8px 8px 16px #d1d9e6, inset -8px -8px 16px #ffffff;
-}
-
-.shadow-neu-dark-pressed {
-  box-shadow: inset 8px 8px 16px #222222, inset -8px -8px 16px #444444;
-}
-
-/* Hover Effects */
-.shadow-neu-light:hover {
-  box-shadow: 6px 6px 12px #d1d9e6, -6px -6px 12px #ffffff;
-}
-
-.shadow-neu-dark:hover {
-  box-shadow: 6px 6px 12px #222222, -6px -6px 12px #444444;
-}
-
-/* Focus Effects */
-.shadow-neu-light:focus,
-.shadow-neu-light-pressed:focus {
-  box-shadow: inset 6px 6px 12px #d1d9e6, inset -6px -6px 12px #ffffff;
-}
-
-.shadow-neu-dark:focus,
-.shadow-neu-dark-pressed:focus {
-  box-shadow: inset 6px 6px 12px #222222, inset -6px -6px 12px #444444;
-}
-
 /* Transitions */
 .transition-neu {
   transition: box-shadow 0.3s ease;
