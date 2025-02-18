@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import dynamic from "next/dynamic";
 import { shape } from "../../styles/common";
 import axios from "axios";
@@ -52,6 +52,14 @@ export function CityInput({
   const [selectedOption, setSelectedOption] = useState<CityOption | null>(
     value ? { value, label: value } : null
   );
+
+  // Add ref for the AsyncSelect component
+  const selectRef = useRef<any>(null);
+
+  // Add click handler for the container
+  const handleContainerClick = () => {
+    selectRef.current?.focus();
+  };
 
   const loadOptions = async (inputValue: string) => {
     if (inputValue.length < 2) return [];
@@ -183,8 +191,12 @@ export function CityInput({
         {label}
       </label>
       <div className="flex gap-2 items-stretch">
-        <div className={inputClassName}>
+        <div
+          className={`${inputClassName} cursor-text`}
+          onClick={handleContainerClick}
+        >
           <AsyncSelect
+            ref={selectRef}
             cacheOptions
             defaultOptions
             value={selectedOption}
