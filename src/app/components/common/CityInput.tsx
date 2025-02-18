@@ -46,12 +46,12 @@ const inputClassName = `${shape.borderRadius} p-4 w-full outline-none font-semib
 
 const dropdownClassName = `
   dark:text-dark-text-primary text-light-text-primary
-  dark:shadow-neu-dark-subtle shadow-neu-light-subtle
+  dark:shadow-neu-dark shadow-neu-light
   rounded-2xl
 `;
 
 const dropdownOptionClassName = `
-  dark:hover:shadow-neu-dark-subtle-pressed hover:shadow-neu-light-subtle-pressed
+  dark:hover:shadow-neu-dark-pressed hover:shadow-neu-light-pressed
   dark:text-dark-text-primary text-light-text-primary
   rounded-xl
 `;
@@ -213,8 +213,10 @@ export function CityInput({
       padding: "0.5rem",
       margin: "0.5rem 0",
       overflow: "hidden",
-      boxShadow: "none",
       backgroundColor: isDarkMode ? "#333333" : "#F0F0F0",
+      boxShadow: isDarkMode
+        ? "6px 6px 12px rgba(34,34,34,0.8), -6px -6px 12px rgba(68,68,68,0.8)" // neu-dark
+        : "6px 6px 12px rgba(208,208,208,0.8), -6px -6px 12px rgba(255,255,255,0.8)", // neu-light
     }),
     menuList: (base) => ({
       ...base,
