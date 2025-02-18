@@ -103,7 +103,6 @@ export function Input({
                   [&:not([size])]:bg-none
                   [&_optgroup]:bg-dark-base [&_option]:bg-dark-base
                   [&_optgroup]:dark:bg-dark-base [&_option]:dark:bg-dark-base
-                  [&_optgroup]:bg-light-base [&_option]:bg-light-base
                   [&_optgroup]:dark:text-dark-text-primary [&_option]:dark:text-dark-text-primary
                   [&_optgroup]:text-light-text-primary [&_option]:text-light-text-primary
                   ${className}
