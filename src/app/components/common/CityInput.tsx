@@ -36,9 +36,9 @@ interface GeonamesResult {
   population: number;
 }
 
-const USERNAME = 'sagardatta'; // Geonames username
+const USERNAME = 'sagardatta';
 
-const inputClassName = `${shape.borderRadius} p-4 w-full outline-none font-semibold
+const inputClassName = `${shape.borderRadius} p-4 w-full outline-none font-semibold min-h-[3.5rem] cursor-text
   dark:bg-dark-base/50 bg-light-base/50
   dark:text-dark-text-primary text-light-text-primary
   dark:shadow-neu-dark-pressed shadow-neu-light-pressed`;
@@ -52,9 +52,7 @@ export function CityInput({ label, value, onChange, className = '' }: CityInputP
     if (inputValue.length < 2) return [];
 
     try {
-      // Get both exact matches and popular cities
       const [exactMatches, similarMatches] = await Promise.all([
-        // Exact matches first
         axios.get('http://api.geonames.org/searchJSON', {
           params: {
             name_equals: inputValue,
@@ -64,7 +62,6 @@ export function CityInput({ label, value, onChange, className = '' }: CityInputP
             orderby: 'population'
           }
         }),
-        // Then similar matches
         axios.get('http://api.geonames.org/searchJSON', {
           params: {
             name_startsWith: inputValue,
@@ -76,19 +73,16 @@ export function CityInput({ label, value, onChange, className = '' }: CityInputP
         })
       ]);
 
-      // Combine and deduplicate results
       const allResults = [
         ...(exactMatches.data?.geonames || []),
         ...(similarMatches.data?.geonames || [])
       ];
 
-      // Remove duplicates and sort by population
       const uniqueResults = Array.from(
         new Map(allResults.map(item => [item.name + item.adminName1 + item.countryName, item]))
         .values()
       ).sort((a, b) => (b.population || 0) - (a.population || 0));
 
-      // Take top 5 results
       return uniqueResults
         .slice(0, 5)
         .filter((place: GeonamesResult) => 
@@ -123,20 +117,29 @@ export function CityInput({ label, value, onChange, className = '' }: CityInputP
       border: 'none',
       boxShadow: 'none',
       background: 'none',
+      height: '100%',
+      minHeight: 'unset',
+      cursor: 'text',
+    }),
+    valueContainer: (base) => ({
+      ...base,
+      height: '100%',
+      padding: 0,
     }),
     input: (base) => ({
       ...base,
-      color: 'inherit',
       margin: 0,
       padding: 0,
+      color: 'inherit',
     }),
     placeholder: (base) => ({
       ...base,
+      margin: 0,
       color: 'inherit',
-      opacity: 0.5,
     }),
     singleValue: (base) => ({
       ...base,
+      margin: 0,
       color: 'inherit',
     }),
     menu: (base) => ({
@@ -149,6 +152,11 @@ export function CityInput({ label, value, onChange, className = '' }: CityInputP
       ...base,
       backgroundColor: state.isFocused ? 'var(--accent-primary)' : 'transparent',
       color: state.isFocused ? 'white' : 'inherit',
+    }),
+    noOptionsMessage: (base) => ({
+      ...base,
+      margin: 0,
+      color: 'inherit',
     }),
   };
 
@@ -171,7 +179,7 @@ export function CityInput({ label, value, onChange, className = '' }: CityInputP
             value={selectedOption}
             onChange={handleChange}
             loadOptions={loadOptions}
-            className={`w-full ${className}`}
+            className={`w-full h-full ${className}`}
             styles={customStyles}
             placeholder="Start typing a city name..."
             noOptionsMessage={({ inputValue }: NoOptionsMessageProps) => 
