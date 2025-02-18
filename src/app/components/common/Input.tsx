@@ -77,36 +77,31 @@ export function Input({
         />
         {type === 'number' && (
           <div className="absolute right-2.5 top-1/2 -translate-y-1/2">
-            <div className="flex flex-col gap-0.5 p-1 rounded-md
-                          dark:bg-dark-base/80 bg-light-base/80
-                          dark:shadow-neu-dark-pressed shadow-neu-light-pressed">
-              <button
-                type="button"
-                onClick={handleIncrement}
-                className="w-7 h-5 flex items-center justify-center
-                         text-sm font-medium
-                         dark:text-dark-text-primary text-light-text-primary
-                         dark:bg-dark-base/50 bg-light-base/50
-                         dark:shadow-neu-dark shadow-neu-light
-                         hover:dark:shadow-neu-dark-pressed hover:shadow-neu-light-pressed
-                         active:dark:shadow-neu-dark-pressed active:shadow-neu-light-pressed
-                         rounded transition-all duration-200"
-              >
-                +
-              </button>
+            <div className="flex flex-row gap-1 p-1 rounded-md
+                          dark:text-dark-text-primary text-light-text-primary
+                          dark:bg-dark-base/50 bg-light-base/50
+                          dark:shadow-neu-dark-subtle shadow-neu-light-subtle
+                          active:dark:shadow-neu-dark-subtle-pressed active:shadow-neu-light-subtle-pressed
+                        ">
               <button
                 type="button"
                 onClick={handleDecrement}
-                className="w-7 h-5 flex items-center justify-center
-                         text-sm font-medium
-                         dark:text-dark-text-primary text-light-text-primary
-                         dark:bg-dark-base/50 bg-light-base/50
-                         dark:shadow-neu-dark shadow-neu-light
-                         hover:dark:shadow-neu-dark-pressed hover:shadow-neu-light-pressed
-                         active:dark:shadow-neu-dark-pressed active:shadow-neu-light-pressed
-                         rounded transition-all duration-200"
+                className="w-7 h-8 flex items-center justify-center
+                          text-sm font-medium
+                            hover:dark:shadow-neu-dark-subtle-pressed hover:shadow-neu-light-subtle-pressed
+                          rounded transition-all duration-200"
               >
                 -
+              </button>
+              <button
+                type="button"
+                onClick={handleIncrement}
+                className="w-7 h-8 flex items-center justify-center
+                          text-sm font-medium
+           hover:dark:shadow-neu-dark-subtle-pressed hover:shadow-neu-light-subtle-pressed
+                          rounded transition-all duration-200"
+              >
+                +
               </button>
             </div>
           </div>
