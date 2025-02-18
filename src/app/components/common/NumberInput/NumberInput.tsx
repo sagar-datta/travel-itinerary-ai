@@ -1,8 +1,11 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import { MinusIcon, PlusIcon } from "../icons/NumberControls";
-import { Button } from "../Button";
+import {
+  MinusIcon,
+  PlusIcon,
+} from "@/app/components/common/icons/NumberControls";
+import { Button } from "@/app/components/common/buttons";
 
 interface NumberInputProps {
   value: string;

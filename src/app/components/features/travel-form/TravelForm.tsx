@@ -2,14 +2,17 @@
 
 import { useForm } from "react-hook-form";
 import { useEffect } from "react";
-import { TransitionContainer } from "../../common/TransitionContainer";
-import { Card } from "../../common/Card";
-import { CityInput } from "../../common/CityInput";
-import { Input } from "../../common/Input";
-import { BlackButton } from "../../common/BlackButton";
-import { BudgetSelector, type BudgetTier } from "../../common/BudgetSelector";
-import { layout, delays } from "../../../styles/common";
-import { generateItinerary } from "../../../services/gemini";
+import { TransitionContainer } from "@/app/components/common/TransitionContainer";
+import { Card } from "@/app/components/common/Card";
+import { CityInput } from "@/app/components/common/CityInput";
+import { Input } from "@/app/components/common/Input";
+import { BlackButton } from "@/app/components/common/buttons";
+import {
+  BudgetSelector,
+  type BudgetTier,
+} from "@/app/components/common/BudgetSelector";
+import { layout, delays } from "@/app/styles/common";
+import { generateItinerary } from "@/app/services/gemini";
 
 interface TravelFormProps {
   isStarted: boolean;

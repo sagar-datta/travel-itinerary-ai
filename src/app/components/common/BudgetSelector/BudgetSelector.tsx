@@ -74,6 +74,7 @@ export function BudgetSelector({
           {budgetTiers.map((tier) => (
             <button
               key={tier.value}
+              type="button"
               onClick={() => onChange(tier.value)}
               className={`
                 relative z-10 flex items-center justify-center py-3

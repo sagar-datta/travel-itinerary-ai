@@ -1,6 +1,6 @@
 "use client";
-import { Button } from "./Button";
-import { useTheme } from "../../context/ThemeContext";
+import { Button } from "@/app/components/common/buttons";
+import { useTheme } from "@/app/context/ThemeContext";
 
 export function ThemeToggle() {
   const { theme, toggleTheme } = useTheme();
