@@ -64,6 +64,11 @@ export function CityInput({
   }, []);
 
   const handleContainerClick = () => {
+    // Only clear if there's a selected value
+    if (selectedOption) {
+      setSelectedOption(null);
+      onChange("");
+    }
     selectRef.current?.focus();
   };
 
