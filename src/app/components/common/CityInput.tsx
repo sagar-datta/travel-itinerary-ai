@@ -1,14 +1,14 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import dynamic from 'next/dynamic';
-import { shape } from '../../styles/common';
-import axios from 'axios';
-import type { ActionMeta, StylesConfig } from 'react-select';
+import { useState } from "react";
+import dynamic from "next/dynamic";
+import { shape } from "../../styles/common";
+import axios from "axios";
+import type { ActionMeta, StylesConfig } from "react-select";
 
 // Dynamically import AsyncSelect with no SSR
 const AsyncSelect = dynamic(
-  () => import('react-select/async').then(mod => mod.default),
+  () => import("react-select/async").then((mod) => mod.default),
   { ssr: false }
 ) as any;
 
@@ -36,14 +36,19 @@ interface GeonamesResult {
   population: number;
 }
 
-const USERNAME = 'sagardatta';
+const USERNAME = "sagardatta";
 
 const inputClassName = `${shape.borderRadius} p-4 w-full outline-none font-semibold min-h-[3.5rem] cursor-text
   dark:bg-dark-base/50 bg-light-base/50
   dark:text-dark-text-primary text-light-text-primary
   dark:shadow-neu-dark-pressed shadow-neu-light-pressed`;
 
-export function CityInput({ label, value, onChange, className = '' }: CityInputProps) {
+export function CityInput({
+  label,
+  value,
+  onChange,
+  className = "",
+}: CityInputProps) {
   const [selectedOption, setSelectedOption] = useState<CityOption | null>(
     value ? { value, label: value } : null
   );
@@ -53,52 +58,55 @@ export function CityInput({ label, value, onChange, className = '' }: CityInputP
 
     try {
       const [exactMatches, similarMatches] = await Promise.all([
-        axios.get('http://api.geonames.org/searchJSON', {
+        axios.get("http://api.geonames.org/searchJSON", {
           params: {
             name_equals: inputValue,
             maxRows: 3,
             username: USERNAME,
-            featureClass: 'P',
-            orderby: 'population'
-          }
+            featureClass: "P",
+            orderby: "population",
+          },
         }),
-        axios.get('http://api.geonames.org/searchJSON', {
+        axios.get("http://api.geonames.org/searchJSON", {
           params: {
             name_startsWith: inputValue,
             maxRows: 10,
             username: USERNAME,
-            featureClass: 'P',
-            orderby: 'population'
-          }
-        })
+            featureClass: "P",
+            orderby: "population",
+          },
+        }),
       ]);
 
       const allResults = [
         ...(exactMatches.data?.geonames || []),
-        ...(similarMatches.data?.geonames || [])
+        ...(similarMatches.data?.geonames || []),
       ];
 
       const uniqueResults = Array.from(
-        new Map(allResults.map(item => [item.name + item.adminName1 + item.countryName, item]))
-        .values()
+        new Map(
+          allResults.map((item) => [
+            item.name + item.adminName1 + item.countryName,
+            item,
+          ])
+        ).values()
       ).sort((a, b) => (b.population || 0) - (a.population || 0));
 
       return uniqueResults
         .slice(0, 5)
-        .filter((place: GeonamesResult) => 
-          place.name && 
-          place.adminName1 && 
-          place.countryName
+        .filter(
+          (place: GeonamesResult) =>
+            place.name && place.adminName1 && place.countryName
         )
         .map((place: GeonamesResult) => {
           const locationString = `${place.name}, ${place.adminName1}, ${place.countryName}`;
           return {
             value: locationString,
-            label: locationString
+            label: locationString,
           };
         });
     } catch (error) {
-      console.error('Error fetching cities:', error);
+      console.error("Error fetching cities:", error);
       return [];
     }
   };
@@ -108,55 +116,58 @@ export function CityInput({ label, value, onChange, className = '' }: CityInputP
     actionMeta: ActionMeta<CityOption>
   ) => {
     setSelectedOption(newValue);
-    onChange(newValue?.value || '');
+    onChange(newValue?.value || "");
   };
 
   const customStyles: StylesConfig<CityOption, false> = {
     control: (base) => ({
       ...base,
-      border: 'none',
-      boxShadow: 'none',
-      background: 'none',
-      height: '100%',
-      minHeight: 'unset',
-      cursor: 'text',
+      border: "none",
+      boxShadow: "none",
+      background: "none",
+      height: "100%",
+      minHeight: "unset",
+      cursor: "text",
     }),
     valueContainer: (base) => ({
       ...base,
-      height: '100%',
+      height: "100%",
       padding: 0,
     }),
     input: (base) => ({
       ...base,
       margin: 0,
       padding: 0,
-      color: 'inherit',
+      color: "inherit",
     }),
     placeholder: (base) => ({
       ...base,
       margin: 0,
-      color: 'inherit',
+      color: "rgb(var(--placeholder-color))",
+      opacity: 0.6,
     }),
     singleValue: (base) => ({
       ...base,
       margin: 0,
-      color: 'inherit',
+      color: "inherit",
     }),
     menu: (base) => ({
       ...base,
-      backgroundColor: 'var(--background)',
-      border: 'none',
-      boxShadow: 'var(--shadow-pressed)',
+      backgroundColor: "var(--background)",
+      border: "none",
+      boxShadow: "var(--shadow-pressed)",
     }),
     option: (base, state) => ({
       ...base,
-      backgroundColor: state.isFocused ? 'var(--accent-primary)' : 'transparent',
-      color: state.isFocused ? 'white' : 'inherit',
+      backgroundColor: state.isFocused
+        ? "var(--accent-primary)"
+        : "transparent",
+      color: state.isFocused ? "white" : "inherit",
     }),
     noOptionsMessage: (base) => ({
       ...base,
       margin: 0,
-      color: 'inherit',
+      color: "inherit",
     }),
   };
 
@@ -182,16 +193,18 @@ export function CityInput({ label, value, onChange, className = '' }: CityInputP
             className={`w-full h-full ${className}`}
             styles={customStyles}
             placeholder="Start typing a city name..."
-            noOptionsMessage={({ inputValue }: NoOptionsMessageProps) => 
-              inputValue.length < 2 
-                ? "Type at least 2 characters to search..." 
+            noOptionsMessage={({ inputValue }: NoOptionsMessageProps) =>
+              inputValue.length < 2
+                ? "Type at least 2 characters to search..."
                 : "No cities found"
             }
             components={{
               DropdownIndicator: () => null,
-              IndicatorSeparator: () => null
+              IndicatorSeparator: () => null,
             }}
-            menuPortalTarget={typeof document !== 'undefined' ? document.body : null}
+            menuPortalTarget={
+              typeof document !== "undefined" ? document.body : null
+            }
           />
         </div>
       </div>

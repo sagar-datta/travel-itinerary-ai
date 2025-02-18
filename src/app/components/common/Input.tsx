@@ -1,12 +1,15 @@
-'use client';
-import { shape } from '../../styles/common';
-import { MinusIcon, PlusIcon } from './icons/NumberControls';
+"use client";
+import { shape } from "../../styles/common";
+import { MinusIcon, PlusIcon } from "./icons/NumberControls";
 
-type BaseInputProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onChange' | 'type' | 'value'>;
+type BaseInputProps = Omit<
+  React.InputHTMLAttributes<HTMLInputElement>,
+  "onChange" | "type" | "value"
+>;
 
 interface InputProps extends BaseInputProps {
   label: string;
-  type?: 'text' | 'date' | 'number';
+  type?: "text" | "date" | "number";
   value: string;
   onChange: (value: string) => void;
   className?: string;
@@ -14,17 +17,17 @@ interface InputProps extends BaseInputProps {
 
 export function Input({
   label,
-  type = 'text',
+  type = "text",
   placeholder,
   value,
   onChange,
-  className = '',
+  className = "",
   min,
   max,
   ...inputProps
 }: InputProps) {
   const handleIncrement = () => {
-    if (type === 'number') {
+    if (type === "number") {
       const newValue = Number(value) + 1;
       if (!max || newValue <= Number(max)) {
         onChange(newValue.toString());
@@ -33,7 +36,7 @@ export function Input({
   };
 
   const handleDecrement = () => {
-    if (type === 'number') {
+    if (type === "number") {
       const newValue = Number(value) - 1;
       if (!min || newValue >= Number(min)) {
         onChange(newValue.toString());
@@ -64,6 +67,7 @@ export function Input({
             dark:bg-dark-base/50 bg-light-base/50
             dark:text-dark-text-primary text-light-text-primary
             dark:shadow-neu-dark-pressed shadow-neu-light-pressed
+            placeholder:text-placeholder/60
             [appearance:textfield]
             [&::-webkit-outer-spin-button]:m-0
             [&::-webkit-inner-spin-button]:m-0
