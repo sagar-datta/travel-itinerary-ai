@@ -13,6 +13,7 @@ import { generateItinerary } from "../../../services/gemini";
 
 interface TravelFormProps {
   isStarted: boolean;
+  onGenerate: (response: Promise<string>) => void;
 }
 
 interface FormData {
@@ -26,7 +27,7 @@ interface FormData {
 
 const STORAGE_KEY = "travel-form-data";
 
-export function TravelForm({ isStarted }: TravelFormProps) {
+export function TravelForm({ isStarted, onGenerate }: TravelFormProps) {
   const { register, handleSubmit, setValue, watch } = useForm<FormData>({
     defaultValues: {
       destination: "",
@@ -65,14 +66,17 @@ export function TravelForm({ isStarted }: TravelFormProps) {
 
   const onSubmit = async (data: FormData) => {
     try {
-      const response = await generateItinerary({
+      // Create the promise but don't await it
+      const responsePromise = generateItinerary({
         destination: data.destinationLabel || data.destination,
         days: data.days,
         people: data.people,
         interests: data.interests,
         budget: data.budget,
       });
-      console.log("Gemini Response:", response);
+
+      // Pass the promise to parent to handle loading state
+      onGenerate(responsePromise);
     } catch (error) {
       console.error("Error:", error);
     }
@@ -84,7 +88,8 @@ export function TravelForm({ isStarted }: TravelFormProps) {
   return (
     <TransitionContainer
       show={isStarted}
-      className={`w-full ${layout.maxWidth.lg} ${layout.container.centered} px-4 md:px-6 lg:px-8 py-4 md:py-6 lg:py-8`}
+      type="slide"
+      className={`w-full ${layout.maxWidth.lg} ${layout.container.centered} px-4 md:px-6 lg:px-8 py-4 md:py-6 lg:py-8 z-10`}
     >
       <form
         onSubmit={handleSubmit(onSubmit)}

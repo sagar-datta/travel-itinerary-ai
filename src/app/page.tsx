@@ -3,11 +3,47 @@ import { useState } from "react";
 import { Header } from "./components/layout/Header";
 import { Welcome } from "./components/features/welcome/Welcome";
 import { TravelForm } from "./components/features/travel-form/TravelForm";
+import { ItineraryDisplay } from "./components/features/itinerary/ItineraryDisplay";
 
 export const dynamic = "force-dynamic";
 
 export default function Home() {
   const [isStarted, setIsStarted] = useState(false);
+  const [isGenerating, setIsGenerating] = useState(false);
+  const [itinerary, setItinerary] = useState<string | null>(null);
+  const [showItinerary, setShowItinerary] = useState(false);
+
+  const handleGenerateItinerary = async (responsePromise: Promise<string>) => {
+    console.log("Generate clicked, setting states...");
+    // Immediately show loading state and itinerary view
+    setIsGenerating(true);
+    setShowItinerary(true);
+    setItinerary(null);
+
+    try {
+      console.log("Waiting for API response...");
+      const result = await responsePromise;
+      console.log("Got API response, updating itinerary...");
+      setItinerary(result);
+    } catch (error) {
+      console.error("Error generating itinerary:", error);
+      // You might want to show an error state here
+    } finally {
+      console.log("Setting isGenerating to false");
+      setIsGenerating(false);
+    }
+  };
+
+  console.log("Current states:", {
+    isGenerating,
+    showItinerary,
+    hasItinerary: !!itinerary,
+  });
+
+  const handleBack = () => {
+    setShowItinerary(false);
+    setItinerary(null);
+  };
 
   return (
     <div className="min-h-screen flex flex-col dark:bg-dark-base bg-light-base">
@@ -29,7 +65,16 @@ export default function Home() {
             isStarted ? "opacity-100" : "opacity-0 pointer-events-none"
           }`}
         >
-          <TravelForm isStarted={isStarted} />
+          <TravelForm
+            isStarted={isStarted && !showItinerary}
+            onGenerate={handleGenerateItinerary}
+          />
+          <ItineraryDisplay
+            isVisible={showItinerary}
+            isLoading={isGenerating}
+            itinerary={itinerary}
+            onBack={handleBack}
+          />
         </div>
       </main>
     </div>
