@@ -4,7 +4,7 @@ import {
   ButtonSize,
   ButtonVariant,
   getButtonClasses,
-} from "@/app/components/common/buttons/styles";
+} from "@/app/lib/buttonStyles";
 
 interface ButtonBaseProps {
   children: React.ReactNode;

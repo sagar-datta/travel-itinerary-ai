@@ -1,5 +1,5 @@
 "use client";
-import { shape } from "../../styles/common";
+import { shape } from "@/app/lib/styles";
 
 interface CardProps {
   children: React.ReactNode;

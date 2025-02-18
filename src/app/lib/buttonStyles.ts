@@ -1,4 +1,4 @@
-import { shape } from "@/app/styles/common";
+import { shape } from "@/app/lib/styles";
 
 export type ButtonSize = "sm" | "md" | "lg";
 export type ButtonVariant = "default" | "black";

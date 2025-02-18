@@ -1,5 +1,5 @@
 import { BlackButton } from "@/app/components/common/buttons";
-import { typography, layout } from "@/app/styles/common";
+import { typography, layout } from "@/app/lib/styles";
 
 interface HeaderProps {
   onBack: () => void;

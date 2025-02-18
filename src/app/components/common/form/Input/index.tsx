@@ -1,6 +1,6 @@
 "use client";
 
-import { shape } from "@/app/styles/common";
+import { shape } from "@/app/lib/styles";
 import { NumberInput } from "../NumberInput";
 import { InputLabel } from "../InputLabel";
 

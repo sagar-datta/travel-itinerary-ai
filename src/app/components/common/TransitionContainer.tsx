@@ -1,11 +1,11 @@
-'use client';
+"use client";
 
-import { transitions, getTransitionClasses } from '../../styles/common';
+import { transitions, getTransitionClasses } from "@/app/lib/styles";
 
 interface TransitionContainerProps {
   children: React.ReactNode;
   show: boolean;
-  type?: 'fade' | 'slide';
+  type?: "fade" | "slide";
   duration?: keyof typeof transitions;
   className?: string;
   delay?: string;
@@ -14,19 +14,21 @@ interface TransitionContainerProps {
 export function TransitionContainer({
   children,
   show,
-  type = 'fade',
-  duration = 'fast',
-  className = '',
-  delay = '',
+  type = "fade",
+  duration = "fast",
+  className = "",
+  delay = "",
 }: TransitionContainerProps) {
   return (
-    <div className={`
+    <div
+      className={`
       ${transitions[duration]} transform
       ${getTransitionClasses(show, type)}
-      ${show ? '' : 'pointer-events-none'}
+      ${show ? "" : "pointer-events-none"}
       ${delay}
       ${className}
-    `}>
+    `}
+    >
       {children}
     </div>
   );

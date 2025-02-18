@@ -1,6 +1,6 @@
 "use client";
 
-import { shape } from "@/app/styles/common";
+import { shape } from "@/app/lib/styles";
 import { InputLabel } from "../InputLabel";
 
 export type BudgetTier = "$" | "$$" | "$$$";

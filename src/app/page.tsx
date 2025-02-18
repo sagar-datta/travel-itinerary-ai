@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Header } from "./components/layout/Header";
 import { Welcome } from "./components/features/welcome/Welcome";
 import { TravelForm } from "./components/features/travel-form/TravelForm";
-import { ItineraryDisplay } from "./components/features/itinerary/ItineraryDisplay";
+import { ItineraryDisplay } from "./components/features/itinerary/components/ItineraryDisplay";
 
 export const dynamic = "force-dynamic";
 

@@ -4,7 +4,7 @@ import {
   transitions,
   typography,
   getTransitionClasses,
-} from "@/app/styles/common";
+} from "@/app/lib/styles";
 
 interface WelcomeProps {
   isStarted: boolean;

@@ -1,8 +1,8 @@
-import { TransitionContainer } from "../../common/TransitionContainer";
-import { typography, layout } from "../../../styles/common";
-import { Header } from "./components/Header";
-import { LoadingSkeleton } from "./components/LoadingSkeleton";
-import { ItineraryContent } from "./components/ItineraryContent";
+import { TransitionContainer } from "@/app/components/common/TransitionContainer";
+import { typography, layout } from "@/app/lib/styles";
+import { Header } from "./Header";
+import { LoadingSkeleton } from "./LoadingSkeleton";
+import { ItineraryContent } from "./ItineraryContent";
 
 interface ItineraryDisplayProps {
   isVisible: boolean;

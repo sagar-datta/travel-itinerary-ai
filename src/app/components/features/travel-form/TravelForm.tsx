@@ -11,8 +11,8 @@ import {
   type BudgetTier,
 } from "@/app/components/common/form";
 import { BlackButton } from "@/app/components/common/buttons";
-import { layout, delays } from "@/app/styles/common";
-import { generateItinerary } from "@/app/services/gemini";
+import { layout, delays } from "@/app/lib/styles";
+import { generateItinerary } from "@/app/services/ai/gemini";
 
 interface TravelFormProps {
   isStarted: boolean;

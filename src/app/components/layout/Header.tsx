@@ -1,10 +1,10 @@
 "use client";
-import { ThemeToggle } from "../common/ThemeToggle";
+import { ThemeToggle } from "@/app/components/common/ThemeToggle";
 import {
   transitions,
   typography,
   getTransitionClasses,
-} from "../../styles/common";
+} from "@/app/lib/styles";
 
 interface HeaderProps {
   isStarted: boolean;
