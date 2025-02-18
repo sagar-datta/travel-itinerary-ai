@@ -79,10 +79,14 @@ export function TravelForm({ isStarted }: TravelFormProps) {
         className="space-y-6 md:space-y-8 lg:space-y-12 w-full"
       >
         <div
-          className={`${layout.grid.threeColumns} lg:[&>*:last-child:nth-child(3n-2)]:col-start-2 lg:[&>*:nth-last-child(2):nth-child(3n-2)]:col-start-1`}
+          className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8 [&>*]:h-full lg:[&>*:last-child:nth-child(3n-2)]:col-start-2 lg:[&>*:nth-last-child(2):nth-child(3n-2)]:col-start-1`}
         >
-          <TransitionContainer show={isStarted} delay="delay-125">
-            <Card>
+          <TransitionContainer
+            show={isStarted}
+            delay="delay-125"
+            className="h-full"
+          >
+            <Card className="h-full">
               <CityInput
                 label="Destination"
                 value={destination}
@@ -95,8 +99,12 @@ export function TravelForm({ isStarted }: TravelFormProps) {
             </Card>
           </TransitionContainer>
 
-          <TransitionContainer show={isStarted} delay="delay-150">
-            <Card>
+          <TransitionContainer
+            show={isStarted}
+            delay="delay-150"
+            className="h-full"
+          >
+            <Card className="h-full">
               <Input
                 label="Days"
                 type="number"
@@ -107,8 +115,12 @@ export function TravelForm({ isStarted }: TravelFormProps) {
             </Card>
           </TransitionContainer>
 
-          <TransitionContainer show={isStarted} delay="delay-175">
-            <Card>
+          <TransitionContainer
+            show={isStarted}
+            delay="delay-175"
+            className="h-full"
+          >
+            <Card className="h-full">
               <Input
                 label="People"
                 type="number"
@@ -119,8 +131,12 @@ export function TravelForm({ isStarted }: TravelFormProps) {
             </Card>
           </TransitionContainer>
 
-          <TransitionContainer show={isStarted} delay="delay-175">
-            <Card>
+          <TransitionContainer
+            show={isStarted}
+            delay="delay-175"
+            className="h-full"
+          >
+            <Card className="h-full">
               <Input
                 label="Interests"
                 type="text"
@@ -131,8 +147,12 @@ export function TravelForm({ isStarted }: TravelFormProps) {
             </Card>
           </TransitionContainer>
 
-          <TransitionContainer show={isStarted} delay="delay-175">
-            <Card>
+          <TransitionContainer
+            show={isStarted}
+            delay="delay-175"
+            className="h-full"
+          >
+            <Card className="h-full">
               <BudgetSelector
                 label="Budget"
                 value={watch("budget") as BudgetTier}
