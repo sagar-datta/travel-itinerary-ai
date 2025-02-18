@@ -8,6 +8,7 @@
   --color-white: #ffffff;
   --color-black: #171717;
   --color-gray-500: rgb(107, 114, 128);
+  --color-blue-600: #2563eb;
 
   /* Light Theme */
   --light-background: var(--color-white);
@@ -16,6 +17,12 @@
   --light-accent-primary: #3b82f6;
   --light-accent-secondary: #60a5fa;
   --light-shadow-pressed: 2px 2px 4px rgba(0, 0, 0, 0.1) inset;
+  --light-border: transparent;
+  --light-outline: transparent;
+
+  /* Light High Contrast */
+  --light-hc-border: #000000;
+  --light-hc-outline: #000000;
 
   /* Dark Theme */
   --dark-background: #0a0a0a;
@@ -24,6 +31,12 @@
   --dark-accent-primary: #3b82f6;
   --dark-accent-secondary: #60a5fa;
   --dark-shadow-pressed: 2px 2px 4px rgba(0, 0, 0, 0.3) inset;
+  --dark-border: transparent;
+  --dark-outline: transparent;
+
+  /* Dark High Contrast */
+  --dark-hc-border: #ffffff;
+  --dark-hc-outline: #ffffff;
 
   /* Active Theme Colors */
   --background: var(--light-background);
@@ -34,6 +47,8 @@
   --accent-primary: var(--light-accent-primary);
   --accent-secondary: var(--light-accent-secondary);
   --shadow-pressed: var(--light-shadow-pressed);
+  --border-color: var(--light-border);
+  --outline-color: var(--light-outline);
   --placeholder-color: var(--color-gray-500);
 }
 
@@ -48,7 +63,25 @@
     --accent-primary: var(--dark-accent-primary);
     --accent-secondary: var(--dark-accent-secondary);
     --shadow-pressed: var(--dark-shadow-pressed);
+    --border-color: var(--dark-border);
+    --outline-color: var(--dark-outline);
   }
+}
+
+/* High Contrast Classes */
+:root[data-high-contrast="true"] {
+  --border-color: var(--light-hc-border);
+  --outline-color: var(--light-hc-outline);
+}
+
+:root[data-high-contrast="true"][data-theme="light"] {
+  --border-color: var(--light-hc-border);
+  --outline-color: var(--light-hc-outline);
+}
+
+:root[data-high-contrast="true"][data-theme="dark"] {
+  --border-color: var(--dark-hc-border);
+  --outline-color: var(--dark-hc-outline);
 }
 
 /* Base Styles */
@@ -61,6 +94,80 @@ body {
 /* Transitions */
 body,
 * {
-  transition: color 300ms ease-in-out, background-color 300ms ease-in-out,
-    border-color 300ms ease-in-out, box-shadow 300ms ease-in-out;
+  transition: color 200ms cubic-bezier(0.4, 0, 0.2, 1),
+    background 200ms cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 200ms cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 200ms cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 200ms cubic-bezier(0.4, 0, 0.2, 1),
+    transform 200ms cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 200ms cubic-bezier(0.4, 0, 0.2, 1),
+    fill 200ms cubic-bezier(0.4, 0, 0.2, 1),
+    stroke 200ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Ensure inputs and form elements transition smoothly */
+input,
+select,
+textarea,
+button {
+  transition: inherit;
+  will-change: background-color, border-color, color, box-shadow;
+}
+
+/* High Contrast Styles */
+:root[data-high-contrast="true"] button,
+:root[data-high-contrast="true"] input,
+:root[data-high-contrast="true"] select,
+:root[data-high-contrast="true"] textarea,
+:root[data-high-contrast="true"] [role="button"],
+:root[data-high-contrast="true"] .shadow-neu-light-pressed,
+:root[data-high-contrast="true"] .shadow-neu-dark-pressed {
+  outline: 2px solid var(--outline-color);
+  outline-offset: 0;
+}
+
+/* Override react-select styles in high contrast mode */
+:root[data-high-contrast="true"] [class*="react-select"] input,
+:root[data-high-contrast="true"] [class*="react-select"] [class*="singleValue"],
+:root[data-high-contrast="true"]
+  [class*="react-select"]
+  [class*="placeholder"] {
+  color: var(--text-primary) !important;
+  background: none !important;
+}
+
+/* High Contrast Card Styles */
+:root[data-high-contrast="true"] .shadow-neu-light,
+:root[data-high-contrast="true"] .shadow-neu-dark {
+  outline: 3px solid var(--outline-color);
+  outline-offset: 0;
+}
+
+:root[data-high-contrast="true"] .shadow-neu-light:hover,
+:root[data-high-contrast="true"] .shadow-neu-dark:hover,
+:root[data-high-contrast="true"] .shadow-neu-light-pressed:focus,
+:root[data-high-contrast="true"] .shadow-neu-dark-pressed:focus {
+  outline-width: 4px;
+}
+
+/* Number Selector High Contrast Fixes */
+:root[data-high-contrast="true"] [data-value] {
+  outline: none !important;
+  border-bottom: 2px solid var(--outline-color);
+}
+
+:root[data-high-contrast="true"] [data-value]:last-child {
+  border-bottom: none;
+}
+
+:root[data-high-contrast="true"][data-theme="light"] [data-value]:hover,
+:root[data-high-contrast="true"][data-theme="light"] [data-value]:focus {
+  background-color: var(--light-hc-outline) !important;
+  color: var(--light-background) !important;
+}
+
+:root[data-high-contrast="true"][data-theme="dark"] [data-value]:hover,
+:root[data-high-contrast="true"][data-theme="dark"] [data-value]:focus {
+  background-color: var(--dark-hc-outline) !important;
+  color: var(--dark-background) !important;
 }

@@ -7,15 +7,27 @@ type Theme = "light" | "dark";
 interface ThemeContextType {
   theme: Theme;
   toggleTheme: () => void;
+  isHighContrast: boolean;
+  toggleHighContrast: () => void;
 }
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [theme, setTheme] = useState<Theme>("light");
+  const [isHighContrast, setIsHighContrast] = useState(false);
 
   useEffect(() => {
     const savedTheme = localStorage.getItem("ai-travel-theme-preference");
+    const savedContrast = localStorage.getItem("high-contrast") === "true";
+
+    setIsHighContrast(savedContrast);
+    document.documentElement.setAttribute(
+      "data-high-contrast",
+      String(savedContrast)
+    );
+    document.documentElement.setAttribute("data-theme", theme);
+
     if (savedTheme !== null) {
       setTheme(savedTheme as Theme);
       document.documentElement.classList.toggle("dark", savedTheme === "dark");
@@ -32,11 +44,24 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     const newTheme = theme === "light" ? "dark" : "light";
     setTheme(newTheme);
     document.documentElement.classList.toggle("dark", newTheme === "dark");
+    document.documentElement.setAttribute("data-theme", newTheme);
     localStorage.setItem("ai-travel-theme-preference", newTheme);
   };
 
+  const toggleHighContrast = () => {
+    const newValue = !isHighContrast;
+    setIsHighContrast(newValue);
+    document.documentElement.setAttribute(
+      "data-high-contrast",
+      String(newValue)
+    );
+    localStorage.setItem("high-contrast", String(newValue));
+  };
+
   return (
-    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+    <ThemeContext.Provider
+      value={{ theme, toggleTheme, isHighContrast, toggleHighContrast }}
+    >
       {children}
     </ThemeContext.Provider>
   );

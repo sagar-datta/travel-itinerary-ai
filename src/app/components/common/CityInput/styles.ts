@@ -5,18 +5,18 @@ import type { CityOption } from "./types";
 export const inputClassName = `${shape.borderRadius} p-4 w-full outline-none font-semibold min-h-[3.5rem] cursor-text
   dark:bg-dark-base/50 bg-light-base/50
   dark:text-dark-text-primary text-light-text-primary
-  dark:shadow-neu-dark-pressed shadow-neu-light-pressed`;
+  [data-high-contrast='false'] & dark:shadow-neu-dark-pressed [data-high-contrast='false'] & shadow-neu-light-pressed`;
 
 export const dropdownClassName = `
   dark:text-dark-text-primary text-light-text-primary
-  dark:shadow-neu-dark shadow-neu-light
-  rounded-2xl
+  [data-high-contrast='false'] & dark:shadow-neu-dark [data-high-contrast='false'] & shadow-neu-light
+  [data-high-contrast='false'] & rounded-2xl
 `;
 
 export const dropdownOptionClassName = `
-  dark:hover:shadow-neu-dark-pressed hover:shadow-neu-light-pressed
   dark:text-dark-text-primary text-light-text-primary
-  rounded-xl
+  [data-high-contrast='false'] & dark:hover:shadow-neu-dark-pressed [data-high-contrast='false'] & hover:shadow-neu-light-pressed
+  [data-high-contrast='false'] & rounded-xl
 `;
 
 export const getCustomStyles = (
@@ -55,20 +55,40 @@ export const getCustomStyles = (
   }),
   menu: (base) => ({
     ...base,
-    border: "none",
     borderRadius: "1rem",
     padding: "0.5rem",
     margin: "0.5rem 0",
     overflow: "hidden",
+    boxShadow: "none",
     backgroundColor: isDarkMode ? "#333333" : "#F0F0F0",
-    boxShadow: isDarkMode
-      ? "6px 6px 12px rgba(34,34,34,0.8), -6px -6px 12px rgba(68,68,68,0.8)"
-      : "6px 6px 12px rgba(208,208,208,0.8), -6px -6px 12px rgba(255,255,255,0.8)",
+    '[data-high-contrast="true"] &': {
+      backgroundColor: isDarkMode
+        ? "var(--dark-background)"
+        : "var(--light-background)",
+      border: `2px solid ${
+        isDarkMode ? "var(--dark-hc-outline)" : "var(--light-hc-outline)"
+      }`,
+      padding: "0",
+      margin: "0.25rem 0",
+      borderRadius: "0.5rem",
+    },
+    '[data-high-contrast="false"] &': {
+      boxShadow: isDarkMode
+        ? "6px 6px 12px rgba(34,34,34,0.8), -6px -6px 12px rgba(68,68,68,0.8)"
+        : "6px 6px 12px rgba(208,208,208,0.8), -6px -6px 12px rgba(255,255,255,0.8)",
+    },
   }),
   menuList: (base) => ({
     ...base,
     padding: "0.5rem",
     backgroundColor: isDarkMode ? "#333333" : "#F0F0F0",
+    boxShadow: "none",
+    '[data-high-contrast="true"] &': {
+      backgroundColor: isDarkMode
+        ? "var(--dark-background)"
+        : "var(--light-background)",
+      padding: "0",
+    },
     "::-webkit-scrollbar": {
       width: "8px",
       height: "8px",
@@ -88,16 +108,40 @@ export const getCustomStyles = (
   }),
   option: (base, state) => ({
     ...base,
-    backgroundColor: state.isFocused
-      ? "var(--background-color-pressed)"
-      : "transparent",
-    color: "rgb(var(--text-color-primary))",
     padding: "0.75rem 1rem",
-    borderRadius: "0.75rem",
     cursor: "pointer",
     transition: "all 0.2s ease",
-    ":hover": {
-      backgroundColor: "var(--background-color-pressed)",
+    '[data-high-contrast="true"] &': {
+      backgroundColor: "transparent",
+      color: isDarkMode ? "var(--dark-hc-outline)" : "var(--light-hc-outline)",
+      borderRadius: "0",
+      padding: "1rem",
+      boxShadow: "none",
+      borderBottom: isDarkMode
+        ? "1px solid var(--dark-hc-outline)"
+        : "1px solid var(--light-hc-outline)",
+      "&:last-child": {
+        borderBottom: "none",
+      },
+      "&:hover": {
+        backgroundColor: isDarkMode
+          ? "var(--dark-hc-outline)"
+          : "var(--light-hc-outline)",
+        color: isDarkMode
+          ? "var(--dark-background)"
+          : "var(--light-background)",
+        boxShadow: "none",
+      },
+    },
+    '[data-high-contrast="false"] &': {
+      backgroundColor: state.isFocused
+        ? "var(--background-color-pressed)"
+        : "transparent",
+      color: "rgb(var(--text-color-primary))",
+      borderRadius: "0.75rem",
+      ":hover": {
+        backgroundColor: "var(--background-color-pressed)",
+      },
     },
   }),
   noOptionsMessage: (base) => ({
