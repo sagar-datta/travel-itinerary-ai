@@ -222,6 +222,22 @@ export function CityInput({
       ...base,
       padding: "0.5rem",
       backgroundColor: isDarkMode ? "#333333" : "#F0F0F0",
+      "::-webkit-scrollbar": {
+        width: "8px",
+        height: "8px",
+      },
+      "::-webkit-scrollbar-track": {
+        background: "transparent",
+      },
+      "::-webkit-scrollbar-thumb": {
+        background: isDarkMode ? "#DDDDDD" : "#555555", // Using secondary text colors
+        borderRadius: "999px",
+      },
+      "::-webkit-scrollbar-thumb:hover": {
+        background: isDarkMode ? "#BBBBBB" : "#777777", // Using muted text colors for hover
+      },
+      scrollbarWidth: "thin",
+      scrollbarColor: `${isDarkMode ? "#DDDDDD" : "#555555"} transparent`,
     }),
     option: (base, state) => ({
       ...base,
