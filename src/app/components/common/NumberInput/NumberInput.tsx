@@ -2,7 +2,6 @@
 
 import { useState, useRef, useEffect } from "react";
 import { MinusIcon, PlusIcon } from "../icons/NumberControls";
-import { shape } from "../../../styles/common";
 
 interface NumberInputProps {
   value: string;
@@ -118,7 +117,7 @@ export function NumberInput({
             ref={containerRef}
             onClick={handleSelectClick}
             className={`relative flex-1 h-14 flex items-center justify-center
-                    text-3xl font-bold rounded-full cursor-pointer
+                    text-3xl font-bold rounded-2xl cursor-pointer
                     dark:bg-dark-base/50 bg-light-base/50
                     dark:text-dark-text-primary text-light-text-primary
                     dark:shadow-neu-dark-pressed shadow-neu-light-pressed
@@ -129,28 +128,21 @@ export function NumberInput({
               <div
                 ref={dropdownRef}
                 className={`
-                  absolute w-full
-                  dark:bg-dark-base bg-light-base
-                  ${shape.borderRadius}
+                  absolute left-1/2 -translate-x-1/2
+                  dark:bg-[#333333] bg-[#F0F0F0]
+                  rounded-2xl overflow-hidden
                   dark:shadow-neu-dark shadow-neu-light
-                  max-h-[240px] overflow-y-auto
-                  z-50
+                  z-50 p-2
                 `}
                 style={{
                   top: "50%",
-                  transform: "translateY(-50%)",
-                  maxHeight: "200px",
-                  scrollBehavior: "auto",
+                  transform: "translate(-50%, -50%)",
+                  width: "calc(100% + 1rem)",
                 }}
               >
                 <div
                   ref={optionsContainerRef}
-                  className="w-full"
-                  style={{
-                    paddingTop: "40px",
-                    paddingBottom: "40px",
-                    scrollBehavior: "auto",
-                  }}
+                  className="py-10 max-h-[240px] overflow-y-auto overflow-x-hidden"
                 >
                   {options.map((num) => (
                     <button
@@ -158,14 +150,11 @@ export function NumberInput({
                       data-value={num}
                       onClick={() => handleOptionClick(num)}
                       className={`
-                        w-full px-4 py-2 text-center text-3xl font-bold
+                        w-[calc(100%-0.5rem)] px-4 py-3 text-center text-3xl font-bold mx-1
                         dark:text-dark-text-primary text-light-text-primary
-                        hover:bg-dark-accent-primary/10 dark:hover:bg-dark-accent-primary/10
-                        ${
-                          num === currentValue
-                            ? "bg-dark-accent-primary/20"
-                            : ""
-                        }
+                        transition-all rounded-xl
+                        hover:[box-shadow:inset_8px_8px_16px_#d1d9e6,inset_-8px_-8px_16px_#ffffff] 
+                        dark:hover:[box-shadow:inset_8px_8px_16px_#222222,inset_-8px_-8px_16px_#444444]
                       `}
                     >
                       {num}
