@@ -1,13 +1,18 @@
 import { TransitionContainer } from "../../common/TransitionContainer";
 import { BlackButton } from "../../common/BlackButton";
 import { transitions, typography, layout } from "../../../styles/common";
-import { useEffect, useState } from "react";
 
 interface ItineraryDisplayProps {
   isVisible: boolean;
   isLoading: boolean;
   itinerary: string | null;
   onBack: () => void;
+  formData: {
+    destination: string;
+    destinationLabel?: string;
+    days: string;
+    people: string;
+  };
 }
 
 export function ItineraryDisplay({
@@ -15,24 +20,21 @@ export function ItineraryDisplay({
   isLoading,
   itinerary,
   onBack,
+  formData,
 }: ItineraryDisplayProps) {
-  const [cityName, setCityName] = useState<string>("");
+  const cityName =
+    formData.destinationLabel?.split(",")[0] ||
+    formData.destination.split(",")[0];
+  const nightsText = `${formData.days} ${
+    Number(formData.days) === 1 ? "night" : "nights"
+  }`;
+  const peopleText = `${formData.people} ${
+    Number(formData.people) === 1 ? "person" : "people"
+  }`;
 
-  useEffect(() => {
-    const savedData = localStorage.getItem("travel-form-data");
-    if (savedData) {
-      try {
-        const data = JSON.parse(savedData);
-        // Get everything before the first comma, or use the whole string if no comma
-        const city = (data.destinationLabel || data.destination || "")
-          .split(",")[0]
-          .trim();
-        setCityName(city);
-      } catch (e) {
-        console.error("Error parsing localStorage data:", e);
-      }
-    }
-  }, []);
+  const tripTitle = formData.destination
+    ? `Your ${cityName} Itinerary (${nightsText}, ${peopleText})`
+    : "Your Trip";
 
   return (
     <TransitionContainer
@@ -45,13 +47,16 @@ export function ItineraryDisplay({
         <div
           className={`${layout.maxWidth.lg} mx-auto px-4 md:px-6 lg:px-8 py-3 flex items-center`}
         >
-          <BlackButton onClick={onBack} className="!px-3 !py-1.5 !text-sm mr-4">
+          <BlackButton
+            onClick={onBack}
+            className="!px-3 !py-1.5 !text-sm mr-4 !rounded-lg"
+          >
             ← Back
           </BlackButton>
           <h1
-            className={`${typography.gradientText} ${typography.h2} flex-1 text-center`}
+            className={`${typography.gradientText} text-xl md:text-3xl font-black tracking-tight flex-1 text-center`}
           >
-            {cityName ? `Your ${cityName} Itinerary` : "Your Itinerary"}
+            {tripTitle}
           </h1>
           {/* Empty div to balance the back button */}
           <div className="w-[68px]" />

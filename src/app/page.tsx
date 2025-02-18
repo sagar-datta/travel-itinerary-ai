@@ -12,13 +12,23 @@ export default function Home() {
   const [isGenerating, setIsGenerating] = useState(false);
   const [itinerary, setItinerary] = useState<string | null>(null);
   const [showItinerary, setShowItinerary] = useState(false);
+  const [formData, setFormData] = useState({
+    destination: "",
+    destinationLabel: "",
+    days: "1",
+    people: "1",
+  });
 
-  const handleGenerateItinerary = async (responsePromise: Promise<string>) => {
+  const handleGenerateItinerary = async (
+    responsePromise: Promise<string>,
+    submittedFormData: typeof formData
+  ) => {
     console.log("Generate clicked, setting states...");
     // Immediately show loading state and itinerary view
     setIsGenerating(true);
     setShowItinerary(true);
     setItinerary(null);
+    setFormData(submittedFormData);
 
     try {
       console.log("Waiting for API response...");
@@ -74,6 +84,7 @@ export default function Home() {
             isLoading={isGenerating}
             itinerary={itinerary}
             onBack={handleBack}
+            formData={formData}
           />
         </div>
       </main>

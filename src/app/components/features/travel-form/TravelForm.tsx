@@ -13,7 +13,15 @@ import { generateItinerary } from "../../../services/gemini";
 
 interface TravelFormProps {
   isStarted: boolean;
-  onGenerate: (response: Promise<string>) => void;
+  onGenerate: (
+    response: Promise<string>,
+    formData: {
+      destination: string;
+      destinationLabel?: string;
+      days: string;
+      people: string;
+    }
+  ) => void;
 }
 
 interface FormData {
@@ -75,8 +83,13 @@ export function TravelForm({ isStarted, onGenerate }: TravelFormProps) {
         budget: data.budget,
       });
 
-      // Pass the promise to parent to handle loading state
-      onGenerate(responsePromise);
+      // Pass both the promise and form data to parent
+      onGenerate(responsePromise, {
+        destination: data.destination,
+        destinationLabel: data.destinationLabel,
+        days: data.days,
+        people: data.people,
+      });
     } catch (error) {
       console.error("Error:", error);
     }
