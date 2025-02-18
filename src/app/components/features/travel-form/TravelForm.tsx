@@ -7,6 +7,7 @@ import { Card } from "../../common/Card";
 import { CityInput } from "../../common/CityInput";
 import { Input } from "../../common/Input";
 import { Button } from "../../common/Button";
+import { BudgetSelector, type BudgetTier } from "../../common/BudgetSelector";
 import { layout } from "../../../styles/common";
 
 interface TravelFormProps {
@@ -19,6 +20,7 @@ interface FormData {
   days: string;
   people: string;
   interests: string;
+  budget: BudgetTier;
 }
 
 const STORAGE_KEY = "travel-form-data";
@@ -31,6 +33,7 @@ export function TravelForm({ isStarted }: TravelFormProps) {
       days: "1",
       people: "1",
       interests: "",
+      budget: "$",
     },
   });
 
@@ -75,7 +78,9 @@ export function TravelForm({ isStarted }: TravelFormProps) {
         onSubmit={handleSubmit(onSubmit)}
         className="space-y-6 md:space-y-8 lg:space-y-12 w-full"
       >
-        <div className={layout.grid.threeColumns}>
+        <div
+          className={`${layout.grid.threeColumns} lg:[&>*:last-child:nth-child(3n-2)]:col-start-2 lg:[&>*:nth-last-child(2):nth-child(3n-2)]:col-start-1`}
+        >
           <TransitionContainer show={isStarted} delay="delay-125">
             <Card>
               <CityInput
@@ -113,19 +118,29 @@ export function TravelForm({ isStarted }: TravelFormProps) {
               />
             </Card>
           </TransitionContainer>
-        </div>
 
-        <TransitionContainer show={isStarted} delay="delay-175">
-          <Card>
-            <Input
-              label="Interests"
-              type="text"
-              placeholder="museums, hiking, local food, art galleries"
-              value={watch("interests")}
-              onChange={(value) => setValue("interests", value)}
-            />
-          </Card>
-        </TransitionContainer>
+          <TransitionContainer show={isStarted} delay="delay-175">
+            <Card>
+              <Input
+                label="Interests"
+                type="text"
+                placeholder="museums, hiking, local food, art galleries"
+                value={watch("interests")}
+                onChange={(value) => setValue("interests", value)}
+              />
+            </Card>
+          </TransitionContainer>
+
+          <TransitionContainer show={isStarted} delay="delay-175">
+            <Card>
+              <BudgetSelector
+                label="Budget"
+                value={watch("budget") as BudgetTier}
+                onChange={(value) => setValue("budget", value)}
+              />
+            </Card>
+          </TransitionContainer>
+        </div>
 
         <TransitionContainer show={isStarted} delay="delay-200">
           <div className="flex justify-center">
