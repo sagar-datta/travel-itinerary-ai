@@ -13,12 +13,12 @@ export const animations = {
 
 export const delays = {
   none: "",
-  delay100: "delay-[100ms]",
-  delay200: "delay-[200ms]",
-  delay300: "delay-[300ms]",
-  delay400: "delay-[400ms]",
-  delay500: "delay-[500ms]",
-  delay600: "delay-[600ms]",
+  delay100: "delay-[50ms]",
+  delay200: "delay-[100ms]",
+  delay300: "delay-[150ms]",
+  delay400: "delay-[200ms]",
+  delay500: "delay-[250ms]",
+  delay600: "delay-[300ms]",
 } as const;
 
 export const typography = {
