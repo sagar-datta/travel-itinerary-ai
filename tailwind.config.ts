@@ -62,20 +62,20 @@ const config: Config = {
           },
         },
         dark: {
-          base: "#333333", // Dark gray base
+          base: "#363636", // Lighter dark mode base for better neumorphism
           shadow: {
-            darker: "#222222", // Shadow for depth
-            lighter: "#444444", // Highlight for elevation
+            darker: "#2A2A2A", // Deeper shadow for crisp depth
+            lighter: "#424242", // Brighter highlight for elevation
           },
           accent: {
-            primary: "#AAAAAA", // Light gray
-            secondary: "#999999", // Medium gray
-            success: "#888888", // Dark gray
+            primary: "#AAAAAA",
+            secondary: "#999999",
+            success: "#888888",
           },
           text: {
-            primary: "#EEEEEE", // Very light gray
-            secondary: "#DDDDDD", // Light gray
-            muted: "#BBBBBB", // Medium gray
+            primary: "#EEEEEE",
+            secondary: "#DDDDDD",
+            muted: "#BBBBBB",
           },
         },
       },
@@ -87,10 +87,10 @@ const config: Config = {
           "inset 8px 8px 16px #d1d9e6, inset -8px -8px 16px #ffffff",
 
         // Dark theme shadows
-        "neu-dark": "8px 8px 16px #222222, -8px -8px 16px #444444",
-        "neu-dark-hover": "2px 2px 4px #222222, -2px -2px 4px #444444",
+        "neu-dark": "8px 8px 16px #2A2A2A, -8px -8px 16px #424242",
+        "neu-dark-hover": "4px 4px 8px #2A2A2A, -4px -4px 8px #424242",
         "neu-dark-pressed":
-          "inset 8px 8px 16px #222222, inset -8px -8px 16px #444444",
+          "inset 8px 8px 16px #2A2A2A, inset -8px -8px 16px #424242",
       },
       borderRadius: {
         lg: "var(--radius)",
