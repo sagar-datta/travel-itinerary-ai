@@ -6,8 +6,9 @@ import {
   PlusIcon,
 } from "@/app/components/common/icons/NumberControls";
 import { Button } from "@/app/components/common/buttons";
+import { InputLabel } from "../InputLabel";
 
-interface NumberInputProps {
+export interface NumberInputProps {
   value: string;
   onChange: (value: string) => void;
   label: string;
@@ -90,15 +91,7 @@ export function NumberInput({
 
   return (
     <div className="flex flex-col gap-4">
-      <label
-        className="text-2xl font-black tracking-tight
-        bg-gradient-to-r
-        dark:from-dark-accent-primary dark:via-dark-text-primary dark:to-dark-accent-secondary
-        from-light-accent-primary via-light-text-primary to-light-accent-secondary
-        bg-clip-text text-transparent"
-      >
-        {numberType === "nights" ? "Nights" : label}
-      </label>
+      <InputLabel>{numberType === "nights" ? "Nights" : label}</InputLabel>
       <div className="flex gap-2 items-stretch w-full">
         <div className="flex items-center gap-2 w-full">
           <Button
@@ -143,6 +136,7 @@ export function NumberInput({
                   {options.map((num) => (
                     <button
                       key={num}
+                      type="button"
                       data-value={num}
                       onClick={() => handleOptionClick(num)}
                       className={`

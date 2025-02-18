@@ -4,13 +4,13 @@ import { useForm } from "react-hook-form";
 import { useEffect } from "react";
 import { TransitionContainer } from "@/app/components/common/TransitionContainer";
 import { Card } from "@/app/components/common/Card";
-import { CityInput } from "@/app/components/common/CityInput";
-import { Input } from "@/app/components/common/Input";
-import { BlackButton } from "@/app/components/common/buttons";
 import {
+  Input,
+  CityInput,
   BudgetSelector,
   type BudgetTier,
-} from "@/app/components/common/BudgetSelector";
+} from "@/app/components/common/form";
+import { BlackButton } from "@/app/components/common/buttons";
 import { layout, delays } from "@/app/styles/common";
 import { generateItinerary } from "@/app/services/gemini";
 
@@ -143,7 +143,7 @@ export function TravelForm({ isStarted, onGenerate }: TravelFormProps) {
                 type="number"
                 numberType="nights"
                 value={watch("days")}
-                onChange={(value) => setValue("days", value)}
+                onChange={(value: string) => setValue("days", value)}
               />
             </Card>
           </TransitionContainer>
@@ -159,7 +159,7 @@ export function TravelForm({ isStarted, onGenerate }: TravelFormProps) {
                 type="number"
                 numberType="people"
                 value={watch("people")}
-                onChange={(value) => setValue("people", value)}
+                onChange={(value: string) => setValue("people", value)}
               />
             </Card>
           </TransitionContainer>
@@ -175,7 +175,7 @@ export function TravelForm({ isStarted, onGenerate }: TravelFormProps) {
                 type="text"
                 placeholder="museums, hiking, local food, art galleries"
                 value={watch("interests")}
-                onChange={(value) => setValue("interests", value)}
+                onChange={(value: string) => setValue("interests", value)}
               />
             </Card>
           </TransitionContainer>
@@ -189,7 +189,7 @@ export function TravelForm({ isStarted, onGenerate }: TravelFormProps) {
               <BudgetSelector
                 label="Budget"
                 value={watch("budget") as BudgetTier}
-                onChange={(value) => setValue("budget", value)}
+                onChange={(value: BudgetTier) => setValue("budget", value)}
               />
             </Card>
           </TransitionContainer>

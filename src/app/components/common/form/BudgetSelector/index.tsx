@@ -1,6 +1,7 @@
 "use client";
 
-import { shape } from "../../../styles/common";
+import { shape } from "@/app/styles/common";
+import { InputLabel } from "../InputLabel";
 
 export type BudgetTier = "$" | "$$" | "$$$";
 
@@ -40,15 +41,7 @@ export function BudgetSelector({
 
   return (
     <div className="flex flex-col gap-4">
-      <label
-        className="text-2xl font-black tracking-tight
-        bg-gradient-to-r
-        dark:from-dark-accent-primary dark:via-dark-text-primary dark:to-dark-accent-secondary
-        from-light-accent-primary via-light-text-primary to-light-accent-secondary
-        bg-clip-text text-transparent"
-      >
-        {label}
-      </label>
+      <InputLabel>{label}</InputLabel>
       <div
         className={`relative p-2.5 ${shape.borderRadius} 
           dark:bg-dark-base/50 bg-light-base/50

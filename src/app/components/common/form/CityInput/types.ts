@@ -1,5 +1,3 @@
-import type { ActionMeta } from "react-select";
-
 export interface CityOption {
   value: string;
   label: string;
@@ -14,13 +12,6 @@ export interface CityInputProps {
 }
 
 export interface NoOptionsMessageProps {
-  inputValue: string;
-}
-
-export interface GeonamesResult {
-  toponymName: string;
-  name: string;
-  adminName1: string;
-  countryName: string;
-  population: number;
+  children?: React.ReactNode;
+  [key: string]: any;
 }

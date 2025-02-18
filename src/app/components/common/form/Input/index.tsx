@@ -1,13 +1,15 @@
 "use client";
-import { shape } from "../../styles/common";
-import { NumberInput } from "./NumberInput/NumberInput";
+
+import { shape } from "@/app/styles/common";
+import { NumberInput } from "../NumberInput";
+import { InputLabel } from "../InputLabel";
 
 type BaseInputProps = Omit<
   React.InputHTMLAttributes<HTMLInputElement>,
   "onChange" | "type" | "value"
 >;
 
-interface InputProps extends BaseInputProps {
+export interface InputProps extends BaseInputProps {
   label: string;
   type?: "text" | "date" | "number";
   value: string;
@@ -41,15 +43,7 @@ export function Input({
 
   return (
     <div className="flex flex-col gap-4">
-      <label
-        className="text-2xl font-black tracking-tight
-        bg-gradient-to-r
-        dark:from-dark-accent-primary dark:via-dark-text-primary dark:to-dark-accent-secondary
-        from-light-accent-primary via-light-text-primary to-light-accent-secondary
-        bg-clip-text text-transparent"
-      >
-        {label}
-      </label>
+      <InputLabel>{label}</InputLabel>
       <div className="flex gap-2 items-stretch">
         <input
           {...inputProps}

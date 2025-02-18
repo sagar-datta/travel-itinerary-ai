@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import dynamic from "next/dynamic";
 import type { ActionMeta } from "react-select";
-import { useTheme } from "../../../context/ThemeContext";
+import { useTheme } from "@/app/context/ThemeContext";
 import { loadCityOptions } from "./api";
 import {
   inputClassName,
@@ -16,6 +16,7 @@ import type {
   CityInputProps,
   NoOptionsMessageProps,
 } from "./types";
+import { InputLabel } from "../InputLabel";
 
 // Dynamically import AsyncSelect with no SSR
 const AsyncSelect = dynamic(
@@ -30,11 +31,11 @@ export function CityInput({
   onChange,
   className = "",
 }: CityInputProps) {
+  const { theme } = useTheme();
+  const isDarkMode = theme === "dark";
   const [selectedOption, setSelectedOption] = useState<CityOption | null>(
     value ? { value, label: initialLabel || value } : null
   );
-  const { theme } = useTheme();
-  const isDarkMode = theme === "dark";
   const selectRef = useRef<any>(null);
 
   // Sync internal state with incoming props
@@ -60,19 +61,9 @@ export function CityInput({
     onChange(newValue?.value || "", newValue?.label);
   };
 
-  const customStyles = getCustomStyles(isDarkMode);
-
   return (
     <div className="flex flex-col gap-4">
-      <label
-        className="text-2xl font-black tracking-tight
-        bg-gradient-to-r
-        dark:from-dark-accent-primary dark:via-dark-text-primary dark:to-dark-accent-secondary
-        from-light-accent-primary via-light-text-primary to-light-accent-secondary
-        bg-clip-text text-transparent"
-      >
-        {label}
-      </label>
+      <InputLabel>{label}</InputLabel>
       <div className="flex gap-2 items-stretch">
         <div
           className={`${inputClassName} cursor-text`}
@@ -87,7 +78,7 @@ export function CityInput({
             onChange={handleChange}
             loadOptions={loadCityOptions}
             className={`w-full h-full ${className}`}
-            styles={customStyles}
+            styles={getCustomStyles(isDarkMode)}
             placeholder="Start typing a city name..."
             noOptionsMessage={({ inputValue }: NoOptionsMessageProps) =>
               inputValue.length < 2
