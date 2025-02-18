@@ -13,7 +13,7 @@ interface HeaderProps {
 
 export function Header({ isStarted, onTitleClick }: HeaderProps) {
   return (
-    <header className="relative z-10 px-6">
+    <header className="relative z-10 px-6 py-4">
       <div className="mx-auto max-w-7xl h-full flex justify-between items-center">
         {/* Title in header - starts hidden and slides in when isStarted */}
         <button

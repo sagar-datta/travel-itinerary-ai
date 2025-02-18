@@ -1,33 +1,35 @@
-'use client';
-import { useState } from 'react';
-import { Header } from './components/layout/Header';
-import { Welcome } from './components/features/welcome/Welcome';
-import { TravelForm } from './components/features/travel-form/TravelForm';
+"use client";
+import { useState } from "react";
+import { Header } from "./components/layout/Header";
+import { Welcome } from "./components/features/welcome/Welcome";
+import { TravelForm } from "./components/features/travel-form/TravelForm";
 
-export const dynamic = 'force-dynamic';
+export const dynamic = "force-dynamic";
 
 export default function Home() {
   const [isStarted, setIsStarted] = useState(false);
 
   return (
-    <div className="min-h-screen grid grid-rows-[80px_1fr] dark:bg-dark-base bg-light-base">
-      <Header 
-        isStarted={isStarted}
-        onTitleClick={() => setIsStarted(false)}
-      />
+    <div className="min-h-screen flex flex-col dark:bg-dark-base bg-light-base">
+      <Header isStarted={isStarted} onTitleClick={() => setIsStarted(false)} />
 
-      <main className="relative flex items-center justify-center px-4">
+      <main className="flex-1 relative">
         <div className="absolute inset-0 flex items-center justify-center">
-          <Welcome 
-            isStarted={isStarted}
-            onBegin={() => setIsStarted(true)}
-          />
+          <div
+            className={`w-full transition-all duration-300 ${
+              isStarted ? "opacity-0 pointer-events-none" : "opacity-100"
+            }`}
+          >
+            <Welcome isStarted={isStarted} onBegin={() => setIsStarted(true)} />
+          </div>
         </div>
 
-        <div className="absolute inset-0 flex items-center justify-center">
-          <TravelForm 
-            isStarted={isStarted}
-          />
+        <div
+          className={`absolute inset-0 flex items-start justify-center transition-all duration-300 pt-6 ${
+            isStarted ? "opacity-100" : "opacity-0 pointer-events-none"
+          }`}
+        >
+          <TravelForm isStarted={isStarted} />
         </div>
       </main>
     </div>
@@ -36,7 +38,7 @@ export default function Home() {
 
 /**
  * Component Structure Explanation:
- * 
+ *
  * src/app/components/
  * ├── common/             # Reusable components used across the app
  * │   ├── ThemeToggle    # UI components, buttons, inputs, etc.
