@@ -1,6 +1,6 @@
 import { TransitionContainer } from "../../common/TransitionContainer";
 import { BlackButton } from "../../common/BlackButton";
-import { transitions, typography, layout } from "../../../styles/common";
+import { typography, layout } from "../../../styles/common";
 
 interface ItineraryDisplayProps {
   isVisible: boolean;
