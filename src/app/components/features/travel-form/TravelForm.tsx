@@ -14,8 +14,8 @@ interface TravelFormProps {
 
 export function TravelForm({ isStarted }: TravelFormProps) {
   const [destination, setDestination] = useState("");
-  const [days, setDays] = useState("");
-  const [people, setPeople] = useState("");
+  const [days, setDays] = useState("1");
+  const [people, setPeople] = useState("1");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -51,8 +51,7 @@ export function TravelForm({ isStarted }: TravelFormProps) {
               <Input
                 label="Days"
                 type="number"
-                min="1"
-                placeholder="How many days?"
+                numberType="nights"
                 value={days}
                 onChange={setDays}
               />
@@ -65,8 +64,7 @@ export function TravelForm({ isStarted }: TravelFormProps) {
               <Input
                 label="People"
                 type="number"
-                min="1"
-                placeholder="How many people?"
+                numberType="people"
                 value={people}
                 onChange={setPeople}
               />
