@@ -1,9 +1,9 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 import dynamic from "next/dynamic";
 import type { ActionMeta } from "react-select";
-import { THEME_KEY } from "./constants";
+import { useTheme } from "../../../context/ThemeContext";
 import { loadCityOptions } from "./api";
 import {
   inputClassName,
@@ -32,39 +32,11 @@ export function CityInput({
   const [selectedOption, setSelectedOption] = useState<CityOption | null>(
     value ? { value, label: value } : null
   );
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const { theme } = useTheme();
+  const isDarkMode = theme === "dark";
   const selectRef = useRef<any>(null);
 
-  useEffect(() => {
-    // Initial theme setup
-    const savedTheme = localStorage.getItem(THEME_KEY);
-    if (savedTheme !== null) {
-      setIsDarkMode(savedTheme === "dark");
-    } else {
-      setIsDarkMode(false);
-    }
-
-    // Watch for theme changes
-    const observer = new MutationObserver((mutations) => {
-      mutations.forEach((mutation) => {
-        if (mutation.attributeName === "class") {
-          const isDark = document.documentElement.classList.contains("dark");
-          setIsDarkMode(isDark);
-        }
-      });
-    });
-
-    observer.observe(document.documentElement, {
-      attributes: true,
-      attributeFilter: ["class"],
-    });
-
-    // Cleanup observer on component unmount
-    return () => observer.disconnect();
-  }, []);
-
   const handleContainerClick = () => {
-    // Only clear if there's a selected value
     if (selectedOption) {
       setSelectedOption(null);
       onChange("");

@@ -1,6 +1,8 @@
-import axios from "axios";
 import type { CityOption, GeonamesResult } from "./types";
-import { USERNAME } from "./constants";
+
+if (!process.env.NEXT_PUBLIC_GEONAMES_USERNAME) {
+  console.warn("NEXT_PUBLIC_GEONAMES_USERNAME environment variable is not set");
+}
 
 export const loadCityOptions = async (
   inputValue: string
@@ -9,29 +11,25 @@ export const loadCityOptions = async (
 
   try {
     const [exactMatches, similarMatches] = await Promise.all([
-      axios.get("http://api.geonames.org/searchJSON", {
-        params: {
-          name_equals: inputValue,
-          maxRows: 3,
-          username: USERNAME,
-          featureClass: "P",
-          orderby: "population",
-        },
-      }),
-      axios.get("http://api.geonames.org/searchJSON", {
-        params: {
-          name_startsWith: inputValue,
-          maxRows: 10,
-          username: USERNAME,
-          featureClass: "P",
-          orderby: "population",
-        },
-      }),
+      fetch(
+        `https://secure.geonames.org/searchJSON?name_equals=${encodeURIComponent(
+          inputValue
+        )}&maxRows=3&username=${
+          process.env.NEXT_PUBLIC_GEONAMES_USERNAME
+        }&featureClass=P&orderby=population`
+      ).then((res) => res.json()),
+      fetch(
+        `https://secure.geonames.org/searchJSON?name_startsWith=${encodeURIComponent(
+          inputValue
+        )}&maxRows=10&username=${
+          process.env.NEXT_PUBLIC_GEONAMES_USERNAME
+        }&featureClass=P&orderby=population`
+      ).then((res) => res.json()),
     ]);
 
     const allResults = [
-      ...(exactMatches.data?.geonames || []),
-      ...(similarMatches.data?.geonames || []),
+      ...(exactMatches?.geonames || []),
+      ...(similarMatches?.geonames || []),
     ];
 
     const uniqueResults = Array.from(

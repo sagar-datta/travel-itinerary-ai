@@ -1,26 +1,34 @@
 "use client";
 
-import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { TransitionContainer } from "../../common/TransitionContainer";
+import { Card } from "../../common/Card";
+import { CityInput } from "../../common/CityInput";
 import { Input } from "../../common/Input";
 import { Button } from "../../common/Button";
-import { Card } from "../../common/Card";
-import { TransitionContainer } from "../../common/TransitionContainer";
 import { layout } from "../../../styles/common";
-import { CityInput } from "../../common/CityInput/index";
 
 interface TravelFormProps {
   isStarted: boolean;
 }
 
-export function TravelForm({ isStarted }: TravelFormProps) {
-  const [destination, setDestination] = useState("");
-  const [days, setDays] = useState("1");
-  const [people, setPeople] = useState("1");
+interface FormData {
+  destination: string;
+  days: string;
+  people: string;
+}
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // TODO: Handle form submission
-    console.log("Form submitted:", { destination, days, people });
+export function TravelForm({ isStarted }: TravelFormProps) {
+  const { register, handleSubmit, setValue, watch } = useForm<FormData>({
+    defaultValues: {
+      destination: "",
+      days: "1",
+      people: "1",
+    },
+  });
+
+  const onSubmit = (data: FormData) => {
+    console.log("Form submitted:", data);
   };
 
   return (
@@ -29,63 +37,51 @@ export function TravelForm({ isStarted }: TravelFormProps) {
       className={`w-full ${layout.maxWidth.lg} ${layout.container.centered} px-4 md:px-6 lg:px-8 py-4 md:py-6 lg:py-8`}
     >
       <form
-        onSubmit={handleSubmit}
+        onSubmit={handleSubmit(onSubmit)}
         className="space-y-6 md:space-y-8 lg:space-y-12 w-full"
       >
-        {/* Grid for form inputs */}
         <div className={layout.grid.threeColumns}>
-          {/* First column - Destination */}
           <TransitionContainer show={isStarted} delay="delay-125">
             <Card>
               <CityInput
                 label="Destination"
-                value={destination}
-                onChange={setDestination}
+                value={watch("destination")}
+                onChange={(value) => setValue("destination", value)}
               />
             </Card>
           </TransitionContainer>
 
-          {/* Second column - Days */}
           <TransitionContainer show={isStarted} delay="delay-150">
             <Card>
               <Input
                 label="Days"
                 type="number"
                 numberType="nights"
-                value={days}
-                onChange={setDays}
+                value={watch("days")}
+                onChange={(value) => setValue("days", value)}
               />
             </Card>
           </TransitionContainer>
 
-          {/* Third column - People */}
           <TransitionContainer show={isStarted} delay="delay-175">
             <Card>
               <Input
                 label="People"
                 type="number"
                 numberType="people"
-                value={people}
-                onChange={setPeople}
+                value={watch("people")}
+                onChange={(value) => setValue("people", value)}
               />
             </Card>
           </TransitionContainer>
         </div>
 
-        {/* Full-width section for submit button */}
-        <TransitionContainer
-          show={isStarted}
-          delay="delay-200"
-          className="flex justify-center"
-        >
-          <Button
-            type="submit"
-            size="lg"
-            fullWidth
-            className="max-w-sm md:w-auto"
-          >
-            Create Itinerary
-          </Button>
+        <TransitionContainer show={isStarted} delay="delay-200">
+          <div className="flex justify-center">
+            <Button type="submit" className="w-full max-w-md">
+              Generate Itinerary
+            </Button>
+          </div>
         </TransitionContainer>
       </form>
     </TransitionContainer>

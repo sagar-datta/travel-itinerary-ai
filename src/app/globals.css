@@ -2,40 +2,65 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Theme Variables */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-  --background-base: #ffffff;
+  /* Base Colors */
+  --color-white: #ffffff;
+  --color-black: #171717;
+  --color-gray-500: rgb(107, 114, 128);
+
+  /* Light Theme */
+  --light-background: var(--color-white);
+  --light-foreground: var(--color-black);
+  --light-text-primary: var(--color-black);
+  --light-accent-primary: #3b82f6;
+  --light-accent-secondary: #60a5fa;
+  --light-shadow-pressed: 2px 2px 4px rgba(0, 0, 0, 0.1) inset;
+
+  /* Dark Theme */
+  --dark-background: #0a0a0a;
+  --dark-foreground: #ededed;
+  --dark-text-primary: #ededed;
+  --dark-accent-primary: #3b82f6;
+  --dark-accent-secondary: #60a5fa;
+  --dark-shadow-pressed: 2px 2px 4px rgba(0, 0, 0, 0.3) inset;
+
+  /* Active Theme Colors */
+  --background: var(--light-background);
+  --foreground: var(--light-foreground);
+  --background-base: var(--light-background);
   --background-base-50: rgba(255, 255, 255, 0.5);
-  --text-primary: #171717;
-  --accent-primary: #3b82f6;
-  --accent-secondary: #60a5fa;
-  --shadow-pressed: 2px 2px 4px rgba(0, 0, 0, 0.1) inset;
-  --placeholder-color: 107, 114, 128; /* RGB values for #6B7280 */
+  --text-primary: var(--light-text-primary);
+  --accent-primary: var(--light-accent-primary);
+  --accent-secondary: var(--light-accent-secondary);
+  --shadow-pressed: var(--light-shadow-pressed);
+  --placeholder-color: var(--color-gray-500);
 }
 
+/* Dark Theme Override */
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-    --background-base: #0a0a0a;
+    --background: var(--dark-background);
+    --foreground: var(--dark-foreground);
+    --background-base: var(--dark-background);
     --background-base-50: rgba(10, 10, 10, 0.5);
-    --text-primary: #ededed;
-    --accent-primary: #3b82f6;
-    --accent-secondary: #60a5fa;
-    --shadow-pressed: 2px 2px 4px rgba(0, 0, 0, 0.3) inset;
+    --text-primary: var(--dark-text-primary);
+    --accent-primary: var(--dark-accent-primary);
+    --accent-secondary: var(--dark-accent-secondary);
+    --shadow-pressed: var(--dark-shadow-pressed);
   }
 }
 
+/* Base Styles */
 body {
   color: var(--foreground);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
-  transition: color 300ms ease-in-out, background-color 300ms ease-in-out;
 }
 
-/* Add transition to all theme-related color changes */
+/* Transitions */
+body,
 * {
-  transition: background-color 300ms ease-in-out, color 300ms ease-in-out,
+  transition: color 300ms ease-in-out, background-color 300ms ease-in-out,
     border-color 300ms ease-in-out, box-shadow 300ms ease-in-out;
 }
