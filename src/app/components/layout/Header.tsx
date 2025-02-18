@@ -1,6 +1,5 @@
 "use client";
 import { ThemeToggle } from "../common/ThemeToggle";
-import { HighContrastToggle } from "../common/HighContrastToggle";
 import {
   transitions,
   typography,
@@ -40,7 +39,6 @@ export function Header({ isStarted, onTitleClick }: HeaderProps) {
 
         {/* Theme and Accessibility Toggles */}
         <div className="flex items-center gap-2 h-full">
-          <HighContrastToggle />
           <ThemeToggle />
         </div>
       </div>

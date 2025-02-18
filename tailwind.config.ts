@@ -10,6 +10,39 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        background: "hsl(var(--background))",
+        foreground: "hsl(var(--foreground))",
+        card: {
+          DEFAULT: "hsl(var(--card))",
+          foreground: "hsl(var(--card-foreground))",
+        },
+        popover: {
+          DEFAULT: "hsl(var(--popover))",
+          foreground: "hsl(var(--popover-foreground))",
+        },
+        primary: {
+          DEFAULT: "hsl(var(--primary))",
+          foreground: "hsl(var(--primary-foreground))",
+        },
+        secondary: {
+          DEFAULT: "hsl(var(--secondary))",
+          foreground: "hsl(var(--secondary-foreground))",
+        },
+        muted: {
+          DEFAULT: "hsl(var(--muted))",
+          foreground: "hsl(var(--muted-foreground))",
+        },
+        accent: {
+          DEFAULT: "hsl(var(--accent))",
+          foreground: "hsl(var(--accent-foreground))",
+        },
+        destructive: {
+          DEFAULT: "hsl(var(--destructive))",
+          foreground: "hsl(var(--destructive-foreground))",
+        },
+        border: "hsl(var(--border))",
+        input: "hsl(var(--input))",
+        ring: "hsl(var(--ring))",
         placeholder: "#6B7280",
         light: {
           base: "#F0F0F0", // Very light gray base
@@ -63,7 +96,6 @@ const config: Config = {
           "inset 4px 4px 6px rgba(34,34,34,0.8), inset -4px -4px 6px rgba(68,68,68,0.8)",
         "neu-dark-flat":
           "3px 3px 6px rgba(34,34,34,0.8), -3px -3px 6px rgba(68,68,68,0.8)",
-        // New subtle shadows
         "neu-light-subtle":
           "2px 2px 4px rgba(208,208,208,0.7), -2px -2px 4px rgba(255,255,255,0.7)",
         "neu-light-subtle-pressed":
@@ -72,6 +104,11 @@ const config: Config = {
           "2px 2px 4px rgba(34,34,34,0.7), -2px -2px 4px rgba(68,68,68,0.7)",
         "neu-dark-subtle-pressed":
           "inset 1.5px 1.5px 3px rgba(34,34,34,0.7), inset -1.5px -1.5px 3px rgba(68,68,68,0.7)",
+      },
+      borderRadius: {
+        lg: "var(--radius)",
+        md: "calc(var(--radius) - 2px)",
+        sm: "calc(var(--radius) - 4px)",
       },
     },
   },

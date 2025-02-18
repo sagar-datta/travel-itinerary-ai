@@ -1,22 +1,20 @@
 import { StylesConfig } from "react-select";
-import { shape } from "../../../styles/common";
 import type { CityOption } from "./types";
 
-export const inputClassName = `${shape.borderRadius} p-4 w-full outline-none font-semibold min-h-[3.5rem] cursor-text
+export const inputClassName = `p-4 w-full outline-none font-semibold min-h-[3.5rem] cursor-text rounded-2xl
   dark:bg-dark-base/50 bg-light-base/50
   dark:text-dark-text-primary text-light-text-primary
-  [data-high-contrast='false'] & dark:shadow-neu-dark-pressed [data-high-contrast='false'] & shadow-neu-light-pressed`;
+  dark:shadow-neu-dark-pressed shadow-neu-light-pressed`;
 
 export const dropdownClassName = `
   dark:text-dark-text-primary text-light-text-primary
-  [data-high-contrast='false'] & dark:shadow-neu-dark [data-high-contrast='false'] & shadow-neu-light
-  [data-high-contrast='false'] & rounded-2xl
+  dark:shadow-neu-dark shadow-neu-light
+  rounded-2xl
 `;
 
 export const dropdownOptionClassName = `
   dark:text-dark-text-primary text-light-text-primary
-  [data-high-contrast='false'] & dark:hover:shadow-neu-dark-pressed [data-high-contrast='false'] & hover:shadow-neu-light-pressed
-  [data-high-contrast='false'] & rounded-xl
+  rounded-xl transition-all
 `;
 
 export const getCustomStyles = (
@@ -59,36 +57,16 @@ export const getCustomStyles = (
     padding: "0.5rem",
     margin: "0.5rem 0",
     overflow: "hidden",
-    boxShadow: "none",
+    boxShadow: isDarkMode
+      ? "8px 8px 16px #222222, -8px -8px 16px #444444" // dark shadow
+      : "8px 8px 16px #d1d9e6, -8px -8px 16px #ffffff", // light shadow
     backgroundColor: isDarkMode ? "#333333" : "#F0F0F0",
-    '[data-high-contrast="true"] &': {
-      backgroundColor: isDarkMode
-        ? "var(--dark-background)"
-        : "var(--light-background)",
-      border: `2px solid ${
-        isDarkMode ? "var(--dark-hc-outline)" : "var(--light-hc-outline)"
-      }`,
-      padding: "0",
-      margin: "0.25rem 0",
-      borderRadius: "0.5rem",
-    },
-    '[data-high-contrast="false"] &': {
-      boxShadow: isDarkMode
-        ? "6px 6px 12px rgba(34,34,34,0.8), -6px -6px 12px rgba(68,68,68,0.8)"
-        : "6px 6px 12px rgba(208,208,208,0.8), -6px -6px 12px rgba(255,255,255,0.8)",
-    },
   }),
   menuList: (base) => ({
     ...base,
     padding: "0.5rem",
     backgroundColor: isDarkMode ? "#333333" : "#F0F0F0",
     boxShadow: "none",
-    '[data-high-contrast="true"] &': {
-      backgroundColor: isDarkMode
-        ? "var(--dark-background)"
-        : "var(--light-background)",
-      padding: "0",
-    },
     "::-webkit-scrollbar": {
       width: "8px",
       height: "8px",
@@ -111,42 +89,18 @@ export const getCustomStyles = (
     padding: "0.75rem 1rem",
     cursor: "pointer",
     transition: "all 0.2s ease",
-    '[data-high-contrast="true"] &': {
-      backgroundColor: "transparent",
-      color: isDarkMode ? "var(--dark-hc-outline)" : "var(--light-hc-outline)",
-      borderRadius: "0",
-      padding: "1rem",
-      boxShadow: "none",
-      borderBottom: isDarkMode
-        ? "1px solid var(--dark-hc-outline)"
-        : "1px solid var(--light-hc-outline)",
-      "&:last-child": {
-        borderBottom: "none",
-      },
-      "&:hover": {
-        backgroundColor: isDarkMode
-          ? "var(--dark-hc-outline)"
-          : "var(--light-hc-outline)",
-        color: isDarkMode
-          ? "var(--dark-background)"
-          : "var(--light-background)",
-        boxShadow: "none",
-      },
-    },
-    '[data-high-contrast="false"] &': {
-      backgroundColor: state.isFocused
-        ? "var(--background-color-pressed)"
-        : "transparent",
-      color: "rgb(var(--text-color-primary))",
-      borderRadius: "0.75rem",
-      ":hover": {
-        backgroundColor: "var(--background-color-pressed)",
-      },
+    backgroundColor: "transparent",
+    color: isDarkMode ? "#EEEEEE" : "#333333",
+    borderRadius: "0.75rem",
+    ":hover": {
+      boxShadow: isDarkMode
+        ? "inset 8px 8px 16px #222222, inset -8px -8px 16px #444444" // dark pressed shadow
+        : "inset 8px 8px 16px #d1d9e6, inset -8px -8px 16px #ffffff", // light pressed shadow
     },
   }),
   noOptionsMessage: (base) => ({
     ...base,
-    color: "rgb(var(--text-color-primary))",
+    color: isDarkMode ? "#EEEEEE" : "#333333",
     padding: "0.75rem 1rem",
   }),
   menuPortal: (base) => ({

@@ -2,172 +2,95 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Theme Variables */
 :root {
-  /* Base Colors */
-  --color-white: #ffffff;
-  --color-black: #171717;
-  --color-gray-500: rgb(107, 114, 128);
-  --color-blue-600: #2563eb;
-
-  /* Light Theme */
-  --light-background: var(--color-white);
-  --light-foreground: var(--color-black);
-  --light-text-primary: var(--color-black);
-  --light-accent-primary: #3b82f6;
-  --light-accent-secondary: #60a5fa;
-  --light-shadow-pressed: 2px 2px 4px rgba(0, 0, 0, 0.1) inset;
-  --light-border: transparent;
-  --light-outline: transparent;
-
-  /* Light High Contrast */
-  --light-hc-border: #000000;
-  --light-hc-outline: #000000;
-
-  /* Dark Theme */
-  --dark-background: #0a0a0a;
-  --dark-foreground: #ededed;
-  --dark-text-primary: #ededed;
-  --dark-accent-primary: #3b82f6;
-  --dark-accent-secondary: #60a5fa;
-  --dark-shadow-pressed: 2px 2px 4px rgba(0, 0, 0, 0.3) inset;
-  --dark-border: transparent;
-  --dark-outline: transparent;
-
-  /* Dark High Contrast */
-  --dark-hc-border: #ffffff;
-  --dark-hc-outline: #ffffff;
-
-  /* Active Theme Colors */
-  --background: var(--light-background);
-  --foreground: var(--light-foreground);
-  --background-base: var(--light-background);
-  --background-base-50: rgba(255, 255, 255, 0.5);
-  --text-primary: var(--light-text-primary);
-  --accent-primary: var(--light-accent-primary);
-  --accent-secondary: var(--light-accent-secondary);
-  --shadow-pressed: var(--light-shadow-pressed);
-  --border-color: var(--light-border);
-  --outline-color: var(--light-outline);
-  --placeholder-color: var(--color-gray-500);
+  --background: 0 0% 100%;
+  --foreground: 222.2 84% 4.9%;
+  --card: 0 0% 100%;
+  --card-foreground: 222.2 84% 4.9%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 222.2 84% 4.9%;
+  --primary: 221.2 83.2% 53.3%;
+  --primary-foreground: 210 40% 98%;
+  --secondary: 210 40% 96.1%;
+  --secondary-foreground: 222.2 47.4% 11.2%;
+  --muted: 210 40% 96.1%;
+  --muted-foreground: 215.4 16.3% 46.9%;
+  --accent: 210 40% 96.1%;
+  --accent-foreground: 222.2 47.4% 11.2%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 210 40% 98%;
+  --border: 214.3 31.8% 91.4%;
+  --input: 214.3 31.8% 91.4%;
+  --ring: 221.2 83.2% 53.3%;
+  --radius: 0.5rem;
 }
 
-/* Dark Theme Override */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: var(--dark-background);
-    --foreground: var(--dark-foreground);
-    --background-base: var(--dark-background);
-    --background-base-50: rgba(10, 10, 10, 0.5);
-    --text-primary: var(--dark-text-primary);
-    --accent-primary: var(--dark-accent-primary);
-    --accent-secondary: var(--dark-accent-secondary);
-    --shadow-pressed: var(--dark-shadow-pressed);
-    --border-color: var(--dark-border);
-    --outline-color: var(--dark-outline);
+.dark {
+  --background: 222.2 84% 4.9%;
+  --foreground: 210 40% 98%;
+  --card: 222.2 84% 4.9%;
+  --card-foreground: 210 40% 98%;
+  --popover: 222.2 84% 4.9%;
+  --popover-foreground: 210 40% 98%;
+  --primary: 217.2 91.2% 59.8%;
+  --primary-foreground: 222.2 47.4% 11.2%;
+  --secondary: 217.2 32.6% 17.5%;
+  --secondary-foreground: 210 40% 98%;
+  --muted: 217.2 32.6% 17.5%;
+  --muted-foreground: 215 20.2% 65.1%;
+  --accent: 217.2 32.6% 17.5%;
+  --accent-foreground: 210 40% 98%;
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 210 40% 98%;
+  --border: 217.2 32.6% 17.5%;
+  --input: 217.2 32.6% 17.5%;
+  --ring: 224.3 76.3% 48%;
+}
+
+@layer base {
+  body {
+    @apply bg-background text-foreground;
   }
 }
 
-/* High Contrast Classes */
-:root[data-high-contrast="true"] {
-  --border-color: var(--light-hc-border);
-  --outline-color: var(--light-hc-outline);
+/* Neumorphic Shadows */
+.shadow-neu-light {
+  box-shadow: 8px 8px 16px #d1d9e6, -8px -8px 16px #ffffff;
 }
 
-:root[data-high-contrast="true"][data-theme="light"] {
-  --border-color: var(--light-hc-border);
-  --outline-color: var(--light-hc-outline);
+.shadow-neu-dark {
+  box-shadow: 8px 8px 16px #222222, -8px -8px 16px #444444;
 }
 
-:root[data-high-contrast="true"][data-theme="dark"] {
-  --border-color: var(--dark-hc-border);
-  --outline-color: var(--dark-hc-outline);
+.shadow-neu-light-pressed {
+  box-shadow: inset 8px 8px 16px #d1d9e6, inset -8px -8px 16px #ffffff;
 }
 
-/* Base Styles */
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+.shadow-neu-dark-pressed {
+  box-shadow: inset 8px 8px 16px #222222, inset -8px -8px 16px #444444;
+}
+
+/* Hover Effects */
+.shadow-neu-light:hover {
+  box-shadow: 6px 6px 12px #d1d9e6, -6px -6px 12px #ffffff;
+}
+
+.shadow-neu-dark:hover {
+  box-shadow: 6px 6px 12px #222222, -6px -6px 12px #444444;
+}
+
+/* Focus Effects */
+.shadow-neu-light:focus,
+.shadow-neu-light-pressed:focus {
+  box-shadow: inset 6px 6px 12px #d1d9e6, inset -6px -6px 12px #ffffff;
+}
+
+.shadow-neu-dark:focus,
+.shadow-neu-dark-pressed:focus {
+  box-shadow: inset 6px 6px 12px #222222, inset -6px -6px 12px #444444;
 }
 
 /* Transitions */
-body,
-* {
-  transition: color 200ms cubic-bezier(0.4, 0, 0.2, 1),
-    background 200ms cubic-bezier(0.4, 0, 0.2, 1),
-    background-color 200ms cubic-bezier(0.4, 0, 0.2, 1),
-    border-color 200ms cubic-bezier(0.4, 0, 0.2, 1),
-    box-shadow 200ms cubic-bezier(0.4, 0, 0.2, 1),
-    transform 200ms cubic-bezier(0.4, 0, 0.2, 1),
-    opacity 200ms cubic-bezier(0.4, 0, 0.2, 1),
-    fill 200ms cubic-bezier(0.4, 0, 0.2, 1),
-    stroke 200ms cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* Ensure inputs and form elements transition smoothly */
-input,
-select,
-textarea,
-button {
-  transition: inherit;
-  will-change: background-color, border-color, color, box-shadow;
-}
-
-/* High Contrast Styles */
-:root[data-high-contrast="true"] button,
-:root[data-high-contrast="true"] input,
-:root[data-high-contrast="true"] select,
-:root[data-high-contrast="true"] textarea,
-:root[data-high-contrast="true"] [role="button"],
-:root[data-high-contrast="true"] .shadow-neu-light-pressed,
-:root[data-high-contrast="true"] .shadow-neu-dark-pressed {
-  outline: 2px solid var(--outline-color);
-  outline-offset: 0;
-}
-
-/* Override react-select styles in high contrast mode */
-:root[data-high-contrast="true"] [class*="react-select"] input,
-:root[data-high-contrast="true"] [class*="react-select"] [class*="singleValue"],
-:root[data-high-contrast="true"]
-  [class*="react-select"]
-  [class*="placeholder"] {
-  color: var(--text-primary) !important;
-  background: none !important;
-}
-
-/* High Contrast Card Styles */
-:root[data-high-contrast="true"] .shadow-neu-light,
-:root[data-high-contrast="true"] .shadow-neu-dark {
-  outline: 3px solid var(--outline-color);
-  outline-offset: 0;
-}
-
-:root[data-high-contrast="true"] .shadow-neu-light:hover,
-:root[data-high-contrast="true"] .shadow-neu-dark:hover,
-:root[data-high-contrast="true"] .shadow-neu-light-pressed:focus,
-:root[data-high-contrast="true"] .shadow-neu-dark-pressed:focus {
-  outline-width: 4px;
-}
-
-/* Number Selector High Contrast Fixes */
-:root[data-high-contrast="true"] [data-value] {
-  outline: none !important;
-  border-bottom: 2px solid var(--outline-color);
-}
-
-:root[data-high-contrast="true"] [data-value]:last-child {
-  border-bottom: none;
-}
-
-:root[data-high-contrast="true"][data-theme="light"] [data-value]:hover,
-:root[data-high-contrast="true"][data-theme="light"] [data-value]:focus {
-  background-color: var(--light-hc-outline) !important;
-  color: var(--light-background) !important;
-}
-
-:root[data-high-contrast="true"][data-theme="dark"] [data-value]:hover,
-:root[data-high-contrast="true"][data-theme="dark"] [data-value]:focus {
-  background-color: var(--dark-hc-outline) !important;
-  color: var(--dark-background) !important;
+.transition-neu {
+  transition: box-shadow 0.3s ease;
 }

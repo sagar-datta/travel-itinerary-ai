@@ -7,61 +7,32 @@ type Theme = "light" | "dark";
 interface ThemeContextType {
   theme: Theme;
   toggleTheme: () => void;
-  isHighContrast: boolean;
-  toggleHighContrast: () => void;
 }
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [theme, setTheme] = useState<Theme>("light");
-  const [isHighContrast, setIsHighContrast] = useState(false);
 
   useEffect(() => {
-    const savedTheme = localStorage.getItem("ai-travel-theme-preference");
-    const savedContrast = localStorage.getItem("high-contrast") === "true";
-
-    setIsHighContrast(savedContrast);
-    document.documentElement.setAttribute(
-      "data-high-contrast",
-      String(savedContrast)
-    );
-    document.documentElement.setAttribute("data-theme", theme);
-
-    if (savedTheme !== null) {
-      setTheme(savedTheme as Theme);
-      document.documentElement.classList.toggle("dark", savedTheme === "dark");
-    } else {
-      const prefersDark = window.matchMedia(
-        "(prefers-color-scheme: dark)"
-      ).matches;
-      setTheme(prefersDark ? "dark" : "light");
-      document.documentElement.classList.toggle("dark", prefersDark);
+    const root = document.documentElement;
+    const savedTheme = localStorage.getItem("theme") as Theme;
+    if (savedTheme) {
+      setTheme(savedTheme);
+      root.classList.toggle("dark", savedTheme === "dark");
     }
   }, []);
 
   const toggleTheme = () => {
     const newTheme = theme === "light" ? "dark" : "light";
     setTheme(newTheme);
-    document.documentElement.classList.toggle("dark", newTheme === "dark");
-    document.documentElement.setAttribute("data-theme", newTheme);
-    localStorage.setItem("ai-travel-theme-preference", newTheme);
-  };
-
-  const toggleHighContrast = () => {
-    const newValue = !isHighContrast;
-    setIsHighContrast(newValue);
-    document.documentElement.setAttribute(
-      "data-high-contrast",
-      String(newValue)
-    );
-    localStorage.setItem("high-contrast", String(newValue));
+    const root = document.documentElement;
+    root.classList.toggle("dark", newTheme === "dark");
+    localStorage.setItem("theme", newTheme);
   };
 
   return (
-    <ThemeContext.Provider
-      value={{ theme, toggleTheme, isHighContrast, toggleHighContrast }}
-    >
+    <ThemeContext.Provider value={{ theme, toggleTheme }}>
       {children}
     </ThemeContext.Provider>
   );
