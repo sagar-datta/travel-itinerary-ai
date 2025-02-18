@@ -60,7 +60,7 @@ export function Input({
           onChange={(e) => onChange(e.target.value)}
           placeholder={placeholder}
           className={`
-            ${shape.borderRadius} p-4 w-full outline-none
+            ${shape.borderRadius} p-4 w-full outline-none font-semibold
             dark:bg-dark-base/50 bg-light-base/50
             dark:text-dark-text-primary text-light-text-primary
             dark:shadow-neu-dark-pressed shadow-neu-light-pressed
