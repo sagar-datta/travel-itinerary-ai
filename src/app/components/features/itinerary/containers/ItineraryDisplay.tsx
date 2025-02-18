@@ -1,29 +1,19 @@
 import { TransitionContainer } from "@/app/components/common/TransitionContainer";
 import { typography, layout } from "@/app/lib/styles";
-import { Header } from "./Header";
-import { LoadingSkeleton } from "./LoadingSkeleton";
-import { ItineraryContent } from "./ItineraryContent";
-
-interface ItineraryDisplayProps {
-  isVisible: boolean;
-  isLoading: boolean;
-  itinerary: string | null;
-  onBack: () => void;
-  formData: {
-    destination: string;
-    destinationLabel?: string;
-    days: string;
-    people: string;
-  };
-}
+import { Header } from "../components/Header";
+import { LoadingSkeleton } from "../components/LoadingSkeleton";
+import { ItineraryContent } from "../components/ItineraryContent";
+import type { ItineraryDisplayProps } from "../types";
+import type { ItineraryGenerationError } from "@/app/services/ai/types";
 
 export function ItineraryDisplay({
   isVisible,
   isLoading,
   itinerary,
+  error,
   onBack,
   formData,
-}: ItineraryDisplayProps) {
+}: ItineraryDisplayProps & { error?: ItineraryGenerationError | null }) {
   const cityName =
     formData.destinationLabel?.split(",")[0] ||
     formData.destination.split(",")[0];
@@ -54,6 +44,18 @@ export function ItineraryDisplay({
           <div className="w-full bg-light-base/30 dark:bg-dark-base/30 rounded-2xl p-6 md:p-8 lg:p-10">
             {isLoading ? (
               <LoadingSkeleton />
+            ) : error ? (
+              <div className="text-red-500 dark:text-red-400">
+                <h3 className="text-xl font-bold mb-2">
+                  Error Generating Itinerary
+                </h3>
+                <p>{error.message}</p>
+                {error.code && (
+                  <p className="text-sm mt-1 text-red-400 dark:text-red-300">
+                    Error code: {error.code}
+                  </p>
+                )}
+              </div>
             ) : (
               itinerary && <ItineraryContent content={itinerary} />
             )}

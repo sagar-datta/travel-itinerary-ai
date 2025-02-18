@@ -3,21 +3,7 @@
 import { shape } from "@/app/lib/styles";
 import { NumberInput } from "../NumberInput";
 import { InputLabel } from "../InputLabel";
-
-type BaseInputProps = Omit<
-  React.InputHTMLAttributes<HTMLInputElement>,
-  "onChange" | "type" | "value"
->;
-
-export interface InputProps extends BaseInputProps {
-  label: string;
-  type?: "text" | "date" | "number";
-  value: string;
-  onChange: (value: string) => void;
-  className?: string;
-  inputMode?: "numeric" | "text" | "none";
-  numberType?: "nights" | "people";
-}
+import type { BaseInputProps } from "../../types";
 
 export function Input({
   label,
@@ -28,7 +14,7 @@ export function Input({
   className = "",
   numberType,
   ...inputProps
-}: InputProps) {
+}: BaseInputProps) {
   if (type === "number") {
     return (
       <NumberInput

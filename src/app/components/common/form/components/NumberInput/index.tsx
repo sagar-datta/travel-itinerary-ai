@@ -7,14 +7,11 @@ import {
 } from "@/app/components/common/icons/NumberControls";
 import { Button } from "@/app/components/common/buttons";
 import { InputLabel } from "../InputLabel";
+import type { BaseInputProps } from "../../types";
 
-export interface NumberInputProps {
-  value: string;
-  onChange: (value: string) => void;
-  label: string;
-  numberType?: "nights" | "people";
-  className?: string;
-}
+type NumberInputProps = Omit<BaseInputProps, "type" | "numberType"> & {
+  numberType: "nights" | "people";
+};
 
 export function NumberInput({
   value,

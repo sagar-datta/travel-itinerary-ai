@@ -3,57 +3,14 @@ import { useState } from "react";
 import { Header } from "./components/layout/Header";
 import { Welcome } from "./components/features/welcome/Welcome";
 import { TravelForm } from "./components/features/travel-form/TravelForm";
-import { ItineraryDisplay } from "./components/features/itinerary/components/ItineraryDisplay";
+import { ItineraryDisplay } from "./components/features/itinerary/containers/ItineraryDisplay";
+import { useItineraryState } from "./components/features/itinerary/hooks/useItineraryState";
 
 export const dynamic = "force-dynamic";
 
 export default function Home() {
   const [isStarted, setIsStarted] = useState(false);
-  const [isGenerating, setIsGenerating] = useState(false);
-  const [itinerary, setItinerary] = useState<string | null>(null);
-  const [showItinerary, setShowItinerary] = useState(false);
-  const [formData, setFormData] = useState({
-    destination: "",
-    destinationLabel: "",
-    days: "1",
-    people: "1",
-  });
-
-  const handleGenerateItinerary = async (
-    responsePromise: Promise<string>,
-    submittedFormData: typeof formData
-  ) => {
-    console.log("Generate clicked, setting states...");
-    // Immediately show loading state and itinerary view
-    setIsGenerating(true);
-    setShowItinerary(true);
-    setItinerary(null);
-    setFormData(submittedFormData);
-
-    try {
-      console.log("Waiting for API response...");
-      const result = await responsePromise;
-      console.log("Got API response, updating itinerary...");
-      setItinerary(result);
-    } catch (error) {
-      console.error("Error generating itinerary:", error);
-      // You might want to show an error state here
-    } finally {
-      console.log("Setting isGenerating to false");
-      setIsGenerating(false);
-    }
-  };
-
-  console.log("Current states:", {
-    isGenerating,
-    showItinerary,
-    hasItinerary: !!itinerary,
-  });
-
-  const handleBack = () => {
-    setShowItinerary(false);
-    setItinerary(null);
-  };
+  const { state, actions } = useItineraryState();
 
   return (
     <div className="min-h-screen flex flex-col dark:bg-dark-base bg-light-base">
@@ -76,15 +33,16 @@ export default function Home() {
           }`}
         >
           <TravelForm
-            isStarted={isStarted && !showItinerary}
-            onGenerate={handleGenerateItinerary}
+            isStarted={isStarted && !state.showItinerary}
+            onGenerate={actions.handleGenerateItinerary}
           />
           <ItineraryDisplay
-            isVisible={showItinerary}
-            isLoading={isGenerating}
-            itinerary={itinerary}
-            onBack={handleBack}
-            formData={formData}
+            isVisible={state.showItinerary}
+            isLoading={state.isGenerating}
+            itinerary={state.itinerary}
+            error={state.error}
+            onBack={actions.handleBack}
+            formData={state.formData}
           />
         </div>
       </main>

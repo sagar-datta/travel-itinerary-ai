@@ -1,9 +1,9 @@
 "use client";
 
 import { ButtonBase } from "./ButtonBase";
-import type { ComponentProps } from "react";
+import type { ButtonBaseProps } from "./types";
 
-export type ButtonProps = ComponentProps<typeof ButtonBase>;
+export type ButtonProps = ButtonBaseProps;
 
 export function Button(props: ButtonProps) {
   return <ButtonBase {...props} />;
