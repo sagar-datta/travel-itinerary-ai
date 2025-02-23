@@ -31,7 +31,7 @@ export function ItineraryDisplay({
   return (
     <TransitionContainer
       show={isVisible}
-      type="slide"
+      type="fade"
       className={`absolute inset-0 w-full flex flex-col`}
     >
       <Header onBack={onBack} title={tripTitle} />
