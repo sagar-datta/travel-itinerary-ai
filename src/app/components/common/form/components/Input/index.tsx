@@ -15,7 +15,7 @@ export function Input({
   numberType,
   ...inputProps
 }: BaseInputProps) {
-  if (type === "number") {
+  if (type === "number" && numberType) {
     return (
       <NumberInput
         label={label}
