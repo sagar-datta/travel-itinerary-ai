@@ -13,5 +13,6 @@ export interface CityInputProps {
 
 export interface NoOptionsMessageProps {
   children?: React.ReactNode;
-  [key: string]: any;
+  innerProps?: React.HTMLProps<HTMLDivElement>;
+  selectProps?: Record<string, unknown>;
 }

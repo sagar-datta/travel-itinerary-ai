@@ -39,7 +39,7 @@ interface FormData {
 const STORAGE_KEY = "travel-form-data";
 
 export function TravelForm({ isStarted, onGenerate }: TravelFormProps) {
-  const { register, handleSubmit, setValue, watch } = useForm<FormData>({
+  const { handleSubmit, setValue, watch } = useForm<FormData>({
     defaultValues: {
       destination: "",
       destinationLabel: "",
@@ -61,7 +61,8 @@ export function TravelForm({ isStarted, onGenerate }: TravelFormProps) {
             setValue(key as keyof FormData, value);
           }
         });
-      } catch (e) {
+      } catch (error) {
+        console.error("Failed to parse saved form data:", error);
         localStorage.removeItem(STORAGE_KEY);
       }
     }

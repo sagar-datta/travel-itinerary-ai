@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { ThemeProvider } from "./context/theme/ThemeContext";
 import { ErrorBoundary } from "./components/common/ErrorBoundary";
+import Script from "next/script";
 
 export const metadata: Metadata = {
   title: "Itinerai",
@@ -22,7 +23,10 @@ export default function RootLayout({
       <body className="min-h-screen bg-light-base transition-colors duration-300 dark:bg-dark-base">
         <ErrorBoundary>
           <ThemeProvider>
-            <script src="https://unpkg.com/react-scan/dist/auto.global.js" />
+            <Script
+              src="https://unpkg.com/react-scan/dist/auto.global.js"
+              strategy="afterInteractive"
+            />
             {children}
           </ThemeProvider>
         </ErrorBoundary>

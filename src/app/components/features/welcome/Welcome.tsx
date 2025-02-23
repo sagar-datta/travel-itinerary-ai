@@ -1,10 +1,6 @@
 "use client";
-import { Button, BlackButton } from "@/app/components/common/buttons";
-import {
-  transitions,
-  typography,
-  getTransitionClasses,
-} from "@/app/lib/styles";
+import { BlackButton } from "@/app/components/common/buttons";
+import { transitions, typography } from "@/app/lib/styles";
 
 interface WelcomeProps {
   isStarted: boolean;

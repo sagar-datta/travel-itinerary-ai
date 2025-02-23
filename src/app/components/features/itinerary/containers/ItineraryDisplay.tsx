@@ -1,5 +1,5 @@
 import { TransitionContainer } from "@/app/components/common/TransitionContainer";
-import { typography, layout } from "@/app/lib/styles";
+import { layout } from "@/app/lib/styles";
 import { Header } from "../components/Header";
 import { LoadingSkeleton } from "../components/LoadingSkeleton";
 import { ItineraryContent } from "../components/ItineraryContent";

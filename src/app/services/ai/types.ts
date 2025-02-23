@@ -8,7 +8,11 @@ export interface ItineraryGenerationParams {
   budget?: "$" | "$$" | "$$$";
 }
 
-export interface AIServiceError extends BaseError {}
+export interface AIServiceError extends BaseError {
+  code: string;
+  message: string;
+  details?: unknown;
+}
 
 export class ItineraryGenerationError extends Error implements AIServiceError {
   code: string;
