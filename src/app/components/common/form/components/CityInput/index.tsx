@@ -11,18 +11,14 @@ import {
   dropdownOptionClassName,
   getCustomStyles,
 } from "./styles";
-import type {
-  CityOption,
-  CityInputProps,
-  NoOptionsMessageProps,
-} from "./types";
+import type { CityOption, CityInputProps } from "./types";
 import { InputLabel } from "../InputLabel";
 
 // Dynamically import AsyncSelect with no SSR
-const AsyncSelect = dynamic(
+const AsyncSelect: typeof import("react-select/async").default = dynamic(
   () => import("react-select/async").then((mod) => mod.default),
   { ssr: false }
-) as any;
+) as typeof AsyncSelect;
 
 export function CityInput({
   label,
@@ -36,7 +32,7 @@ export function CityInput({
   const [selectedOption, setSelectedOption] = useState<CityOption | null>(
     value ? { value, label: initialLabel || value } : null
   );
-  const selectRef = useRef<any>(null);
+  const selectRef = useRef<typeof AsyncSelect<CityOption>>(null);
 
   // Sync internal state with incoming props
   useEffect(() => {
@@ -50,13 +46,10 @@ export function CityInput({
       setSelectedOption(null);
       onChange("", "");
     }
-    selectRef.current?.focus();
+    (selectRef.current as any)?.select?.focus();
   };
 
-  const handleChange = (
-    newValue: CityOption | null,
-    actionMeta: ActionMeta<CityOption>
-  ) => {
+  const handleChange = (newValue: CityOption | null) => {
     setSelectedOption(newValue);
     onChange(newValue?.value || "", newValue?.label);
   };
@@ -71,7 +64,9 @@ export function CityInput({
         >
           <AsyncSelect
             key={isDarkMode ? "dark" : "light"}
-            ref={selectRef}
+            ref={(el) => {
+              selectRef.current = el as any;
+            }}
             cacheOptions
             defaultOptions
             value={selectedOption}

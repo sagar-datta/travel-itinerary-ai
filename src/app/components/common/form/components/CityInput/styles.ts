@@ -84,7 +84,7 @@ export const getCustomStyles = (
     scrollbarWidth: "thin",
     scrollbarColor: `${isDarkMode ? "#DDDDDD" : "#555555"} transparent`,
   }),
-  option: (base, state) => ({
+  option: (base) => ({
     ...base,
     padding: "0.75rem 1rem",
     cursor: "pointer",
