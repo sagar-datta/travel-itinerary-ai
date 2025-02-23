@@ -4,7 +4,7 @@ import { ThemeProvider } from "./context/theme/ThemeContext";
 import { ErrorBoundary } from "./components/common/ErrorBoundary";
 
 export const metadata: Metadata = {
-  title: "AI Travel Planner",
+  title: "Itinerai",
   description: "Plan your perfect trip with AI assistance",
 };
 

@@ -29,11 +29,13 @@ export function Header({ isStarted, onTitleClick }: HeaderProps) {
         >
           <h1
             className={`
-            ${typography.gradientText} ${typography.h2}
-            hover:text-light-accent-primary dark:hover:text-dark-accent-primary
+            ${typography.h2}
           `}
           >
-            AI Travel Planner
+            <span className={typography.gradientText}>Itiner</span>
+            <span className="bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent">
+              ai
+            </span>
           </h1>
         </button>
 
