@@ -2,7 +2,6 @@
 
 import { useState, useRef, useEffect } from "react";
 import dynamic from "next/dynamic";
-import type { ActionMeta } from "react-select";
 import { useTheme } from "@/app/context/theme/ThemeContext";
 import { loadCityOptions } from "./api";
 import {
@@ -13,12 +12,14 @@ import {
 } from "./styles";
 import type { CityOption, CityInputProps } from "./types";
 import { InputLabel } from "../InputLabel";
+import type { AsyncProps } from "react-select/async";
+import type { GroupBase } from "react-select";
 
 // Dynamically import AsyncSelect with no SSR
-const AsyncSelect: typeof import("react-select/async").default = dynamic(
+const AsyncSelect = dynamic<AsyncProps<CityOption, false, GroupBase<CityOption>>>(
   () => import("react-select/async").then((mod) => mod.default),
   { ssr: false }
-) as typeof AsyncSelect;
+);
 
 export function CityInput({
   label,
@@ -32,7 +33,7 @@ export function CityInput({
   const [selectedOption, setSelectedOption] = useState<CityOption | null>(
     value ? { value, label: initialLabel || value } : null
   );
-  const selectRef = useRef<typeof AsyncSelect<CityOption>>(null);
+  const selectRef = useRef<HTMLDivElement>(null);
 
   // Sync internal state with incoming props
   useEffect(() => {
@@ -46,10 +47,10 @@ export function CityInput({
       setSelectedOption(null);
       onChange("", "");
     }
-    (selectRef.current as any)?.select?.focus();
+    selectRef.current?.querySelector("input")?.focus();
   };
 
-  const handleChange = (newValue: CityOption | null) => {
+  const handleChange = (newValue: CityOption | null): void => {
     setSelectedOption(newValue);
     onChange(newValue?.value || "", newValue?.label);
   };
@@ -61,12 +62,10 @@ export function CityInput({
         <div
           className={`${inputClassName} cursor-text`}
           onClick={handleContainerClick}
+          ref={selectRef}
         >
           <AsyncSelect
             key={isDarkMode ? "dark" : "light"}
-            ref={(el) => {
-              selectRef.current = el as any;
-            }}
             cacheOptions
             defaultOptions
             value={selectedOption}
@@ -75,11 +74,11 @@ export function CityInput({
             className={`w-full h-full ${className}`}
             styles={getCustomStyles(isDarkMode)}
             placeholder="Start typing a city name..."
-            noOptionsMessage={({ inputValue }: { inputValue: string }) =>
-              inputValue.length < 2
+            noOptionsMessage={({ inputValue }: { inputValue: string }) => {
+              return inputValue.length < 2
                 ? "Type at least 2 characters to search..."
-                : "No cities found"
-            }
+                : "No cities found";
+            }}
             components={{
               DropdownIndicator: () => null,
               IndicatorSeparator: () => null,
