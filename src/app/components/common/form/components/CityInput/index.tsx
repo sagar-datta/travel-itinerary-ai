@@ -80,7 +80,7 @@ export function CityInput({
             className={`w-full h-full ${className}`}
             styles={getCustomStyles(isDarkMode)}
             placeholder="Start typing a city name..."
-            noOptionsMessage={({ inputValue }: NoOptionsMessageProps) =>
+            noOptionsMessage={({ inputValue }: { inputValue: string }) =>
               inputValue.length < 2
                 ? "Type at least 2 characters to search..."
                 : "No cities found"
