@@ -1,36 +1,110 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# AI Travel Planner
 
-## Getting Started
+A modern, AI-powered travel itinerary generator built with Next.js 14 and TypeScript. Generate personalised travel plans based on your destination, duration, group size, interests and budget preferences.
 
-First, run the development server:
+Check out the live app: [AI Travel Planner](https://github.com/sagar-datta/travel-itinerary-ai)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## 🤖 AI Integration
+
+This project leverages Google's Gemini Pro API to generate intelligent travel itineraries. Gemini Pro is Google's most capable large language model, trained to:
+
+- Understand complex travel preferences and constraints
+- Generate detailed day-by-day itineraries
+- Consider factors like:
+  - Local attractions and hidden gems
+  - Travel time between locations
+  - Budget constraints
+  - Group size dynamics
+  - Seasonal considerations
+
+The AI adapts recommendations based on your specified interests, ensuring each itinerary is uniquely tailored to your preferences.
+
+## 🚀 Features
+
+- **Smart Itinerary Generation**: AI-powered travel planning customised to your preferences
+- **Destination Search**: Search and select from a comprehensive list of travel destinations
+- **Customisation Options**:
+  - Number of days
+  - Group size
+  - Interest preferences
+  - Budget level selection
+- **Modern Interface**: Clean, responsive design that works on all devices
+- **Local Storage**: Saves your form inputs for convenience
+
+## 🛠 Tech Stack
+
+- **Framework**: Next.js 14 (App Router)
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS
+- **State Management**: React Context + Custom Hooks
+- **Form Handling**: React Hook Form
+- **AI Integration**: Google Gemini API
+
+## 📦 Project Structure
+
+```
+src/
+├── app/                  # Next.js App Router
+│   ├── components/       # React Components
+│   │   ├── common/      # Shared UI Components
+│   │   ├── features/    # Feature-specific Components
+│   │   └── layout/      # Layout Components
+│   ├── context/         # React Context Providers
+│   ├── lib/             # Utility Functions
+│   ├── services/        # External Service Integration
+│   └── types/           # TypeScript Types
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🚀 Getting Started
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. **Clone the repository**
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+   ```bash
+   git clone https://github.com/sagar-datta/travel-itinerary-ai.git
+   ```
 
-## Learn More
+2. **Install dependencies**
 
-To learn more about Next.js, take a look at the following resources:
+   ```bash
+   npm install
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+3. **Set up environment variables**
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+   ```bash
+   cp .env.example .env.local
+   ```
 
-## Deploy on Vercel
+   Add your Google Gemini API key to `.env.local`
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+4. **Run the development server**
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+   ```bash
+   npm run dev
+   ```
+
+5. Open [http://localhost:3000](http://localhost:3000) to view the application
+
+## 🧪 Development
+
+- **Code Style**: The project uses ESLint and Prettier for consistent code style
+- **Type Checking**: Run `yarn type-check` to verify TypeScript types
+- **Testing**: Run `yarn test` to run the test suite
+
+## 📝 Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## 📄 License
+
+This project is licensed under the [MIT License](LICENSE) - see the [LICENSE](LICENSE) file for details. Copyright (c) 2024 Sagar Datta.
+
+## 🙏 Acknowledgments
+
+- Next.js team for the framework
+- Google for the Gemini API
+- All contributors who help improve the project
