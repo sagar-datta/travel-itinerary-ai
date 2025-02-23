@@ -12,7 +12,7 @@ const nextConfig: NextConfig = {
   images: {
     unoptimized: true,
   },
-  basePath: "/itinerai",
+  basePath: "/travel-itinerary-ai",
 };
 
 export default nextConfig;
