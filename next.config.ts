@@ -4,10 +4,15 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
   experimental: {
     // Enable optimizations including React compiler
-    optimizePackageImports: ['@/components'],
+    optimizePackageImports: ["@/components"],
     typedRoutes: true,
-    webpackBuildWorker: true
-  }
+    webpackBuildWorker: true,
+  },
+  output: "export",
+  images: {
+    unoptimized: true,
+  },
+  basePath: "/itinerai",
 };
 
 export default nextConfig;

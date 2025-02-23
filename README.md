@@ -1,8 +1,8 @@
-# AI Travel Planner
+# Itinerai
 
 A modern, AI-powered travel itinerary generator built with Next.js 14 and TypeScript. Generate personalised travel plans based on your destination, duration, group size, interests and budget preferences.
 
-Check out the live app: [AI Travel Planner](https://github.com/sagar-datta/travel-itinerary-ai)
+Check out the live app: [Itinerai](https://github.com/sagar-datta/travel-itinerary-ai)
 
 ## 🤖 AI Integration
 
