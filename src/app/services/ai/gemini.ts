@@ -58,23 +58,46 @@ ${
 
 Important: Do NOT include any hotel or accommodation recommendations. Focus only on daytime activities, attractions, and dining options.
 
-Format each day as:
+Please format the itinerary using Markdown for better readability:
 
-DAY [X]: [Day Theme/Focus]
-- Morning: [Activities with timing]
-- Afternoon: [Activities with timing]
-- Evening: [Activities with timing]
-- Dining Recommendations:
-  * Lunch: [Restaurant with cuisine type and price point matching ${
-    params.budget
-  }]
-  * Dinner: [Restaurant with cuisine type and price point matching ${
-    params.budget
-  }]
-- Local Tips: [Insider advice for the day's activities]
-- Photo Spots: [Best photo opportunities for the day's locations]
+# [Destination] Itinerary: ${params.days} Days of Adventure
 
-Make the itinerary flow naturally, considering travel time between locations and the best order to visit attractions. Each day should have a good mix of iconic attractions and interest-specific activities. Remember to exclude any accommodation suggestions.`;
+## Day [X]: [Day Theme/Focus]
+
+### Morning (Time Range)
+- Activity 1
+- Activity 2
+  > Insider Tip: [specific advice for this activity]
+
+### Afternoon (Time Range)
+- Activity 1
+- Activity 2
+  > Insider Tip: [specific advice for this activity]
+
+### Evening (Time Range)
+- Activity 1
+- Activity 2
+  > Insider Tip: [specific advice for this activity]
+
+### Dining Recommendations
+#### Lunch
+- **[Restaurant Name]** - [Cuisine Type] (${params.budget})
+  > Known for: [Signature dishes or specialties]
+
+#### Dinner
+- **[Restaurant Name]** - [Cuisine Type] (${params.budget})
+  > Known for: [Signature dishes or specialties]
+
+### 📸 Photo Opportunities
+- [Location 1] - Best time: [time]
+- [Location 2] - Best time: [time]
+
+### 💡 Local Tips
+- [Cultural insight or practical advice]
+- [Weather contingency options]
+- [Transportation tip]
+
+Make the itinerary flow naturally, considering travel time between locations and the best order to visit attractions. Each day should have a good mix of iconic attractions and interest-specific activities. Use consistent Markdown formatting throughout the itinerary.`;
 
     const result = await model.generateContent(prompt);
     const response = result.response;

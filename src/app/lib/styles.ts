@@ -28,9 +28,11 @@ export const typography = {
     from-light-accent-primary via-light-text-primary to-light-accent-secondary 
     bg-clip-text text-transparent
   `,
-  h1: "text-7xl font-black tracking-tight",
-  h2: "text-3xl font-black tracking-tight",
-  body: "text-xl font-medium dark:text-dark-text-secondary text-light-text-secondary",
+  h1: "text-3xl md:text-4xl font-black tracking-tight",
+  h2: "text-2xl md:text-3xl font-bold tracking-tight",
+  h3: "text-xl md:text-2xl font-semibold tracking-tight",
+  h4: "text-lg md:text-xl font-medium tracking-tight",
+  body: "text-base font-medium dark:text-dark-text-secondary text-light-text-secondary",
 } as const;
 
 export const layout = {
