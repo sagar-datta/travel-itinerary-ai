@@ -14,9 +14,14 @@ interface HeaderProps {
   onBack?: () => void;
 }
 
-export function Header({ isStarted, onTitleClick, showBackButton, onBack }: HeaderProps) {
+export function Header({
+  isStarted,
+  onTitleClick,
+  showBackButton,
+  onBack,
+}: HeaderProps) {
   return (
-    <header className="fixed md:relative top-0 left-0 right-0 z-50 backdrop-blur-xl md:backdrop-blur-none bg-light-base/10 dark:bg-dark-base/10 md:bg-transparent md:shadow-none after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[1px] after:bg-black/5 dark:after:bg-white/5 md:after:hidden">
+    <header className="fixed md:relative top-0 left-0 right-0 z-50 backdrop-blur-xl md:backdrop-blur-none bg-light-base/10 dark:bg-dark-base/10 md:bg-transparent md:shadow-none after:absolute after:bottom-0 after:left-0 after:right-0 after:hidden sm:after:block">
       <div className="px-4 pt-4 pb-2 md:px-6 md:py-4">
         <div className="mx-auto max-w-7xl h-full">
           {/* Container for smaller screens - centered title with absolute positioned buttons */}
@@ -44,7 +49,9 @@ export function Header({ isStarted, onTitleClick, showBackButton, onBack }: Head
               `}
             >
               <h1 className={`text-3xl font-bold tracking-tight`}>
-                <span className={`${typography.gradientText} !text-3xl`}>Itiner</span>
+                <span className={`${typography.gradientText} !text-3xl`}>
+                  Itiner
+                </span>
                 <span className="bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent !text-3xl">
                   ai
                 </span>
@@ -69,10 +76,18 @@ export function Header({ isStarted, onTitleClick, showBackButton, onBack }: Head
               )}
             </div>
             <div className="flex-1 pointer-events-none">
-              <div className={`w-full transition-transform duration-500 ease-in-out flex ${showBackButton ? 'justify-center translate-x-8' : 'justify-start'}`}>
+              <div
+                className={`w-full transition-transform duration-500 ease-in-out flex ${
+                  showBackButton
+                    ? "justify-center translate-x-8"
+                    : "justify-start"
+                }`}
+              >
                 <button
                   onClick={onTitleClick}
-                  className={`${transitions.slow} flex items-center h-full pointer-events-auto
+                  className={`${
+                    transitions.slow
+                  } flex items-center h-full pointer-events-auto
                     ${getTransitionClasses(isStarted, "slide")}
                     ${
                       isStarted

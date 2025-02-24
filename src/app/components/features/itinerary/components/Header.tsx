@@ -8,7 +8,7 @@ interface HeaderProps {
 
 export function Header({ onBack, title }: HeaderProps) {
   return (
-    <div className="sticky top-0 z-10 w-full bg-light-base dark:bg-dark-base border-b dark:border-dark-base/50 border-light-base/50">
+    <div className="sticky top-0 z-10 w-full bg-light-base dark:bg-dark-base md:border-b dark:md:border-dark-base/50 md:border-light-base/50">
       <div
         className={`${layout.maxWidth.lg} mx-auto px-4 md:px-6 lg:px-8 py-3 flex items-center`}
       >
@@ -19,7 +19,7 @@ export function Header({ onBack, title }: HeaderProps) {
           ← Back
         </BlackButton>
         <h1
-          className={`${typography.gradientText} text-xl md:text-3xl font-black tracking-tight flex-1 text-center`}
+          className={`${typography.gradientText} text-xl md:text-3xl lg:text-6xl font-black tracking-tight flex-1 text-center`}
         >
           {title}
         </h1>
