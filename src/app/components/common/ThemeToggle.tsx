@@ -9,7 +9,12 @@ export function ThemeToggle() {
   return (
     <Button
       onClick={toggleTheme}
-      className="p-4"
+      className={`p-4 touch-none
+        /* Touch device pressed state */
+        [@media(hover:none)]:touch-manipulation
+        [@media(hover:none)]:active:shadow-[inset_2px_2px_4px_rgba(0,0,0,0.2)]
+        [@media(hover:none)]:active:translate-y-[1px]
+        [@media(hover:none)]:active:dark:shadow-[inset_2px_2px_4px_rgba(0,0,0,0.4)]`}
       aria-label={`Switch to ${isDarkMode ? "light" : "dark"} mode`}
     >
       {isDarkMode ? (
