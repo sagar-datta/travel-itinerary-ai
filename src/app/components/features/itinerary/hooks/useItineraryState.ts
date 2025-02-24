@@ -24,6 +24,9 @@ export function useItineraryState() {
     setError(null);
     setFormData(submittedFormData);
 
+    // Scroll to top after state updates are queued
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
     try {
       const result = await responsePromise;
       setItinerary(result);
