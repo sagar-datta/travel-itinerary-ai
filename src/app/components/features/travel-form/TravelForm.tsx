@@ -198,7 +198,11 @@ export function TravelForm({ isStarted, onGenerate }: TravelFormProps) {
 
         <TransitionContainer show={isStarted} delay={delays.delay600}>
           <div className="flex justify-center">
-            <BlackButton type="submit" className="w-full lg:w-auto max-w-md">
+            <BlackButton 
+              type="submit" 
+              className="w-full lg:w-auto max-w-md"
+              disabled={!destination.trim()}
+            >
               Generate Itinerary
             </BlackButton>
           </div>
