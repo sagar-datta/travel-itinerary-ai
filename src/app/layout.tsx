@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   title: "Itinerai",
   description: "Plan your perfect trip with AI assistance",
   icons: {
-    icon: "/icon.svg",
+    icon: process.env.NODE_ENV === 'production' ? "/travel-itinerary-ai/icon.svg" : "/icon.svg",
   },
 };
 
