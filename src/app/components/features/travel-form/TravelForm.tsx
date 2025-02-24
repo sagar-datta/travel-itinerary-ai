@@ -46,7 +46,7 @@ export function TravelForm({ isStarted, onGenerate }: TravelFormProps) {
       days: "1",
       people: "1",
       interests: "",
-      budget: "$",
+      budget: "$$",
     },
   });
 
@@ -103,8 +103,8 @@ export function TravelForm({ isStarted, onGenerate }: TravelFormProps) {
   const destinationLabel = watch("destinationLabel");
 
   const generateButton = (
-    <BlackButton 
-      type="submit" 
+    <BlackButton
+      type="submit"
       className="w-full lg:w-auto max-w-md"
       disabled={!destination.trim()}
     >
@@ -208,17 +208,13 @@ export function TravelForm({ isStarted, onGenerate }: TravelFormProps) {
 
         {/* Mobile button */}
         <div className="block md:hidden fixed left-0 right-0 bottom-0 px-4 py-4 backdrop-blur-xl bg-background/10 dark:bg-dark-base/10 shadow-lg z-50">
-          <div className="flex justify-center">
-            {generateButton}
-          </div>
+          <div className="flex justify-center">{generateButton}</div>
         </div>
 
         {/* Desktop button */}
         <div className="hidden md:block">
           <TransitionContainer show={isStarted} delay={delays.delay600}>
-            <div className="flex justify-center">
-              {generateButton}
-            </div>
+            <div className="flex justify-center">{generateButton}</div>
           </TransitionContainer>
         </div>
       </form>
