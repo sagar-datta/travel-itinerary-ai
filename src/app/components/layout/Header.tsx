@@ -16,7 +16,7 @@ interface HeaderProps {
 
 export function Header({ isStarted, onTitleClick, showBackButton, onBack }: HeaderProps) {
   return (
-    <header className="fixed md:relative top-0 left-0 right-0 z-50 backdrop-blur-xl md:backdrop-blur-none bg-white/10 dark:bg-black/10 md:bg-transparent md:shadow-none">
+    <header className="fixed md:relative top-0 left-0 right-0 z-50 backdrop-blur-xl md:backdrop-blur-none bg-light-base/10 dark:bg-dark-base/10 md:bg-transparent md:shadow-none">
       <div className="px-4 pt-4 pb-2 md:px-6 md:py-4">
         <div className="mx-auto max-w-7xl h-full">
           {/* Container for smaller screens - centered title with absolute positioned buttons */}

@@ -12,11 +12,18 @@ export default function Home() {
   const [isStarted, setIsStarted] = useState(false);
   const { state, actions } = useItineraryState();
 
+  const handleTitleClick = () => {
+    setIsStarted(false);
+    if (state.showItinerary) {
+      actions.handleBack();
+    }
+  };
+
   return (
     <div className="min-h-screen flex flex-col dark:bg-dark-base bg-light-base">
       <Header 
         isStarted={isStarted} 
-        onTitleClick={() => setIsStarted(false)} 
+        onTitleClick={handleTitleClick}
         showBackButton={state.showItinerary}
         onBack={actions.handleBack}
       />
