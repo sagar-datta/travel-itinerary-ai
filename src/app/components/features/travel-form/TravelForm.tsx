@@ -103,13 +103,15 @@ export function TravelForm({ isStarted, onGenerate }: TravelFormProps) {
   const destinationLabel = watch("destinationLabel");
 
   const generateButton = (
-    <BlackButton
-      type="submit"
-      className="w-full lg:w-auto max-w-md"
-      disabled={!destination.trim()}
-    >
-      Generate Itinerary
-    </BlackButton>
+    <div className="flex items-center gap-2">
+      <BlackButton
+        type="submit"
+        className="w-full lg:w-auto max-w-md"
+        disabled={!destination.trim()}
+      >
+        Generate Itinerary
+      </BlackButton>
+    </div>
   );
 
   return (
@@ -205,6 +207,35 @@ export function TravelForm({ isStarted, onGenerate }: TravelFormProps) {
             </Card>
           </TransitionContainer>
         </div>
+        <BlackButton
+          type="button"
+          onClick={() => {
+            // Reset form to default values
+            setValue("destination", "");
+            setValue("destinationLabel", "");
+            setValue("days", "1");
+            setValue("people", "1");
+            setValue("interests", "");
+            setValue("budget", "$$");
+            // Clear localStorage
+            localStorage.removeItem(STORAGE_KEY);
+            // Force CityInput to clear by resetting the AsyncSelect
+            const asyncSelect = document.querySelector(".css-b62m3t-container");
+            if (asyncSelect) {
+              const resetEvent = new Event("mousedown", { bubbles: true });
+              asyncSelect.dispatchEvent(resetEvent);
+              // Also clear the input field
+              const input = asyncSelect.querySelector("input");
+              if (input) {
+                input.value = "";
+                input.dispatchEvent(new Event("change", { bubbles: true }));
+              }
+            }
+          }}
+          className="!px-3 !py-1.5 !text-sm !rounded-lg opacity-60 hover:opacity-100"
+        >
+          Clear
+        </BlackButton>
 
         {/* Mobile button */}
         <div className="block md:hidden fixed left-0 right-0 bottom-0 px-4 py-4 backdrop-blur-xl bg-background/10 dark:bg-dark-base/10 shadow-lg z-50">

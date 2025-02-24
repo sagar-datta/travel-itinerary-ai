@@ -16,10 +16,11 @@ import type { AsyncProps } from "react-select/async";
 import type { GroupBase } from "react-select";
 
 // Dynamically import AsyncSelect with no SSR
-const AsyncSelect = dynamic<AsyncProps<CityOption, false, GroupBase<CityOption>>>(
-  () => import("react-select/async").then((mod) => mod.default),
-  { ssr: false }
-);
+const AsyncSelect = dynamic<
+  AsyncProps<CityOption, false, GroupBase<CityOption>>
+>(() => import("react-select/async").then((mod) => mod.default), {
+  ssr: false,
+});
 
 export function CityInput({
   label,
@@ -37,7 +38,9 @@ export function CityInput({
 
   // Sync internal state with incoming props
   useEffect(() => {
-    if (value && initialLabel) {
+    if (!value) {
+      setSelectedOption(null);
+    } else if (value && initialLabel) {
       setSelectedOption({ value, label: initialLabel });
     }
   }, [value, initialLabel]);
