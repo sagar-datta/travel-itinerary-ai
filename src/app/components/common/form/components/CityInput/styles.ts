@@ -4,7 +4,8 @@ import type { CityOption } from "./types";
 export const inputClassName = `p-4 w-full outline-none font-semibold min-h-[3.5rem] cursor-text rounded-2xl
   dark:bg-dark-base/50 bg-light-base/50
   dark:text-dark-text-primary text-light-text-primary
-  dark:shadow-neu-dark-pressed shadow-neu-light-pressed`;
+  dark:shadow-neu-dark-pressed shadow-neu-light-pressed
+  [-webkit-tap-highlight-color:transparent]`;
 
 export const dropdownClassName = `
   dark:text-dark-text-primary text-light-text-primary
@@ -15,6 +16,7 @@ export const dropdownClassName = `
 export const dropdownOptionClassName = `
   dark:text-dark-text-primary text-light-text-primary
   rounded-xl transition-all
+  [-webkit-tap-highlight-color:transparent]
 `;
 
 export const getCustomStyles = (
@@ -28,6 +30,7 @@ export const getCustomStyles = (
     height: "100%",
     minHeight: "unset",
     cursor: "text",
+    WebkitTapHighlightColor: "transparent",
   }),
   valueContainer: (base) => ({
     ...base,
@@ -92,11 +95,24 @@ export const getCustomStyles = (
     backgroundColor: "transparent",
     color: isDarkMode ? "#EEEEEE" : "#333333",
     borderRadius: "0.75rem",
+    WebkitTapHighlightColor: "transparent",
     ":hover": {
       boxShadow: isDarkMode
         ? "inset 8px 8px 16px #222222, inset -8px -8px 16px #444444" // dark pressed shadow
         : "inset 8px 8px 16px #d1d9e6, inset -8px -8px 16px #ffffff", // light pressed shadow
     },
+    ":active": {
+      boxShadow: isDarkMode
+        ? "inset 8px 8px 16px #222222, inset -8px -8px 16px #444444" // dark pressed shadow
+        : "inset 8px 8px 16px #d1d9e6, inset -8px -8px 16px #ffffff", // light pressed shadow
+    },
+    "@media (hover: none)": {
+      ":active": {
+        boxShadow: isDarkMode
+          ? "inset 8px 8px 16px #222222, inset -8px -8px 16px #444444" // dark pressed shadow
+          : "inset 8px 8px 16px #d1d9e6, inset -8px -8px 16px #ffffff", // light pressed shadow
+      }
+    }
   }),
   noOptionsMessage: (base) => ({
     ...base,
