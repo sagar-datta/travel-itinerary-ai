@@ -32,7 +32,7 @@ export function ItineraryDisplay({
     <TransitionContainer
       show={isVisible}
       type="fade"
-      className={`absolute inset-0 w-full flex flex-col`}
+      className={`absolute inset-0 w-full flex flex-col pt-20 md:pt-0`}
     >
       <Header onBack={onBack} title={tripTitle} />
 
