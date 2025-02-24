@@ -50,6 +50,19 @@ export function TravelForm({ isStarted, onGenerate }: TravelFormProps) {
     },
   });
 
+  const isFormAtDefaultValues = () => {
+    const currentValues = watch();
+    return (
+      currentValues.destination === "" &&
+      (!currentValues.destinationLabel ||
+        currentValues.destinationLabel === "") &&
+      currentValues.days === "1" &&
+      currentValues.people === "1" &&
+      (!currentValues.interests || currentValues.interests === "") &&
+      currentValues.budget === "$$"
+    );
+  };
+
   // Load initial values from localStorage
   useEffect(() => {
     const savedData = localStorage.getItem(STORAGE_KEY);
@@ -207,35 +220,43 @@ export function TravelForm({ isStarted, onGenerate }: TravelFormProps) {
             </Card>
           </TransitionContainer>
         </div>
-        <BlackButton
-          type="button"
-          onClick={() => {
-            // Reset form to default values
-            setValue("destination", "");
-            setValue("destinationLabel", "");
-            setValue("days", "1");
-            setValue("people", "1");
-            setValue("interests", "");
-            setValue("budget", "$$");
-            // Clear localStorage
-            localStorage.removeItem(STORAGE_KEY);
-            // Force CityInput to clear by resetting the AsyncSelect
-            const asyncSelect = document.querySelector(".css-b62m3t-container");
-            if (asyncSelect) {
-              const resetEvent = new Event("mousedown", { bubbles: true });
-              asyncSelect.dispatchEvent(resetEvent);
-              // Also clear the input field
-              const input = asyncSelect.querySelector("input");
-              if (input) {
-                input.value = "";
-                input.dispatchEvent(new Event("change", { bubbles: true }));
-              }
-            }
-          }}
-          className="!px-3 !py-1.5 !text-sm !rounded-lg opacity-60 hover:opacity-100"
+        <TransitionContainer
+          show={!isFormAtDefaultValues()}
+          type="fade"
+          className="flex justify-center"
         >
-          Clear
-        </BlackButton>
+          <BlackButton
+            type="button"
+            onClick={() => {
+              // Reset form to default values
+              setValue("destination", "");
+              setValue("destinationLabel", "");
+              setValue("days", "1");
+              setValue("people", "1");
+              setValue("interests", "");
+              setValue("budget", "$$");
+              // Clear localStorage
+              localStorage.removeItem(STORAGE_KEY);
+              // Force CityInput to clear by resetting the AsyncSelect
+              const asyncSelect = document.querySelector(
+                ".css-b62m3t-container"
+              );
+              if (asyncSelect) {
+                const resetEvent = new Event("mousedown", { bubbles: true });
+                asyncSelect.dispatchEvent(resetEvent);
+                // Also clear the input field
+                const input = asyncSelect.querySelector("input");
+                if (input) {
+                  input.value = "";
+                  input.dispatchEvent(new Event("change", { bubbles: true }));
+                }
+              }
+            }}
+            className="w-full sm:w-full md:w-auto md:!px-3 md:!py-1.5 md:text-sm !rounded-lg mx-auto block"
+          >
+            Clear
+          </BlackButton>
+        </TransitionContainer>
 
         {/* Mobile button */}
         <div className="block md:hidden fixed left-0 right-0 bottom-0 px-4 py-4 backdrop-blur-xl bg-background/10 dark:bg-dark-base/10 shadow-lg z-50">
