@@ -116,7 +116,7 @@ export function TravelForm({ isStarted, onGenerate }: TravelFormProps) {
     <TransitionContainer
       show={isStarted}
       type="fade"
-      className={`w-full ${layout.maxWidth.lg} ${layout.container.centered} px-4 md:px-6 lg:px-8 pt-0 md:pt-6 lg:pt-8 pb-4 md:pb-6 lg:pb-8 z-10`}
+      className={`w-full ${layout.maxWidth.lg} ${layout.container.centered} px-4 md:px-6 lg:px-8 pt-20 md:pt-6 lg:pt-8 pb-4 md:pb-6 lg:pb-8 z-10`}
     >
       <form
         onSubmit={handleSubmit(onSubmit)}
@@ -207,7 +207,7 @@ export function TravelForm({ isStarted, onGenerate }: TravelFormProps) {
         </div>
 
         {/* Mobile button */}
-        <div className="block md:hidden fixed left-0 right-0 bottom-0 px-4 py-4 backdrop-blur-xl bg-white/10 dark:bg-black/10 shadow-lg z-50">
+        <div className="block md:hidden fixed left-0 right-0 bottom-0 px-4 py-4 backdrop-blur-xl bg-background/10 dark:bg-dark-base/10 shadow-lg z-50">
           <div className="flex justify-center">
             {generateButton}
           </div>
