@@ -102,6 +102,16 @@ export function TravelForm({ isStarted, onGenerate }: TravelFormProps) {
   const destination = watch("destination");
   const destinationLabel = watch("destinationLabel");
 
+  const generateButton = (
+    <BlackButton 
+      type="submit" 
+      className="w-full lg:w-auto max-w-md"
+      disabled={!destination.trim()}
+    >
+      Generate Itinerary
+    </BlackButton>
+  );
+
   return (
     <TransitionContainer
       show={isStarted}
@@ -196,21 +206,21 @@ export function TravelForm({ isStarted, onGenerate }: TravelFormProps) {
           </TransitionContainer>
         </div>
 
-        <TransitionContainer 
-          show={isStarted} 
-          delay={delays.delay600}
-          className="fixed md:relative left-0 right-0 bottom-0 px-4 py-4 md:px-0 md:py-0 backdrop-blur-md bg-white/30 md:bg-transparent md:backdrop-blur-none shadow-lg md:shadow-none"
-        >
+        {/* Mobile button */}
+        <div className="block md:hidden fixed left-0 right-0 bottom-0 px-4 py-4 backdrop-blur-xl bg-white/10 dark:bg-black/10 shadow-lg z-50">
           <div className="flex justify-center">
-            <BlackButton 
-              type="submit" 
-              className="w-full lg:w-auto max-w-md"
-              disabled={!destination.trim()}
-            >
-              Generate Itinerary
-            </BlackButton>
+            {generateButton}
           </div>
-        </TransitionContainer>
+        </div>
+
+        {/* Desktop button */}
+        <div className="hidden md:block">
+          <TransitionContainer show={isStarted} delay={delays.delay600}>
+            <div className="flex justify-center">
+              {generateButton}
+            </div>
+          </TransitionContainer>
+        </div>
       </form>
     </TransitionContainer>
   );
