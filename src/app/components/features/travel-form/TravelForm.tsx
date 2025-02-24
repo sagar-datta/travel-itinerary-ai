@@ -110,7 +110,7 @@ export function TravelForm({ isStarted, onGenerate }: TravelFormProps) {
     >
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="space-y-6 md:space-y-8 lg:space-y-12 w-full"
+        className="space-y-6 md:space-y-8 lg:space-y-12 w-full pb-24 md:pb-0"
       >
         <div
           className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8 [&>*]:h-full lg:[&>*:last-child:nth-child(3n-2)]:col-start-2 lg:[&>*:nth-last-child(2):nth-child(3n-2)]:col-start-1`}
@@ -196,7 +196,11 @@ export function TravelForm({ isStarted, onGenerate }: TravelFormProps) {
           </TransitionContainer>
         </div>
 
-        <TransitionContainer show={isStarted} delay={delays.delay600}>
+        <TransitionContainer 
+          show={isStarted} 
+          delay={delays.delay600}
+          className="fixed md:relative left-0 right-0 bottom-0 px-4 py-4 md:px-0 md:py-0 backdrop-blur-md bg-white/30 md:bg-transparent md:backdrop-blur-none shadow-lg md:shadow-none"
+        >
           <div className="flex justify-center">
             <BlackButton 
               type="submit" 
