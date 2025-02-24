@@ -10,18 +10,8 @@ export function ItineraryDisplay({
   isLoading,
   itinerary,
   error,
-  onBack,
   formData,
 }: ItineraryDisplayProps & { error?: ItineraryGenerationError | null }) {
-  const cityName =
-    formData.destinationLabel?.split(",")[0] ||
-    formData.destination.split(",")[0];
-  const nightsText = `${formData.days} ${
-    Number(formData.days) === 1 ? "night" : "nights"
-  }`;
-  const peopleText = `${formData.people} ${
-    Number(formData.people) === 1 ? "person" : "people"
-  }`;
 
 
   return (
