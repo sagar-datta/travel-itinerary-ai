@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { ThemeProvider } from "./context/theme/ThemeContext";
 import { ErrorBoundary } from "./components/common/ErrorBoundary";
+import { ThemeColorMeta } from "./components/common/ThemeColorMeta";
 
 export const metadata: Metadata = {
   title: "Itinerai",
@@ -22,6 +23,7 @@ export default function RootLayout({
       <body className="min-h-screen bg-light-base transition-colors duration-300 dark:bg-dark-base">
         <ErrorBoundary>
           <ThemeProvider>
+            <ThemeColorMeta />
             {children}
           </ThemeProvider>
         </ErrorBoundary>
