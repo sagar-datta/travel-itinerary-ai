@@ -8,11 +8,18 @@ const nextConfig: NextConfig = {
     typedRoutes: true,
     webpackBuildWorker: true,
   },
-  output: "export",
-  images: {
-    unoptimized: true,
-  },
-  basePath: "/travel-itinerary-ai",
+  ...(process.env.NODE_ENV === 'production' ? {
+    output: "export",
+    images: {
+      unoptimized: true,
+    },
+    basePath: "/travel-itinerary-ai",
+  } : {
+    // Development settings
+    images: {
+      unoptimized: true,
+    },
+  }),
 };
 
 export default nextConfig;
