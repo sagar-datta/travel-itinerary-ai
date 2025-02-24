@@ -131,10 +131,24 @@ const config: Config = {
     },
   },
   plugins: [
-    plugin(function ({ addBase }) {
+    plugin(function ({ addBase, addUtilities }) {
       addBase({
         body: {
           "@apply bg-background text-foreground": {},
+        },
+      });
+      addUtilities({
+        ".pt-safe": {
+          paddingTop: "env(safe-area-inset-top)",
+        },
+        ".pb-safe": {
+          paddingBottom: "env(safe-area-inset-bottom)",
+        },
+        ".pl-safe": {
+          paddingLeft: "env(safe-area-inset-left)",
+        },
+        ".pr-safe": {
+          paddingRight: "env(safe-area-inset-right)",
         },
       });
     }),

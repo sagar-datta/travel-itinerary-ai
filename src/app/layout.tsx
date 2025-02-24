@@ -3,6 +3,7 @@ import "./globals.css";
 import { ThemeProvider } from "./context/theme/ThemeContext";
 import { ErrorBoundary } from "./components/common/ErrorBoundary";
 import { ThemeColorMeta } from "./components/common/ThemeColorMeta";
+import { ViewportMeta } from "./components/common/ViewportMeta";
 
 export const metadata: Metadata = {
   title: "Itinerai",
@@ -20,6 +21,9 @@ export default function RootLayout({
       className="transition-colors duration-300"
       suppressHydrationWarning
     >
+      <head>
+        <ViewportMeta />
+      </head>
       <body className="min-h-screen bg-light-base transition-colors duration-300 dark:bg-dark-base">
         <ErrorBoundary>
           <ThemeProvider>
