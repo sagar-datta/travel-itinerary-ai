@@ -8,6 +8,9 @@ import { ViewportMeta } from "./components/common/ViewportMeta";
 export const metadata: Metadata = {
   title: "Itinerai",
   description: "Plan your perfect trip with AI assistance",
+  icons: {
+    icon: "/icon.svg",
+  },
 };
 
 export default function RootLayout({
