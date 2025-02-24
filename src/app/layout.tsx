@@ -23,10 +23,6 @@ export default function RootLayout({
       <body className="min-h-screen bg-light-base transition-colors duration-300 dark:bg-dark-base">
         <ErrorBoundary>
           <ThemeProvider>
-            <Script
-              src="https://unpkg.com/react-scan/dist/auto.global.js"
-              strategy="afterInteractive"
-            />
             {children}
           </ThemeProvider>
         </ErrorBoundary>
