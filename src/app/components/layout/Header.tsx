@@ -16,7 +16,7 @@ interface HeaderProps {
 
 export function Header({ isStarted, onTitleClick, showBackButton, onBack }: HeaderProps) {
   return (
-    <header className="fixed md:relative top-0 left-0 right-0 z-50 backdrop-blur-xl md:backdrop-blur-none bg-light-base/10 dark:bg-dark-base/10 md:bg-transparent md:shadow-none">
+    <header className="fixed md:relative top-0 left-0 right-0 z-50 backdrop-blur-xl md:backdrop-blur-none bg-light-base/10 dark:bg-dark-base/10 md:bg-transparent shadow-none">
       <div className="px-4 pt-4 pb-2 md:px-6 md:py-4">
         <div className="mx-auto max-w-7xl h-full">
           {/* Container for smaller screens - centered title with absolute positioned buttons */}
@@ -25,7 +25,7 @@ export function Header({ isStarted, onTitleClick, showBackButton, onBack }: Head
               <div className="absolute left-0 top-1/2 -translate-y-1/2 scale-75 md:scale-90">
                 <BlackButton
                   onClick={onBack}
-                  className="!px-3 !py-1.5 !text-sm !rounded-lg flex items-center gap-1"
+                  className="!p-4 !rounded-xl flex items-center gap-1.5"
                 >
                   <span>←</span>
                   <span>Back</span>
@@ -59,13 +59,15 @@ export function Header({ isStarted, onTitleClick, showBackButton, onBack }: Head
           <div className="hidden lg:flex justify-between items-center">
             <div className="flex items-center gap-4">
               {showBackButton && (
-                <BlackButton
-                  onClick={onBack}
-                  className="!px-3 !py-1.5 !text-sm !rounded-lg flex items-center gap-1"
-                >
-                  <span>←</span>
-                  <span>Back</span>
-                </BlackButton>
+                <div>
+                  <BlackButton
+                    onClick={onBack}
+                    className="!p-4 !rounded-xl flex items-center gap-1.5"
+                  >
+                    <span>←</span>
+                    <span>Back</span>
+                  </BlackButton>
+                </div>
               )}
               <button
                 onClick={onTitleClick}
