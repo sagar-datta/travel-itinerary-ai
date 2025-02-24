@@ -10,7 +10,6 @@ export function ItineraryDisplay({
   isLoading,
   itinerary,
   error,
-  formData,
 }: ItineraryDisplayProps & { error?: ItineraryGenerationError | null }) {
 
 
