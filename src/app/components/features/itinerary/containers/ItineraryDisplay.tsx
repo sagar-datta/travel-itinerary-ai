@@ -1,6 +1,5 @@
 import { TransitionContainer } from "@/app/components/common/TransitionContainer";
 import { layout } from "@/app/lib/styles";
-import { Header } from "../components/Header";
 import { LoadingSkeleton } from "../components/LoadingSkeleton";
 import { ItineraryContent } from "../components/ItineraryContent";
 import type { ItineraryDisplayProps } from "../types";
@@ -24,9 +23,6 @@ export function ItineraryDisplay({
     Number(formData.people) === 1 ? "person" : "people"
   }`;
 
-  const tripTitle = formData.destination
-    ? `Your ${cityName} Itinerary (${nightsText}, ${peopleText})`
-    : "Your Trip";
 
   return (
     <TransitionContainer
@@ -34,8 +30,6 @@ export function ItineraryDisplay({
       type="fade"
       className={`absolute inset-0 w-full flex flex-col pt-20 md:pt-0`}
     >
-      <Header onBack={onBack} title={tripTitle} />
-
       {/* Content section */}
       <div className="flex-1 overflow-auto">
         <div

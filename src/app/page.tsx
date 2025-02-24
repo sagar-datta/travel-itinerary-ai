@@ -14,7 +14,12 @@ export default function Home() {
 
   return (
     <div className="min-h-screen flex flex-col dark:bg-dark-base bg-light-base">
-      <Header isStarted={isStarted} onTitleClick={() => setIsStarted(false)} />
+      <Header 
+        isStarted={isStarted} 
+        onTitleClick={() => setIsStarted(false)} 
+        showBackButton={state.showItinerary}
+        onBack={actions.handleBack}
+      />
 
       <main className="flex-1 relative">
         <div className="absolute inset-0 flex items-center justify-center">

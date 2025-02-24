@@ -5,19 +5,33 @@ import {
   typography,
   getTransitionClasses,
 } from "@/app/lib/styles";
+import { BlackButton } from "@/app/components/common/buttons";
 
 interface HeaderProps {
   isStarted: boolean;
   onTitleClick: () => void;
+  showBackButton?: boolean;
+  onBack?: () => void;
 }
 
-export function Header({ isStarted, onTitleClick }: HeaderProps) {
+export function Header({ isStarted, onTitleClick, showBackButton, onBack }: HeaderProps) {
   return (
-    <header className="fixed md:relative top-0 left-0 right-0 z-50 backdrop-blur-xl md:backdrop-blur-none bg-background/10 dark:bg-dark-base/10 md:bg-transparent md:shadow-none">
+    <header className="fixed md:relative top-0 left-0 right-0 z-50 backdrop-blur-xl md:backdrop-blur-none bg-white/10 dark:bg-black/10 md:bg-transparent md:shadow-none">
       <div className="px-4 pt-4 pb-2 md:px-6 md:py-4">
         <div className="mx-auto max-w-7xl h-full">
-          {/* Container for smaller screens - centered title with absolute positioned toggle */}
+          {/* Container for smaller screens - centered title with absolute positioned buttons */}
           <div className="lg:hidden relative flex justify-center items-center">
+            {showBackButton && (
+              <div className="absolute left-0 top-1/2 -translate-y-1/2 scale-75 md:scale-90">
+                <BlackButton
+                  onClick={onBack}
+                  className="!px-3 !py-1.5 !text-sm !rounded-lg flex items-center gap-1"
+                >
+                  <span>←</span>
+                  <span>Back</span>
+                </BlackButton>
+              </div>
+            )}
             <button
               onClick={onTitleClick}
               className={`${transitions.slow} flex items-center h-full 
@@ -43,24 +57,35 @@ export function Header({ isStarted, onTitleClick }: HeaderProps) {
 
           {/* Container for large screens - original layout */}
           <div className="hidden lg:flex justify-between items-center">
-            <button
-              onClick={onTitleClick}
-              className={`${transitions.slow} flex items-center h-full 
-                ${getTransitionClasses(isStarted, "slide")}
-                ${
-                  isStarted
-                    ? "cursor-pointer hover:opacity-80"
-                    : "pointer-events-none"
-                }
-              `}
-            >
-              <h1 className={typography.h2}>
-                <span className={typography.gradientText}>Itiner</span>
-                <span className="bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent">
-                  ai
-                </span>
-              </h1>
-            </button>
+            <div className="flex items-center gap-4">
+              {showBackButton && (
+                <BlackButton
+                  onClick={onBack}
+                  className="!px-3 !py-1.5 !text-sm !rounded-lg flex items-center gap-1"
+                >
+                  <span>←</span>
+                  <span>Back</span>
+                </BlackButton>
+              )}
+              <button
+                onClick={onTitleClick}
+                className={`${transitions.slow} flex items-center h-full 
+                  ${getTransitionClasses(isStarted, "slide")}
+                  ${
+                    isStarted
+                      ? "cursor-pointer hover:opacity-80"
+                      : "pointer-events-none"
+                  }
+                `}
+              >
+                <h1 className={typography.h2}>
+                  <span className={typography.gradientText}>Itiner</span>
+                  <span className="bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent">
+                    ai
+                  </span>
+                </h1>
+              </button>
+            </div>
             <div className="flex items-center gap-2 h-full">
               <ThemeToggle />
             </div>
