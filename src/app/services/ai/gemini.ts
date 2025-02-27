@@ -12,7 +12,7 @@ export async function generateItinerary(
   params: ItineraryGenerationParams
 ): Promise<string> {
   try {
-    const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+    const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
 
     const prompt = `As an expert travel planner with years of experience crafting personalized luxury itineraries, create a detailed day-by-day travel plan with the following specifications:
 
