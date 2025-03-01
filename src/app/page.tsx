@@ -5,6 +5,7 @@ import { Welcome } from "./components/features/welcome/Welcome";
 import { TravelForm } from "./components/features/travel-form/TravelForm";
 import { ItineraryDisplay } from "./components/features/itinerary/containers/ItineraryDisplay";
 import { useItineraryState } from "./components/features/itinerary/hooks/useItineraryState";
+import { GitHubRibbon } from "./components/common/GitHubRibbon";
 
 export const dynamic = "force-dynamic";
 
@@ -20,45 +21,51 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col dark:bg-dark-base bg-light-base">
-      <Header 
-        isStarted={isStarted} 
-        onTitleClick={handleTitleClick}
-        showBackButton={state.showItinerary}
-        onBack={actions.handleBack}
-      />
+    <>
+      <GitHubRibbon />
+      <div className="min-h-screen flex flex-col dark:bg-dark-base bg-light-base mt-[32px] md:mt-0">
+        <Header
+          isStarted={isStarted}
+          onTitleClick={handleTitleClick}
+          showBackButton={state.showItinerary}
+          onBack={actions.handleBack}
+        />
 
-      <main className="flex-1 relative">
-        <div className="absolute inset-0 flex items-center justify-center">
+        <main className="flex-1 relative">
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div
+              className={`w-full transition-all duration-300 ${
+                isStarted ? "opacity-0 pointer-events-none" : "opacity-100"
+              }`}
+            >
+              <Welcome
+                isStarted={isStarted}
+                onBegin={() => setIsStarted(true)}
+              />
+            </div>
+          </div>
+
           <div
-            className={`w-full transition-all duration-300 ${
-              isStarted ? "opacity-0 pointer-events-none" : "opacity-100"
+            className={`absolute inset-0 flex items-start justify-center transition-all duration-300 pt-6 ${
+              isStarted ? "opacity-100" : "opacity-0 pointer-events-none"
             }`}
           >
-            <Welcome isStarted={isStarted} onBegin={() => setIsStarted(true)} />
+            <TravelForm
+              isStarted={isStarted && !state.showItinerary}
+              onGenerate={actions.handleGenerateItinerary}
+            />
+            <ItineraryDisplay
+              isVisible={state.showItinerary}
+              isLoading={state.isGenerating}
+              itinerary={state.itinerary}
+              error={state.error}
+              onBack={actions.handleBack}
+              formData={state.formData}
+            />
           </div>
-        </div>
-
-        <div
-          className={`absolute inset-0 flex items-start justify-center transition-all duration-300 pt-6 ${
-            isStarted ? "opacity-100" : "opacity-0 pointer-events-none"
-          }`}
-        >
-          <TravelForm
-            isStarted={isStarted && !state.showItinerary}
-            onGenerate={actions.handleGenerateItinerary}
-          />
-          <ItineraryDisplay
-            isVisible={state.showItinerary}
-            isLoading={state.isGenerating}
-            itinerary={state.itinerary}
-            error={state.error}
-            onBack={actions.handleBack}
-            formData={state.formData}
-          />
-        </div>
-      </main>
-    </div>
+        </main>
+      </div>
+    </>
   );
 }
 

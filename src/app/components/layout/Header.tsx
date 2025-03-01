@@ -21,7 +21,7 @@ export function Header({
   onBack,
 }: HeaderProps) {
   return (
-    <header className="fixed md:relative top-0 left-0 right-0 z-50 backdrop-blur-xl md:backdrop-blur-none bg-light-base/10 dark:bg-dark-base/10 md:bg-transparent md:shadow-none after:absolute after:bottom-0 after:left-0 after:right-0 after:hidden sm:after:block pt-safe">
+    <header className="fixed md:relative top-[32px] md:top-0 left-0 right-0 z-50 backdrop-blur-xl md:backdrop-blur-none bg-light-base/10 dark:bg-dark-base/10 md:bg-transparent md:shadow-none after:absolute after:bottom-0 after:left-0 after:right-0 after:hidden sm:after:block pt-safe">
       <div className="px-4 pt-4 pb-2 md:px-6 md:py-4">
         <div className="mx-auto max-w-7xl h-full">
           {/* Container for smaller screens - centered title with absolute positioned buttons */}

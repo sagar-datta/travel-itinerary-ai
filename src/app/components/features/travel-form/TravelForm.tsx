@@ -259,12 +259,12 @@ export function TravelForm({ isStarted, onGenerate }: TravelFormProps) {
         </TransitionContainer>
 
         {/* Mobile button */}
-        <div className="block md:hidden fixed left-0 right-0 bottom-0 px-4 py-4 backdrop-blur-xl bg-background/10 dark:bg-dark-base/10 shadow-lg z-50">
+        <div className="block lg:hidden fixed left-0 right-0 bottom-0 px-4 py-4 backdrop-blur-xl bg-background/10 dark:bg-dark-base/10 shadow-lg z-50">
           <div className="flex justify-center">{generateButton}</div>
         </div>
 
         {/* Desktop button */}
-        <div className="hidden md:block">
+        <div className="hidden lg:block">
           <TransitionContainer show={isStarted} delay={delays.delay600}>
             <div className="flex justify-center">{generateButton}</div>
           </TransitionContainer>
