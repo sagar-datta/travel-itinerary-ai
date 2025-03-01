@@ -1,4 +1,3 @@
-import { useTheme } from "@/app/context/theme/ThemeContext";
 import styles from "./GitHubRibbon.module.css";
 
 export function GitHubRibbon() {
