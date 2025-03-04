@@ -59,47 +59,39 @@ export function Header({
           </div>
 
           {/* Container for large screens - original layout */}
-          <div className="hidden lg:flex justify-between items-center relative">
-            <div className="relative z-10">
-              {showBackButton && (
+          <div className="hidden lg:flex justify-center items-center relative w-full">
+            {showBackButton && (
+              <div className="absolute left-6 top-1/2 -translate-y-1/2 z-10">
                 <BlackButton
                   onClick={onBack}
-                  className="!p-4 !rounded-xl flex items-center gap-1.5"
+                  className="!px-3 !py-2 !text-sm !rounded-lg flex items-center gap-1"
                 >
                   <span>←</span>
                   <span>Back</span>
                 </BlackButton>
-              )}
-            </div>
-            <div className="flex-1 pointer-events-none">
-              <div
-                className={`w-full transition-transform duration-500 ease-in-out flex ${
-                  showBackButton
-                    ? "justify-center translate-x-8"
-                    : "justify-start"
-                }`}
-              >
-                <button
-                  onClick={onTitleClick}
-                  className={`${
-                    transitions.slow
-                  } flex items-center h-full pointer-events-auto
-                    ${getTransitionClasses(isStarted, "slide")}
-                    ${
-                      isStarted
-                        ? "cursor-pointer hover:opacity-80"
-                        : "pointer-events-none"
-                    }
-                  `}
-                >
-                  <h1 className={typography.h2}>
-                    <span className={typography.gradientText}>Itiner</span>
-                    <span className="bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent">
-                      ai
-                    </span>
-                  </h1>
-                </button>
               </div>
+            )}
+            <div className="flex-1 flex justify-center">
+              <button
+                onClick={onTitleClick}
+                className={`${
+                  transitions.slow
+                } flex items-center h-full pointer-events-auto
+                  ${getTransitionClasses(isStarted, "slide")}
+                  ${
+                    isStarted
+                      ? "cursor-pointer hover:opacity-80"
+                      : "pointer-events-none"
+                  }
+                `}
+              >
+                <h1 className="text-4xl font-bold tracking-tight">
+                  <span className={typography.gradientText}>Itiner</span>
+                  <span className="bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent">
+                    ai
+                  </span>
+                </h1>
+              </button>
             </div>
           </div>
         </div>
