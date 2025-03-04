@@ -3,12 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import dynamic from "next/dynamic";
 import { loadCityOptions } from "./api";
-import {
-  inputClassName,
-  dropdownClassName,
-  dropdownOptionClassName,
-  getCustomStyles,
-} from "./styles";
+import { inputClassName, dropdownClassName, getCustomStyles } from "./styles";
 import type { CityOption, CityInputProps } from "./types";
 import { InputLabel } from "../InputLabel";
 import type { AsyncProps } from "react-select/async";
