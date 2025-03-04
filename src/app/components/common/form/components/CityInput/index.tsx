@@ -2,7 +2,6 @@
 
 import { useState, useRef, useEffect } from "react";
 import dynamic from "next/dynamic";
-import { useTheme } from "@/app/context/theme/ThemeContext";
 import { loadCityOptions } from "./api";
 import {
   inputClassName,
@@ -29,8 +28,6 @@ export function CityInput({
   onChange,
   className = "",
 }: CityInputProps) {
-  const { theme } = useTheme();
-  const isDarkMode = theme === "dark";
   const [selectedOption, setSelectedOption] = useState<CityOption | null>(
     value ? { value, label: initialLabel || value } : null
   );
@@ -55,46 +52,35 @@ export function CityInput({
 
   const handleChange = (newValue: CityOption | null): void => {
     setSelectedOption(newValue);
-    onChange(newValue?.value || "", newValue?.label);
+    onChange(newValue?.value || "", newValue?.label || "");
   };
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className={`relative ${className}`}>
       <InputLabel>{label}</InputLabel>
-      <div className="flex gap-2 items-stretch">
-        <div
-          className={`${inputClassName} cursor-text`}
-          onClick={handleContainerClick}
-          ref={selectRef}
-        >
-          <AsyncSelect
-            key={isDarkMode ? "dark" : "light"}
-            cacheOptions
-            defaultOptions
-            value={selectedOption}
-            onChange={handleChange}
-            loadOptions={loadCityOptions}
-            className={`w-full h-full ${className}`}
-            styles={getCustomStyles(isDarkMode)}
-            placeholder="Start typing a city name..."
-            noOptionsMessage={({ inputValue }: { inputValue: string }) => {
-              return inputValue.length < 2
-                ? "Type at least 2 characters to search..."
-                : "No cities found";
-            }}
-            components={{
-              DropdownIndicator: () => null,
-              IndicatorSeparator: () => null,
-            }}
-            menuPortalTarget={
-              typeof document !== "undefined" ? document.body : null
-            }
-            classNames={{
-              menu: () => dropdownClassName,
-              option: () => dropdownOptionClassName,
-            }}
-          />
-        </div>
+      <div
+        ref={selectRef}
+        className={inputClassName}
+        onClick={handleContainerClick}
+      >
+        <AsyncSelect
+          value={selectedOption}
+          onChange={handleChange}
+          loadOptions={loadCityOptions}
+          placeholder="Enter a city..."
+          className={dropdownClassName}
+          classNamePrefix="react-select"
+          styles={getCustomStyles()}
+          components={{
+            DropdownIndicator: () => null,
+            IndicatorSeparator: () => null,
+          }}
+          noOptionsMessage={({ inputValue }) =>
+            inputValue.length > 0
+              ? "No cities found"
+              : "Start typing to search for cities..."
+          }
+        />
       </div>
     </div>
   );
