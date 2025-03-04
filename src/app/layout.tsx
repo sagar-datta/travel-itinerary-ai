@@ -4,16 +4,26 @@ import { ErrorBoundary } from "./components/common/ErrorBoundary";
 import { ViewportMeta } from "./components/common/ViewportMeta";
 
 export const metadata: Metadata = {
-  title: "Itinerai",
-  description: "Plan your perfect trip with AI assistance",
+  title: "AI Travel Itinerary Generator",
+  description: "Generate personalised travel itineraries with AI",
+  manifest:
+    process.env.NODE_ENV === "production"
+      ? "/travel-itinerary-ai/site.webmanifest"
+      : "/site.webmanifest",
   icons: {
     icon: [
-      { url: "/favicon.ico" },
+      { url: "/favicon.ico", sizes: "any" },
       { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
       { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
     ],
-    apple: [{ url: "/apple-touch-icon.png" }],
+    apple: [
+      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+    ],
     other: [
+      {
+        rel: "mask-icon",
+        url: "/favicon-32x32.png",
+      },
       {
         rel: "android-chrome",
         url: "/android-chrome-192x192.png",
@@ -26,10 +36,6 @@ export const metadata: Metadata = {
       },
     ],
   },
-  manifest:
-    process.env.NODE_ENV === "production"
-      ? "/travel-itinerary-ai/site.webmanifest"
-      : "/site.webmanifest",
   themeColor: "#F0F0F0",
 };
 
