@@ -23,7 +23,7 @@ export default function Home() {
   return (
     <>
       <GitHubRibbon />
-      <div className="min-h-screen flex flex-col bg-light-base mt-[32px] md:mt-0">
+      <div className="min-h-screen flex flex-col bg-light-base">
         <Header
           isStarted={isStarted}
           onTitleClick={handleTitleClick}
