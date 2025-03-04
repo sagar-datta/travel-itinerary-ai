@@ -1,5 +1,4 @@
 "use client";
-import { ThemeToggle } from "@/app/components/common/ThemeToggle";
 import {
   transitions,
   typography,
@@ -21,7 +20,7 @@ export function Header({
   onBack,
 }: HeaderProps) {
   return (
-    <header className="fixed md:relative top-[32px] md:top-0 left-0 right-0 z-50 backdrop-blur-xl md:backdrop-blur-none bg-light-base/10 dark:bg-dark-base/10 md:bg-transparent md:shadow-none after:absolute after:bottom-0 after:left-0 after:right-0 after:hidden sm:after:block pt-safe">
+    <header className="fixed md:relative top-[32px] md:top-0 left-0 right-0 z-50 backdrop-blur-xl md:backdrop-blur-none bg-light-base/10 md:bg-transparent md:shadow-none after:absolute after:bottom-0 after:left-0 after:right-0 after:hidden sm:after:block pt-safe">
       <div className="px-4 pt-4 pb-2 md:px-6 md:py-4">
         <div className="mx-auto max-w-7xl h-full">
           {/* Container for smaller screens - centered title with absolute positioned buttons */}
@@ -57,9 +56,6 @@ export function Header({
                 </span>
               </h1>
             </button>
-            <div className="absolute right-0 top-1/2 -translate-y-1/2 scale-75 md:scale-90 z-10">
-              <ThemeToggle />
-            </div>
           </div>
 
           {/* Container for large screens - original layout */}
@@ -104,9 +100,6 @@ export function Header({
                   </h1>
                 </button>
               </div>
-            </div>
-            <div className="relative z-10">
-              <ThemeToggle />
             </div>
           </div>
         </div>

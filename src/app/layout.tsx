@@ -9,7 +9,10 @@ export const metadata: Metadata = {
   title: "Itinerai",
   description: "Plan your perfect trip with AI assistance",
   icons: {
-    icon: process.env.NODE_ENV === 'production' ? "/travel-itinerary-ai/icon.svg" : "/icon.svg",
+    icon:
+      process.env.NODE_ENV === "production"
+        ? "/travel-itinerary-ai/icon.svg"
+        : "/icon.svg",
   },
 };
 
@@ -27,7 +30,7 @@ export default function RootLayout({
       <head>
         <ViewportMeta />
       </head>
-      <body className="min-h-screen bg-light-base transition-colors duration-300 dark:bg-dark-base">
+      <body className="min-h-screen bg-light-base transition-colors duration-300">
         <ErrorBoundary>
           <ThemeProvider>
             <ThemeColorMeta />
