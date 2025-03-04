@@ -57,30 +57,32 @@ export function CityInput({
 
   return (
     <div className={`relative ${className}`}>
-      <InputLabel>{label}</InputLabel>
-      <div
-        ref={selectRef}
-        className={inputClassName}
-        onClick={handleContainerClick}
-      >
-        <AsyncSelect
-          value={selectedOption}
-          onChange={handleChange}
-          loadOptions={loadCityOptions}
-          placeholder="Enter a city..."
-          className={dropdownClassName}
-          classNamePrefix="react-select"
-          styles={getCustomStyles()}
-          components={{
-            DropdownIndicator: () => null,
-            IndicatorSeparator: () => null,
-          }}
-          noOptionsMessage={({ inputValue }) =>
-            inputValue.length > 0
-              ? "No cities found"
-              : "Start typing to search for cities..."
-          }
-        />
+      <div className="flex flex-col gap-4">
+        <InputLabel>{label}</InputLabel>
+        <div
+          ref={selectRef}
+          className={inputClassName}
+          onClick={handleContainerClick}
+        >
+          <AsyncSelect
+            value={selectedOption}
+            onChange={handleChange}
+            loadOptions={loadCityOptions}
+            placeholder="Enter a city..."
+            className={dropdownClassName}
+            classNamePrefix="react-select"
+            styles={getCustomStyles()}
+            components={{
+              DropdownIndicator: () => null,
+              IndicatorSeparator: () => null,
+            }}
+            noOptionsMessage={({ inputValue }) =>
+              inputValue.length > 0
+                ? "No cities found"
+                : "Start typing to search for cities..."
+            }
+          />
+        </div>
       </div>
     </div>
   );
