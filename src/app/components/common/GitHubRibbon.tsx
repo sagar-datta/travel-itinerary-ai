@@ -11,15 +11,7 @@ export function GitHubRibbon() {
         className={styles["github-corner"]}
         aria-label="View source on GitHub"
       >
-        <svg
-          width="80"
-          height="80"
-          viewBox="0 0 250 250"
-          style={{
-            fill: "#171717",
-          }}
-          aria-hidden="true"
-        >
+        <svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true">
           <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z" />
         </svg>
       </a>
