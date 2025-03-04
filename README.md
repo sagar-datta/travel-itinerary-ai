@@ -9,7 +9,7 @@ A sophisticated, AI-powered travel itinerary generator built with Next.js 14 and
 - **Accessibility First**: Built with ARIA attributes and keyboard navigation support
 - **Performance Optimised**: Implements React best practices including code splitting and optimised re-renders
 - **Responsive Design**: Mobile-first approach with smooth transitions and animations
-- **Dark Mode**: Implemented system-aware theme switching with local storage persistence
+- **Neumorphic Design**: Modern, soft UI with beautiful shadows and depth
 
 ## 🤖 AI Integration
 
@@ -35,7 +35,7 @@ The AI adapts recommendations based on your specified interests, ensuring each i
   - Group size optimisation
   - Interest-based recommendations
   - Budget-aware suggestions
-- **Modern Interface**: Clean, responsive design with smooth animations
+- **Modern Interface**: Clean, responsive design with neumorphic styling
 - **Persistent Storage**: Implements local storage for preferences and form state
 - **Error Handling**: Robust error boundaries and graceful fallbacks
 
@@ -43,25 +43,25 @@ The AI adapts recommendations based on your specified interests, ensuring each i
 
 - **Framework**: Next.js 14 (App Router) with React Server Components
 - **Language**: TypeScript with strict type checking
-- **Styling**: 
+- **Styling**:
   - Tailwind CSS with custom configuration
-  - Dark mode support with system preference detection
-  - CSS-in-JS for dynamic styles
-- **State Management**: 
-  - React Context for global state
+  - Neumorphic design system
+  - CSS Modules for scoped styling
+- **State Management**:
+  - React Hook Form for form state
   - Custom hooks for local state
   - Optimised re-renders
 - **Performance**:
   - Component code splitting
   - Optimised bundle size
   - Client-side caching
-- **Form Handling**: 
+- **Form Handling**:
   - React Hook Form
   - Custom validation
   - Debounced inputs
-- **API Integration**: 
+- **API Integration**:
   - Google Gemini API
-  - Error handling and rate limiting
+  - Geonames API for city search
   - Type-safe API responses
 
 ## 📦 Project Structure
@@ -75,7 +75,6 @@ src/
 │   │   ├── common/      # Shared UI Components
 │   │   ├── features/    # Feature-specific Components
 │   │   └── layout/      # Layout Components
-│   ├── context/         # React Context Providers
 │   ├── lib/             # Utility Functions
 │   ├── services/        # External Service Integration
 │   └── types/           # TypeScript Types
@@ -101,7 +100,7 @@ src/
    cp .env.example .env.local
    ```
 
-   Add your Google Gemini API key to `.env.local`
+   Add your Google Gemini API key and Geonames username to `.env.local`
 
 4. **Run the development server**
 
@@ -116,14 +115,11 @@ src/
 - **Code Quality**:
   - ESLint with custom rules
   - Prettier for consistent formatting
-  - Husky pre-commit hooks
+  - TypeScript strict mode
 - **Type Safety**:
-  - Strict TypeScript configuration
-  - Comprehensive type definitions
-- **Testing**:
-  - Unit tests with Jest
-  - Component testing with React Testing Library
-  - E2E testing setup ready
+  - Comprehensive TypeScript configuration
+  - Full type coverage
+  - Type-safe API integrations
 
 ## 📝 Contributing
 
@@ -133,12 +129,13 @@ src/
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
-## 📄 License
+## 📄 Licence
 
-This project is licensed under the [MIT License](LICENSE) - see the [LICENSE](LICENSE) file for details. Copyright (c) 2024 Sagar Datta.
+This project is licenced under the [MIT Licence](LICENCE) - see the [LICENCE](LICENCE) file for details. Copyright (c) 2024 Sagar Datta.
 
 ## 🙏 Acknowledgments
 
 - Next.js team for the excellent framework
 - Google for the powerful Gemini API
+- Geonames for the comprehensive city database
 - All contributors who help improve the project
