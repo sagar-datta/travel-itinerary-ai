@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { ThemeProvider } from "./context/theme/ThemeContext";
 import { ErrorBoundary } from "./components/common/ErrorBoundary";
-import { ThemeColorMeta } from "./components/common/ThemeColorMeta";
 import { ViewportMeta } from "./components/common/ViewportMeta";
 
 export const metadata: Metadata = {
@@ -32,6 +30,7 @@ export const metadata: Metadata = {
     process.env.NODE_ENV === "production"
       ? "/travel-itinerary-ai/site.webmanifest"
       : "/site.webmanifest",
+  themeColor: "#F0F0F0",
 };
 
 export default function RootLayout({
@@ -40,21 +39,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html
-      lang="en"
-      className="transition-colors duration-300"
-      suppressHydrationWarning
-    >
+    <html lang="en" suppressHydrationWarning>
       <head>
         <ViewportMeta />
       </head>
-      <body className="min-h-screen bg-light-base transition-colors duration-300">
-        <ErrorBoundary>
-          <ThemeProvider>
-            <ThemeColorMeta />
-            {children}
-          </ThemeProvider>
-        </ErrorBoundary>
+      <body className="min-h-screen bg-light-base">
+        <ErrorBoundary>{children}</ErrorBoundary>
       </body>
     </html>
   );
